@@ -12,18 +12,17 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 
-
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
-public class EnchantmentLightMendingEnchant extends Enchantment {
-    @ObjectHolder(RandomEnchants2.MOD_ID + ":light_mending_enchant")
-    public static final Enchantment LIGHT_MENDING_ENCHANT = null;
+public class SolarEnchant extends Enchantment {
+    @ObjectHolder(RandomEnchants2.MOD_ID + "solar_enchant")
+    public static final Enchantment solar_enchant = null;
 
-    public EnchantmentLightMendingEnchant() {
+    public SolarEnchant() {
         super(Rarity.VERY_RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        this.setRegistryName(RandomEnchants2.MOD_ID, "light_mending_enchant");
+        this.setRegistryName(RandomEnchants2.MOD_ID, "solar_enchant");
     }
 
-    protected EnchantmentLightMendingEnchant(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot[] pApplicableSlots) {
+    protected SolarEnchant(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot[] pApplicableSlots) {
         super(pRarity, pCategory, pApplicableSlots);
     }
 
@@ -38,14 +37,14 @@ public class EnchantmentLightMendingEnchant extends Enchantment {
     }
 
     @SubscribeEvent
-    public static void applyLightMending(TickEvent.PlayerTickEvent event) {
+    public static void applySolarEnchant(TickEvent.PlayerTickEvent event) {
         if (event.phase != TickEvent.Phase.START || event.player.level.isClientSide())
             return;
 
         for (EquipmentSlot slot : EquipmentSlot.values()) {
             ItemStack stack = event.player.getItemBySlot(slot);
             if (!stack.isEmpty() && stack.isDamaged()) {
-                int level = EnchantmentHelper.getItemEnchantmentLevel(LIGHT_MENDING_ENCHANT, stack);
+                int level = EnchantmentHelper.getItemEnchantmentLevel(solar_enchant, stack);
                 if (level > 0 && event.player.level.getBrightness(LightLayer.BLOCK, event.player.blockPosition()) >= 15) {
                     int repairAmount = level * 2;
                     stack.setDamageValue(Math.max(0, stack.getDamageValue() - repairAmount));
