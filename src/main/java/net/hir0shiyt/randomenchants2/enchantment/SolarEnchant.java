@@ -9,21 +9,14 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.LightLayer;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ObjectHolder;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
+@EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
 public class SolarEnchant extends Enchantment {
-    @ObjectHolder(RandomEnchants2.MOD_ID + "solar_enchant")
-    public static final Enchantment solar_enchant = null;
+    private static final int REPAIR_COOLDOWN = 20;
 
-    public SolarEnchant() {
-        super(Rarity.VERY_RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        this.setRegistryName(RandomEnchants2.MOD_ID, "solar_enchant");
-    }
-
-    protected SolarEnchant(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot[] pApplicableSlots) {
-        super(pRarity, pCategory, pApplicableSlots);
+    public SolarEnchant(Rarity rarity, EnchantmentCategory category, EquipmentSlot... slots) {
+        super(rarity, category, slots);
     }
 
     @Override
@@ -41,15 +34,18 @@ public class SolarEnchant extends Enchantment {
         if (event.phase != TickEvent.Phase.START || event.player.level.isClientSide())
             return;
 
-        for (EquipmentSlot slot : EquipmentSlot.values()) {
-            ItemStack stack = event.player.getItemBySlot(slot);
-            if (!stack.isEmpty() && stack.isDamaged()) {
-                int level = EnchantmentHelper.getItemEnchantmentLevel(solar_enchant, stack);
-                if (level > 0 && event.player.level.getBrightness(LightLayer.BLOCK, event.player.blockPosition()) >= 15) {
-                    int repairAmount = level * 2;
-                    stack.setDamageValue(Math.max(0, stack.getDamageValue() - repairAmount));
+        if (event.player.tickCount % REPAIR_COOLDOWN == 0) {
+            for (EquipmentSlot slot : EquipmentSlot.values()) {
+                ItemStack stack = event.player.getItemBySlot(slot);
+                if (!stack.isEmpty() && stack.isDamaged()) {
+                    int level = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SOLAR_ENCHANT.get(), stack);
+                    if (level > 0 && event.player.level.getBrightness(LightLayer.BLOCK, event.player.blockPosition()) >= 13) {
+                        int repairAmount = level * 2;
+                        stack.setDamageValue(Math.max(0, stack.getDamageValue() - repairAmount));
+                    }
                 }
             }
         }
     }
 }
+
