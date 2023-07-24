@@ -18,6 +18,11 @@ public class ModEnchantments {
                     () -> new SolarEnchant(Enchantment.Rarity.VERY_RARE,
                             EnchantmentCategory.BREAKABLE, EquipmentSlot.MAINHAND));
 
+    public static final RegistryObject<Enchantment> OBSIDIAN_BUSTER =
+            ENCHANTMENTS.register("obsidian_buster",
+                    () -> new SolarEnchant(Enchantment.Rarity.RARE,
+                            EnchantmentCategory.DIGGER, EquipmentSlot.MAINHAND));
+
     public static void register(IEventBus eventBus) {
         ENCHANTMENTS.register(eventBus);
     }

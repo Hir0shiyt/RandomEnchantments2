@@ -16,9 +16,7 @@ public class RandomEnchants2 {
     public RandomEnchants2() {
 
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
         ModEnchantments.register(eventBus);
-
         MinecraftForge.EVENT_BUS.register(this);
     }
 

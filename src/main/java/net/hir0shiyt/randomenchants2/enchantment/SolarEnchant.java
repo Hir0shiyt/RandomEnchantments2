@@ -39,13 +39,16 @@ public class SolarEnchant extends Enchantment {
                 ItemStack stack = event.player.getItemBySlot(slot);
                 if (!stack.isEmpty() && stack.isDamaged()) {
                     int level = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SOLAR_ENCHANT.get(), stack);
-                    if (level > 0 && event.player.level.getBrightness(LightLayer.BLOCK, event.player.blockPosition()) >= 13) {
-                        int repairAmount = level * 2;
-                        stack.setDamageValue(Math.max(0, stack.getDamageValue() - repairAmount));
+                    if (level > 0) {
+                        int skyLight = event.player.level.getBrightness(LightLayer.SKY, event.player.blockPosition());
+                        int blockLight = event.player.level.getBrightness(LightLayer.BLOCK, event.player.blockPosition());
+                        if (skyLight >= 8 && blockLight >= 8) {
+                            int repairAmount = level * 2;
+                            stack.setDamageValue(Math.max(0, stack.getDamageValue() - repairAmount));
+                        }
                     }
                 }
             }
         }
     }
 }
-
