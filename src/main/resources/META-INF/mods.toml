@@ -27,7 +27,7 @@ displayName="Random Enchants 2" #mandatory
 # A URL for the "homepage" for this mod, displayed in the mod UI
 #displayURL="https://change.me.to.your.mods.homepage.example.invalid/" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
-logoFile="ModLogo.png" #optional
+logoFile= "../assets/randomenchants2/ModLogo.png" #optional
 # A text field displayed in the mod UI
 credits="IntelliJ, Java & hir0shiyt" #optional
 # A text field displayed in the mod UI
@@ -37,7 +37,7 @@ description='''
 Adding enchantments from the mod Random Enchants 2
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.examplemod]] #optional
+[[dependencies.randomenchants2]] #optional
     # the modid of the dependency
     modId="forge" #mandatory
     # Does this dependency have to exist - if not, ordering below must be specified
@@ -49,7 +49,7 @@ Adding enchantments from the mod Random Enchants 2
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
     side="BOTH"
 # Here's another dependency
-[[dependencies.examplemod]]
+[[dependencies.randomenchants2]]
     modId="minecraft"
     mandatory=true
 # This version range declares a minimum of the current minecraft version up to but not including the next major version

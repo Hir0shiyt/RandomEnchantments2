@@ -1,6 +1,7 @@
 package net.hir0shiyt.randomenchants2.enchantment;
 
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
+import net.hir0shiyt.randomenchants2.Randomness;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
@@ -16,11 +17,16 @@ public class ModEnchantments {
     public static final RegistryObject<Enchantment> SOLAR_ENCHANT =
             ENCHANTMENTS.register("solar_enchant",
                     () -> new SolarEnchant(Enchantment.Rarity.VERY_RARE,
-                            EnchantmentCategory.BREAKABLE, EquipmentSlot.MAINHAND));
+                            EnchantmentCategory.BREAKABLE, EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND));
 
     public static final RegistryObject<Enchantment> OBSIDIAN_BUSTER =
             ENCHANTMENTS.register("obsidian_buster",
-                    () -> new SolarEnchant(Enchantment.Rarity.RARE,
+                    () -> new ObsidianBuster(Enchantment.Rarity.RARE,
+                            EnchantmentCategory.DIGGER, EquipmentSlot.MAINHAND));
+
+    public static final RegistryObject<Enchantment> RANDOMNESS =
+            ENCHANTMENTS.register("randomness",
+                    () -> new Randomness(Enchantment.Rarity.VERY_RARE,
                             EnchantmentCategory.DIGGER, EquipmentSlot.MAINHAND));
 
     public static void register(IEventBus eventBus) {

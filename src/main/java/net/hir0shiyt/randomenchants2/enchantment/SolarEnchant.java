@@ -9,10 +9,14 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.LightLayer;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ObjectHolder;
 
-@EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
+@Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
 public class SolarEnchant extends Enchantment {
+
+    @ObjectHolder(RandomEnchants2.MOD_ID + ":solar_enchant")
+    public static final Enchantment SOLAR_ENCHANT = null;
     private static final int REPAIR_COOLDOWN = 20;
 
     public SolarEnchant(Rarity rarity, EnchantmentCategory category, EquipmentSlot... slots) {
@@ -33,12 +37,11 @@ public class SolarEnchant extends Enchantment {
     public static void applySolarEnchant(TickEvent.PlayerTickEvent event) {
         if (event.phase != TickEvent.Phase.START || event.player.level.isClientSide())
             return;
-
         if (event.player.tickCount % REPAIR_COOLDOWN == 0) {
             for (EquipmentSlot slot : EquipmentSlot.values()) {
                 ItemStack stack = event.player.getItemBySlot(slot);
                 if (!stack.isEmpty() && stack.isDamaged()) {
-                    int level = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SOLAR_ENCHANT.get(), stack);
+                    int level = EnchantmentHelper.getItemEnchantmentLevel(SOLAR_ENCHANT, stack);
                     if (level > 0) {
                         int skyLight = event.player.level.getBrightness(LightLayer.SKY, event.player.blockPosition());
                         int blockLight = event.player.level.getBrightness(LightLayer.BLOCK, event.player.blockPosition());

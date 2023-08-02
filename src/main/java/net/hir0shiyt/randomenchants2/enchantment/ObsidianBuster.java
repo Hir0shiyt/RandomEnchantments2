@@ -43,8 +43,13 @@ public class ObsidianBuster extends Enchantment {
         Player player = event.getPlayer();
         ItemStack heldItem = player.getItemInHand(player.getUsedItemHand());
 
-        if (EnchantmentHelper.getItemEnchantmentLevel(OBSIDIAN_BUSTER.get(), heldItem) > 0
-                && event.getState().getBlock() == Blocks.OBSIDIAN) {
+        // Check if the enchantment is enabled
+        if (EnchantmentHelper.getItemEnchantmentLevel(OBSIDIAN_BUSTER.get(), heldItem) <= 0) {
+            return;
+        }
+
+        if (event.getState().getBlock() == Blocks.OBSIDIAN) {
+            // Apply the custom breaking speed boost for obsidian
             float newSpeed = event.getNewSpeed() + 100F; // Adjust the speed boost as needed
             event.setNewSpeed(newSpeed);
         }
