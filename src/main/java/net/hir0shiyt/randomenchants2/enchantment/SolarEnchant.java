@@ -1,11 +1,13 @@
 package net.hir0shiyt.randomenchants2.enchantment;
 
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -37,19 +39,25 @@ public class SolarEnchant extends Enchantment {
     public static void applySolarEnchant(TickEvent.PlayerTickEvent event) {
         if (event.phase != TickEvent.Phase.START || event.player.level.isClientSide())
             return;
-        if (event.player.tickCount % REPAIR_COOLDOWN == 0) {
-            for (EquipmentSlot slot : EquipmentSlot.values()) {
-                ItemStack stack = event.player.getItemBySlot(slot);
-                if (!stack.isEmpty() && stack.isDamaged()) {
-                    int level = EnchantmentHelper.getItemEnchantmentLevel(SOLAR_ENCHANT, stack);
-                    if (level > 0) {
-                        int skyLight = event.player.level.getBrightness(LightLayer.SKY, event.player.blockPosition());
-                        int blockLight = event.player.level.getBrightness(LightLayer.BLOCK, event.player.blockPosition());
-                        if (skyLight >= 8 && blockLight >= 8) {
-                            int repairAmount = level * 2;
-                            stack.setDamageValue(Math.max(0, stack.getDamageValue() - repairAmount));
-                        }
-                    }
+
+        Level world = event.player.level;
+        long time = world.getDayTime();
+        boolean isDaytime = time >= 0 && time < 12000; // Daytime if the time is between 0 and 12000 (exclusive)
+
+        // Check if the item is in the main hand and the enchantment is enabled
+        ItemStack mainHandStack = event.player.getMainHandItem();
+        int mainHandLevel = EnchantmentHelper.getItemEnchantmentLevel(SOLAR_ENCHANT, mainHandStack);
+
+        if (mainHandStack.isDamaged() && mainHandLevel > 0) {
+            BlockPos playerPos = event.player.blockPosition();
+            int skyLight = world.getBrightness(LightLayer.SKY, playerPos); // Sky light
+            int blockLight = world.getBrightness(LightLayer.BLOCK, playerPos); // Block light
+
+            // If it's day or there's enough light around the player, repair the item
+            if (isDaytime || (skyLight >= 8 && blockLight >= 8)) {
+                if (event.player.tickCount % REPAIR_COOLDOWN == 0) {
+                    int repairAmount = mainHandLevel * 2;
+                    mainHandStack.setDamageValue(Math.max(0, mainHandStack.getDamageValue() - repairAmount));
                 }
             }
         }
