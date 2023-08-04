@@ -37,7 +37,7 @@ public class Randomness extends Enchantment {
 
     @Override
     public int getMaxLevel() {
-        return 5;
+        return 1;
     }
 
     public static final DeferredRegister<Enchantment> ENCHANTMENTS =

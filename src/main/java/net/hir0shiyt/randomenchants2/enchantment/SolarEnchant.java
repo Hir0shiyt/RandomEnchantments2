@@ -12,7 +12,9 @@ import net.minecraft.world.level.LightLayer;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
+import net.minecraft.world.item.enchantment.Enchantments;
 
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
 public class SolarEnchant extends Enchantment {
@@ -50,7 +52,7 @@ public class SolarEnchant extends Enchantment {
 
         if (mainHandStack.isDamaged() && mainHandLevel > 0) {
             BlockPos playerPos = event.player.blockPosition();
-            int skyLight = world.getBrightness(LightLayer.SKY, playerPos); // Sky light
+            int skyLight = world.getBrightness(LightLayer.SKY, playerPos); // Skylight
             int blockLight = world.getBrightness(LightLayer.BLOCK, playerPos); // Block light
 
             // If it's day or there's enough light around the player, repair the item
