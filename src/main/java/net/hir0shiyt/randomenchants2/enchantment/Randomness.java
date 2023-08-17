@@ -40,6 +40,12 @@ public class Randomness extends Enchantment {
         return 1;
     }
 
+    @Override
+    protected boolean checkCompatibility (Enchantment enchantment) {
+        return !(enchantment instanceof SolarEnchant) &&
+                super.checkCompatibility(enchantment);
+    }
+
     public static final DeferredRegister<Enchantment> ENCHANTMENTS =
             DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, RandomEnchants2.MOD_ID);
 

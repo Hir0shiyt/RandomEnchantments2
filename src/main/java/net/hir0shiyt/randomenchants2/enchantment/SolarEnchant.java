@@ -7,14 +7,13 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.MendingEnchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
-import net.minecraft.world.item.enchantment.Enchantments;
 
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
 public class SolarEnchant extends Enchantment {
@@ -35,6 +34,13 @@ public class SolarEnchant extends Enchantment {
     @Override
     public int getMaxLevel() {
         return 5;
+    }
+
+    @Override
+    protected boolean checkCompatibility(Enchantment enchantment) {
+        return !(enchantment instanceof Randomness) &&
+                !(enchantment instanceof MendingEnchantment) &&
+                super.checkCompatibility(enchantment);
     }
 
     @SubscribeEvent

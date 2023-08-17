@@ -28,6 +28,8 @@ public class ModEnchantments {
                     () -> new Randomness(Enchantment.Rarity.VERY_RARE,
                             EnchantmentCategory.DIGGER, EquipmentSlot.MAINHAND));
 
+    // Register other enchantments...
+
     public static void register(IEventBus eventBus) {
         ENCHANTMENTS.register(eventBus);
     }

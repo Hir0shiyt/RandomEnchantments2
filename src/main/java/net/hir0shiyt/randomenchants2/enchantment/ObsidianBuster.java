@@ -31,6 +31,12 @@ public class ObsidianBuster extends Enchantment {
         return 1; // Set the maximum enchantment level to 1
     }
 
+    @Override
+    protected boolean checkCompatibility(Enchantment enchantment) {
+        return !(enchantment instanceof Randomness) &&
+                super.checkCompatibility(enchantment);
+    }
+
     public static final DeferredRegister<Enchantment> ENCHANTMENTS =
             DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, RandomEnchants2.MOD_ID);
 
