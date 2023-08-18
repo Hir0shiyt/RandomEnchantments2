@@ -28,6 +28,11 @@ public class ModEnchantments {
                     () -> new Randomness(Enchantment.Rarity.VERY_RARE,
                             EnchantmentCategory.DIGGER, EquipmentSlot.MAINHAND));
 
+    public static final RegistryObject<Enchantment> MAGNETIC =
+            ENCHANTMENTS.register("magnetic",
+                    () -> new Magnetic(Enchantment.Rarity.RARE,
+                            EnchantmentCategory.DIGGER, EquipmentSlot.MAINHAND));
+
     // Register other enchantments...
 
     public static void register(IEventBus eventBus) {
