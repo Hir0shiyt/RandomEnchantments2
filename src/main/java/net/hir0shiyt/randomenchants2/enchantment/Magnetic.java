@@ -1,13 +1,9 @@
 package net.hir0shiyt.randomenchants2.enchantment;
 
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
+import net.hir0shiyt.randomenchants2.config.ModConfig;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.ItemStack;
@@ -17,12 +13,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
 public class Magnetic extends Enchantment {
+
     public Magnetic(Rarity rarity, EnchantmentCategory category, EquipmentSlot... slots) {
         super(rarity, category, slots);
         }
@@ -42,6 +39,27 @@ public class Magnetic extends Enchantment {
         return !(enchantment instanceof Randomness) &&
                 super.checkCompatibility(enchantment);
     }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack) {
+        return ModConfig.magneticConfig.isEnabled.get();
+    }
+
+    @Override
+    public boolean canEnchant(@NotNull ItemStack stack) {
+        return ModConfig.magneticConfig.isEnabled.get();
+    }
+
+    @Override
+    public boolean isAllowedOnBooks() {
+        return ModConfig.magneticConfig.isEnabled.get();
+    }
+
+    @Override
+    public boolean isTradeable() {
+        return ModConfig.magneticConfig.isEnabled.get();
+    }
+
 
     @SubscribeEvent
     public static void onBlockBreak(BlockEvent.BreakEvent event) {

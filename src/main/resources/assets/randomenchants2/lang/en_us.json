@@ -1,5 +1,10 @@
 {
   "enchantment.randomenchants2.solar_enchant": "Solar",
+  "enchantment.randomenchants2.solar_enchant.desc" : "Repairs Items When there's light ot it's daytime",
   "enchantment.randomenchants2.obsidian_buster": "Obsidian Buster",
-  "enchantment.randomenchants2.randomness": "Randomness"
+  "enchantment.randomenchants2.obsidian_buster.desc": "Breaks Obsidian Faster",
+  "enchantment.randomenchants2.randomness": "Randomness",
+  "enchantment.randomenchants2.randomness.desc": "Gives random blocks/items when a block is broken",
+  "enchantment.randomenchants2.magnetic" : "Magnetic",
+  "enchantment.randomenchants2.magnetic.desc" : "Broken blocks go directly into the player's inventory"
 }

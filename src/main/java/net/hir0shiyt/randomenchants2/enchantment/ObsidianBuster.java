@@ -1,6 +1,7 @@
 package net.hir0shiyt.randomenchants2.enchantment;
 
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
+import net.hir0shiyt.randomenchants2.config.ModConfig;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -14,6 +15,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
 public class ObsidianBuster extends Enchantment {
@@ -36,6 +38,27 @@ public class ObsidianBuster extends Enchantment {
         return !(enchantment instanceof Randomness) &&
                 super.checkCompatibility(enchantment);
     }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack) {
+        return ModConfig.obsidianBusterConfig.isEnabled.get();
+    }
+
+    @Override
+    public boolean canEnchant(@NotNull ItemStack stack) {
+        return ModConfig.obsidianBusterConfig.isEnabled.get();
+    }
+
+    @Override
+    public boolean isAllowedOnBooks() {
+        return ModConfig.obsidianBusterConfig.isEnabled.get();
+    }
+
+    @Override
+    public boolean isTradeable() {
+        return ModConfig.obsidianBusterConfig.isEnabled.get();
+    }
+
 
     public static final DeferredRegister<Enchantment> ENCHANTMENTS =
             DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, RandomEnchants2.MOD_ID);

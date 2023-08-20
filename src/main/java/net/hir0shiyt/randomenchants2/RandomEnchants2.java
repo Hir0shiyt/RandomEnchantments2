@@ -1,7 +1,9 @@
 package net.hir0shiyt.randomenchants2;
 
+import net.hir0shiyt.randomenchants2.config.ModConfig;
 import net.hir0shiyt.randomenchants2.enchantment.ModEnchantments;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -15,5 +17,8 @@ public class RandomEnchants2 {
     public RandomEnchants2() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         ModEnchantments.register(eventBus);
+
+        ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.SERVER, ModConfig.COMMON_SPEC, "randomenchants2-server.toml");
+
     }
 }
