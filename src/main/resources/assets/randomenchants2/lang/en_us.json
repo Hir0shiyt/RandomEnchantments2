@@ -6,5 +6,7 @@
   "enchantment.randomenchants2.randomness": "Randomness",
   "enchantment.randomenchants2.randomness.desc": "Gives random blocks/items when a block is broken",
   "enchantment.randomenchants2.magnetic" : "Magnetic",
-  "enchantment.randomenchants2.magnetic.desc" : "Broken blocks go directly into the player's inventory"
+  "enchantment.randomenchants2.magnetic.desc" : "Broken blocks go directly into the player's inventory",
+  "enchantment.randomenchants2.stone_lover" : "Stone Lover",
+  "enchantment.randomenchants2.stone_lover.desc" : "80% Chance of repairing the pickaxe when braking Stone Blocks"
 }

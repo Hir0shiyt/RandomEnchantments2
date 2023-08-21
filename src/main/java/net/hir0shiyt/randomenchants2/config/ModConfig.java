@@ -10,6 +10,7 @@ public class ModConfig {
     public static final EnchantmentConfigEntry obsidianBusterConfig;
     public static final EnchantmentConfigEntry randomnessConfig;
     public static final EnchantmentConfigEntry magneticConfig;
+    public static final EnchantmentConfigEntry stoneLoverConfig;
 
     static {
         Builder builder = new ForgeConfigSpec.Builder();
@@ -17,6 +18,7 @@ public class ModConfig {
         obsidianBusterConfig = new EnchantmentConfigEntry(builder, "obsidian_buster", true);
         randomnessConfig = new EnchantmentConfigEntry(builder, "randomness", true);
         magneticConfig = new EnchantmentConfigEntry(builder, "magnetic", true);
+        stoneLoverConfig = new EnchantmentConfigEntry(builder,"stone_lover",true);
 
         COMMON_SPEC = builder.build();
     }

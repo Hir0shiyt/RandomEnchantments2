@@ -65,6 +65,11 @@ public class SolarEnchant extends Enchantment {
         return ModConfig.solarEnchantConfig.isEnabled.get();
     }
 
+    @Override
+    public boolean isTreasureOnly() {
+        return ModConfig.solarEnchantConfig.isEnabled.get();
+    }
+
 
     @SubscribeEvent
     public static void applySolarEnchant(TickEvent.PlayerTickEvent event) {
