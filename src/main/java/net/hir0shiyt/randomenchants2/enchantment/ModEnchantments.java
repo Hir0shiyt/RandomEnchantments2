@@ -46,6 +46,11 @@ public class ModEnchantments {
                     () -> new StoneLover(Enchantment.Rarity.RARE,
                             EnchantmentCategory.DIGGER, EquipmentSlot.MAINHAND));
 
+    public static final RegistryObject<Enchantment> ETERNAL =
+            ENCHANTMENTS.register("eternal",
+                    () -> new Eternal(Enchantment.Rarity.VERY_RARE,
+                            EnchantmentCategory.BREAKABLE, EquipmentSlot.MAINHAND));
+
     // Register other enchantments...
 
     public static void register(IEventBus eventBus) {

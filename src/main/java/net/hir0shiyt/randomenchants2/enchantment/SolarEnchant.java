@@ -42,6 +42,7 @@ public class SolarEnchant extends Enchantment {
     protected boolean checkCompatibility(Enchantment enchantment) {
         return !(enchantment instanceof Randomness) &&
                 !(enchantment instanceof MendingEnchantment) &&
+                !(enchantment instanceof Eternal) &&
                 super.checkCompatibility(enchantment);
     }
 

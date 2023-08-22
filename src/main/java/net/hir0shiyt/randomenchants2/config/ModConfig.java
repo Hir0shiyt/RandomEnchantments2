@@ -11,6 +11,7 @@ public class ModConfig {
     public static final EnchantmentConfigEntry randomnessConfig;
     public static final EnchantmentConfigEntry magneticConfig;
     public static final EnchantmentConfigEntry stoneLoverConfig;
+    public static final EnchantmentConfigEntry eternalConfig;
 
     static {
         Builder builder = new ForgeConfigSpec.Builder();
@@ -19,6 +20,7 @@ public class ModConfig {
         randomnessConfig = new EnchantmentConfigEntry(builder, "randomness", true);
         magneticConfig = new EnchantmentConfigEntry(builder, "magnetic", true);
         stoneLoverConfig = new EnchantmentConfigEntry(builder,"stone_lover",true);
+        eternalConfig = new EnchantmentConfigEntry(builder,"eternal",true);
 
         COMMON_SPEC = builder.build();
     }

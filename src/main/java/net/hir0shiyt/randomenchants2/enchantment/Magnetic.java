@@ -42,22 +42,22 @@ public class Magnetic extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return ModConfig.magneticConfig.isEnabled.get();
+        return ModConfig.magneticConfig.isEnabled.get() && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean canEnchant(@NotNull ItemStack stack) {
-        return ModConfig.magneticConfig.isEnabled.get();
+        return ModConfig.magneticConfig.isEnabled.get() && super.canEnchant(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.magneticConfig.isEnabled.get();
+        return ModConfig.magneticConfig.isEnabled.get() && super.isAllowedOnBooks();
     }
 
     @Override
     public boolean isTradeable() {
-        return ModConfig.magneticConfig.isEnabled.get();
+        return ModConfig.magneticConfig.isEnabled.get() && super.isTradeable();
     }
 
 
