@@ -5,8 +5,8 @@ import net.hir0shiyt.randomenchants2.config.ModConfig;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -20,9 +20,9 @@ import java.util.List;
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
 public class Magnetic extends Enchantment {
 
-    public Magnetic(Rarity rarity, EnchantmentCategory category, EquipmentSlot... slots) {
-        super(rarity, category, slots);
-        }
+    public Magnetic(Rarity rare, EnchantmentCategory digger, EquipmentSlot mainhand) {
+        super(Rarity.RARE, RandomEnchants2.PICKAXE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    }
 
     @Override
     public int getMinCost(int level) {
@@ -42,22 +42,27 @@ public class Magnetic extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return ModConfig.magneticConfig.isEnabled.get() && super.canApplyAtEnchantingTable(stack);
+        return ModConfig.magneticConfig.isEnabled.get() && ModConfig.magneticConfig.canApplyAtEnchantingTable.get();
     }
 
     @Override
     public boolean canEnchant(@NotNull ItemStack stack) {
-        return ModConfig.magneticConfig.isEnabled.get() && super.canEnchant(stack);
+        return ModConfig.magneticConfig.isEnabled.get();
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.magneticConfig.isEnabled.get() && super.isAllowedOnBooks();
+        return ModConfig.magneticConfig.isEnabled.get();
     }
 
     @Override
     public boolean isTradeable() {
-        return ModConfig.magneticConfig.isEnabled.get() && super.isTradeable();
+        return ModConfig.magneticConfig.isEnabled.get() && ModConfig.magneticConfig.isTradeable.get();
+    }
+
+    @Override
+    public boolean isTreasureOnly() {
+        return ModConfig.magneticConfig.isEnabled.get() && ModConfig.magneticConfig.isTreasureOnly.get();
     }
 
 

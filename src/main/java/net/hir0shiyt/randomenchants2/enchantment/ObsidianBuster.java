@@ -2,25 +2,22 @@ package net.hir0shiyt.randomenchants2.enchantment;
 
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
 import net.hir0shiyt.randomenchants2.config.ModConfig;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
 public class ObsidianBuster extends Enchantment {
-    public ObsidianBuster(Rarity rarity, EnchantmentCategory category, EquipmentSlot... slots) {
-        super(rarity, category, slots);
+    public ObsidianBuster(Rarity rare, EnchantmentCategory digger, EquipmentSlot mainhand) {
+        super(Rarity.VERY_RARE, RandomEnchants2.PICKAXE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     }
 
     @Override
@@ -41,7 +38,7 @@ public class ObsidianBuster extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return ModConfig.obsidianBusterConfig.isEnabled.get();
+        return ModConfig.obsidianBusterConfig.isEnabled.get() && ModConfig.obsidianBusterConfig.canApplyAtEnchantingTable.get();
     }
 
     @Override
@@ -56,16 +53,13 @@ public class ObsidianBuster extends Enchantment {
 
     @Override
     public boolean isTradeable() {
-        return ModConfig.obsidianBusterConfig.isEnabled.get();
+        return ModConfig.obsidianBusterConfig.isEnabled.get() && ModConfig.obsidianBusterConfig.isTradeable.get();
     }
 
-
-    public static final DeferredRegister<Enchantment> ENCHANTMENTS =
-            DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, RandomEnchants2.MOD_ID);
-
-    public static final RegistryObject<Enchantment> OBSIDIAN_BUSTER =
-            ENCHANTMENTS.register("obsidian_buster",
-                    () -> new ObsidianBuster(Rarity.UNCOMMON, EnchantmentCategory.DIGGER, EquipmentSlot.MAINHAND));
+    @Override
+    public boolean isTreasureOnly() {
+        return ModConfig.obsidianBusterConfig.isEnabled.get() && ModConfig.obsidianBusterConfig.isTreasureOnly.get();
+    }
 
     @SubscribeEvent
     public static void onBreakSpeed(PlayerEvent.BreakSpeed event) {
@@ -73,7 +67,7 @@ public class ObsidianBuster extends Enchantment {
         ItemStack heldItem = player.getItemInHand(player.getUsedItemHand());
 
         // Check if the enchantment is enabled
-        if (EnchantmentHelper.getItemEnchantmentLevel(OBSIDIAN_BUSTER.get(), heldItem) <= 0) {
+        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.OBSIDIAN_BUSTER.get(), heldItem) <= 0) {
             return;
         }
 

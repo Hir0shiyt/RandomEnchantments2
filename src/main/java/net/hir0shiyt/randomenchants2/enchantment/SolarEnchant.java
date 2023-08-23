@@ -3,10 +3,10 @@ package net.hir0shiyt.randomenchants2.enchantment;
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
 import net.hir0shiyt.randomenchants2.config.ModConfig;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.MendingEnchantment;
 import net.minecraft.world.level.Level;
@@ -24,8 +24,8 @@ public class SolarEnchant extends Enchantment {
     public static final Enchantment SOLAR_ENCHANT = null;
     private static final int REPAIR_COOLDOWN = 20;
 
-    public SolarEnchant(Rarity rarity, EnchantmentCategory category, EquipmentSlot... slots) {
-        super(rarity, category, slots);
+    public SolarEnchant(Rarity veryRare, EnchantmentCategory breakable, EquipmentSlot mainhand, EquipmentSlot offhand) {
+        super(Rarity.VERY_RARE, RandomEnchants2.PICKAXE, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
     }
 
     @Override
@@ -48,7 +48,7 @@ public class SolarEnchant extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return ModConfig.solarEnchantConfig.isEnabled.get();
+        return ModConfig.solarEnchantConfig.isEnabled.get() && ModConfig.solarEnchantConfig.canApplyAtEnchantingTable.get();
     }
 
     @Override
@@ -62,15 +62,14 @@ public class SolarEnchant extends Enchantment {
     }
 
     @Override
-    public boolean isTradeable() {
-        return ModConfig.solarEnchantConfig.isEnabled.get();
+    public boolean isTreasureOnly() {
+        return ModConfig.solarEnchantConfig.isEnabled.get() && ModConfig.solarEnchantConfig.isTreasureOnly.get();
     }
 
     @Override
-    public boolean isTreasureOnly() {
-        return ModConfig.solarEnchantConfig.isEnabled.get();
+    public boolean isTradeable() {
+        return ModConfig.solarEnchantConfig.isEnabled.get() && ModConfig.solarEnchantConfig.isTradeable.get();
     }
-
 
     @SubscribeEvent
     public static void applySolarEnchant(TickEvent.PlayerTickEvent event) {
@@ -79,18 +78,17 @@ public class SolarEnchant extends Enchantment {
 
         Level world = event.player.level;
         long time = world.getDayTime();
-        boolean isDaytime = time >= 0 && time < 12000; // Daytime if the time is between 0 and 12000 (exclusive)
+        boolean isDaytime = time >= 0 && time < 12000;
 
         // Check if the item is in the main hand and the enchantment is enabled
         ItemStack mainHandStack = event.player.getMainHandItem();
-        int mainHandLevel = EnchantmentHelper.getItemEnchantmentLevel(SOLAR_ENCHANT, mainHandStack);
+        int mainHandLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SOLAR_ENCHANT.get(), mainHandStack);
 
         if (mainHandStack.isDamaged() && mainHandLevel > 0) {
             BlockPos playerPos = event.player.blockPosition();
             int skyLight = world.getBrightness(LightLayer.SKY, playerPos); // Skylight
             int blockLight = world.getBrightness(LightLayer.BLOCK, playerPos); // Block light
 
-            // If it's day or there's enough light around the player, repair the item
             if (isDaytime || (skyLight >= 8 && blockLight >= 8)) {
                 if (event.player.tickCount % REPAIR_COOLDOWN == 0) {
                     int repairAmount = mainHandLevel * 2;

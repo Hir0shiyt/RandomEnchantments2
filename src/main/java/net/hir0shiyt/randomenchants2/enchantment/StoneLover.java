@@ -34,7 +34,7 @@ public class StoneLover extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return ModConfig.stoneLoverConfig.isEnabled.get();
+        return ModConfig.stoneLoverConfig.isEnabled.get() && ModConfig.stoneLoverConfig.canApplyAtEnchantingTable.get();
     }
 
     @Override
@@ -49,7 +49,12 @@ public class StoneLover extends Enchantment {
 
     @Override
     public boolean isTradeable() {
-        return ModConfig.stoneLoverConfig.isEnabled.get();
+        return ModConfig.stoneLoverConfig.isEnabled.get() && ModConfig.stoneLoverConfig.isTradeable.get();
+    }
+
+    @Override
+    public boolean isTreasureOnly() {
+        return ModConfig.stoneLoverConfig.isEnabled.get() && ModConfig.stoneLoverConfig.isTreasureOnly.get();
     }
 
     @SubscribeEvent

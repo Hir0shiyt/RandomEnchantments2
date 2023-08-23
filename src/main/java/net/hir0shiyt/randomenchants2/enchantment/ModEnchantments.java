@@ -1,21 +1,13 @@
 package net.hir0shiyt.randomenchants2.enchantment;
 
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
-import net.hir0shiyt.randomenchants2.config.ModConfig;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import net.minecraft.world.item.PickaxeItem;
-
-import static net.minecraft.world.item.enchantment.EnchantmentCategory.create;
 
 public class ModEnchantments {
     public static final DeferredRegister<Enchantment> ENCHANTMENTS =
@@ -29,7 +21,7 @@ public class ModEnchantments {
     public static final RegistryObject<Enchantment> OBSIDIAN_BUSTER =
             ENCHANTMENTS.register("obsidian_buster",
                     () -> new ObsidianBuster(Enchantment.Rarity.RARE,
-                            EnchantmentCategory.DIGGER, EquipmentSlot.MAINHAND));
+                            RandomEnchants2.PICKAXE, EquipmentSlot.MAINHAND));
 
     public static final RegistryObject<Enchantment> RANDOMNESS =
             ENCHANTMENTS.register("randomness",
@@ -44,14 +36,17 @@ public class ModEnchantments {
     public static final RegistryObject<Enchantment> STONE_LOVER =
             ENCHANTMENTS.register("stone_lover",
                     () -> new StoneLover(Enchantment.Rarity.RARE,
-                            EnchantmentCategory.DIGGER, EquipmentSlot.MAINHAND));
+                            RandomEnchants2.PICKAXE, EquipmentSlot.MAINHAND));
 
     public static final RegistryObject<Enchantment> ETERNAL =
             ENCHANTMENTS.register("eternal",
                     () -> new Eternal(Enchantment.Rarity.VERY_RARE,
                             EnchantmentCategory.BREAKABLE, EquipmentSlot.MAINHAND));
 
-    // Register other enchantments...
+    public static final RegistryObject<Enchantment> DUNGEONEERING =
+            ENCHANTMENTS.register("dungeoneering",
+                    () -> new Dungeoneering(Enchantment.Rarity.VERY_RARE,
+                            RandomEnchants2.PICKAXE, EquipmentSlot.MAINHAND));
 
     public static void register(IEventBus eventBus) {
         ENCHANTMENTS.register(eventBus);

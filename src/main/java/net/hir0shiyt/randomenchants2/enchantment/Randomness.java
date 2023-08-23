@@ -3,12 +3,12 @@ package net.hir0shiyt.randomenchants2.enchantment;
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
 import net.hir0shiyt.randomenchants2.config.ModConfig;
 import net.minecraft.core.Registry;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -16,9 +16,6 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.ItemHandlerHelper;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -27,8 +24,8 @@ import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
 public class Randomness extends Enchantment {
-    public Randomness(Rarity rarity, EnchantmentCategory category, EquipmentSlot... slots) {
-        super(rarity, category, slots);
+    public Randomness(Rarity veryRare, EnchantmentCategory digger, EquipmentSlot mainhand) {
+        super(Rarity.VERY_RARE, EnchantmentCategory.DIGGER, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     }
 
 
@@ -50,7 +47,7 @@ public class Randomness extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return ModConfig.randomnessConfig.isEnabled.get();
+        return ModConfig.randomnessConfig.isEnabled.get() && ModConfig.randomnessConfig.canApplyAtEnchantingTable.get();
     }
 
     @Override
@@ -65,19 +62,17 @@ public class Randomness extends Enchantment {
 
     @Override
     public boolean isTradeable() {
-        return ModConfig.randomnessConfig.isEnabled.get();
+        return ModConfig.randomnessConfig.isEnabled.get() && ModConfig.randomnessConfig.isTradeable.get();
+    }
+
+    @Override
+    public boolean isTreasureOnly() {
+        return ModConfig.randomnessConfig.isEnabled.get() && ModConfig.randomnessConfig.isTreasureOnly.get();
     }
 
 
-    public static final DeferredRegister<Enchantment> ENCHANTMENTS =
-            DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, RandomEnchants2.MOD_ID);
-
-    public static final RegistryObject<Enchantment> RANDOMNESS_ENCHANT =
-            ENCHANTMENTS.register("randomness",
-                    () -> new Randomness(Rarity.UNCOMMON, EnchantmentCategory.DIGGER, EquipmentSlot.MAINHAND));
-
     public static Enchantment getRandomnessEnchant() {
-        return RANDOMNESS_ENCHANT.get();
+        return ModEnchantments.RANDOMNESS.get();
     }
 
     public static List<ItemStack> getRandomItems(Random random, int level) {

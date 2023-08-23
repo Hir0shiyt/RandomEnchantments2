@@ -8,5 +8,9 @@
   "enchantment.randomenchants2.magnetic" : "Magnetic",
   "enchantment.randomenchants2.magnetic.desc" : "Broken blocks go directly into the player's inventory",
   "enchantment.randomenchants2.stone_lover" : "Stone Lover",
-  "enchantment.randomenchants2.stone_lover.desc" : "80% Chance of repairing the pickaxe when braking Stone Blocks"
+  "enchantment.randomenchants2.stone_lover.desc" : "80% Chance of repairing the pickaxe when braking Stone Blocks",
+  "enchantment.randomenchants2.eternal" : "Eternal",
+  "enchantment.randomenchants2.eternal.desc" : "Items with the Enchantment won't despawn after being dropped",
+  "enchantment.randomenchants2.dungeoneering" : "Dungeoneering",
+  "enchantment.randomenchants2.dungeoneering.desc" : "When killing an entity, there's a chance for the entity to drop items from a dungeon loot table"
 }

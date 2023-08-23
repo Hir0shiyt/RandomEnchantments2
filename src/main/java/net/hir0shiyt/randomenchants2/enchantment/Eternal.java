@@ -15,8 +15,8 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
 public class Eternal extends Enchantment {
-    public Eternal(Rarity rarity, EnchantmentCategory category, EquipmentSlot... slots) {
-        super(rarity, category, slots);
+    public Eternal(Rarity veryRare, EnchantmentCategory breakable, EquipmentSlot mainhand) {
+        super(Rarity.VERY_RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     }
 
     @Override
@@ -31,22 +31,22 @@ public class Eternal extends Enchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.eternalConfig.isEnabled.get() && super.canEnchant(stack);
+        return ModConfig.eternalConfig.isEnabled.get();
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return ModConfig.eternalConfig.isEnabled.get() && super.canApplyAtEnchantingTable(stack);
+        return ModConfig.eternalConfig.isEnabled.get() && ModConfig.eternalConfig.canApplyAtEnchantingTable.get();
     }
 
     @Override
     public boolean isTradeable() {
-        return ModConfig.eternalConfig.isEnabled.get() && super.isTradeable();
+        return ModConfig.eternalConfig.isEnabled.get() && ModConfig.eternalConfig.isTradeable.get();
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.eternalConfig.isEnabled.get() && super.isAllowedOnBooks();
+        return ModConfig.eternalConfig.isEnabled.get();
     }
 
     @Override
@@ -54,6 +54,11 @@ public class Eternal extends Enchantment {
         return !(enchantment instanceof SolarEnchant) &&
                 !(enchantment instanceof MendingEnchantment) &&
                 super.checkCompatibility(enchantment);
+    }
+
+    @Override
+    public boolean isTreasureOnly() {
+        return ModConfig.eternalConfig.isEnabled.get() && ModConfig.eternalConfig.isTreasureOnly.get();
     }
 
     @SubscribeEvent
