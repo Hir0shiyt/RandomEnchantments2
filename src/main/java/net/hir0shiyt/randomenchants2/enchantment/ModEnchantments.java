@@ -48,6 +48,16 @@ public class ModEnchantments {
                     () -> new Dungeoneering(Enchantment.Rarity.VERY_RARE,
                             RandomEnchants2.PICKAXE, EquipmentSlot.MAINHAND));
 
+    public static final RegistryObject<Enchantment> GRAPPLING =
+            ENCHANTMENTS.register("grappling",
+                    () -> new Grappling(Enchantment.Rarity.RARE,
+                            EnchantmentCategory.FISHING_ROD, EquipmentSlot.MAINHAND));
+
+    public static final RegistryObject<Enchantment> SNATCHING =
+            ENCHANTMENTS.register("snatching",
+                    () -> new Snatching(Enchantment.Rarity.RARE,
+                            EnchantmentCategory.FISHING_ROD, EquipmentSlot.MAINHAND));
+
     public static void register(IEventBus eventBus) {
         ENCHANTMENTS.register(eventBus);
     }

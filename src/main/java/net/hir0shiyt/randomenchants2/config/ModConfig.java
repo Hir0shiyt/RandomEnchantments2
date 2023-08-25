@@ -13,6 +13,8 @@ public class ModConfig {
     public static final EnchantmentConfigEntry stoneLoverConfig;
     public static final EnchantmentConfigEntry eternalConfig;
     public static final EnchantmentConfigEntry dungeoneeringConfig;
+    public static final EnchantmentConfigEntry grapplingConfig;
+    public static final EnchantmentConfigEntry snitchingConfig;
 
     static {
         Builder builder = new ForgeConfigSpec.Builder();
@@ -23,6 +25,9 @@ public class ModConfig {
         stoneLoverConfig = new EnchantmentConfigEntry(builder,"stone_lover",true, false, true, true);
         eternalConfig = new EnchantmentConfigEntry(builder,"eternal",true, true, false, false);
         dungeoneeringConfig = new EnchantmentConfigEntry(builder,"dungeoneering",true, true, false, false);
+        grapplingConfig = new EnchantmentConfigEntry(builder,"grappling", true, true, false, false);
+        snitchingConfig = new EnchantmentConfigEntry(builder, "snitching", true,true,false,false);
+
 
         SERVER_SPEC = builder.build();
     }
