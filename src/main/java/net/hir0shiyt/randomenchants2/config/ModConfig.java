@@ -15,18 +15,20 @@ public class ModConfig {
     public static final EnchantmentConfigEntry dungeoneeringConfig;
     public static final EnchantmentConfigEntry grapplingConfig;
     public static final EnchantmentConfigEntry snitchingConfig;
+    public static final EnchantmentConfigEntry resistantConfig;
 
     static {
         Builder builder = new ForgeConfigSpec.Builder();
-        solarEnchantConfig = new EnchantmentConfigEntry(builder, "solar_enchant", true, true, false, false);
-        obsidianBusterConfig = new EnchantmentConfigEntry(builder, "obsidian_buster", true, false, true, true);
-        randomnessConfig = new EnchantmentConfigEntry(builder, "randomness", true, true, false, false);
-        magneticConfig = new EnchantmentConfigEntry(builder, "magnetic", true, false, true, true);
-        stoneLoverConfig = new EnchantmentConfigEntry(builder,"stone_lover",true, false, true, true);
-        eternalConfig = new EnchantmentConfigEntry(builder,"eternal",true, true, false, false);
-        dungeoneeringConfig = new EnchantmentConfigEntry(builder,"dungeoneering",true, true, false, false);
-        grapplingConfig = new EnchantmentConfigEntry(builder,"grappling", true, true, false, false);
-        snitchingConfig = new EnchantmentConfigEntry(builder, "snitching", true,true,false,false);
+        solarEnchantConfig = new EnchantmentConfigEntry(builder, "Solar Enchantment", true, true, false, false);
+        obsidianBusterConfig = new EnchantmentConfigEntry(builder, "Obsidian Buster Enchantment", true, false, true, true);
+        randomnessConfig = new EnchantmentConfigEntry(builder, "Randomness Enchantment", true, true, false, false);
+        magneticConfig = new EnchantmentConfigEntry(builder, "Magnetic Enchantment", true, false, true, true);
+        stoneLoverConfig = new EnchantmentConfigEntry(builder,"Stone Lover Enchantment",true, false, true, true);
+        eternalConfig = new EnchantmentConfigEntry(builder,"Eternal Enchantment",true, true, false, false);
+        dungeoneeringConfig = new EnchantmentConfigEntry(builder,"Dungeoneering Enchantment",true, true, false, false);
+        grapplingConfig = new EnchantmentConfigEntry(builder,"Grappling Enchantment", true, true, false, false);
+        snitchingConfig = new EnchantmentConfigEntry(builder, "Snatching Enchantment", true,true,false,false);
+        resistantConfig = new EnchantmentConfigEntry(builder, "Resistant Enchantment", true,true,false,false);
 
 
         SERVER_SPEC = builder.build();
@@ -40,9 +42,9 @@ public class ModConfig {
 
         public EnchantmentConfigEntry(Builder builder, String enchantmentName, boolean defaultValue, boolean defaultTreasureValue, boolean defaultApplyAtEnchantingTableValue, boolean defaultIsTradeableValue) {
             builder.push(enchantmentName);
-            isEnabled = builder.comment("Enable or disable the " + enchantmentName + " Enchantment")
+            isEnabled = builder.comment("Enable or disable the " + enchantmentName)
                     .define("Enabled", defaultValue);
-            isTreasureOnly = builder.comment(enchantmentName + " is Only Treasure Enchantment")
+            isTreasureOnly = builder.comment(enchantmentName + " is Only Treasure")
                             .define("TreasureOnly",defaultTreasureValue);
             canApplyAtEnchantingTable = builder.comment(enchantmentName + " can be applied in an enchanting table")
                             .define("canApplyAtEnchantingTable",defaultApplyAtEnchantingTableValue);

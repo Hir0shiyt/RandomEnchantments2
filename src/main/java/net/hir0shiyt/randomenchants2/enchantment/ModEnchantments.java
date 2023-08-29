@@ -58,6 +58,11 @@ public class ModEnchantments {
                     () -> new Snatching(Enchantment.Rarity.RARE,
                             EnchantmentCategory.FISHING_ROD, EquipmentSlot.MAINHAND));
 
+    public static final RegistryObject<Enchantment> RESISTANT =
+            ENCHANTMENTS.register("resistant",
+                    () -> new Resistant(Enchantment.Rarity.RARE,
+                            EnchantmentCategory.BREAKABLE, EquipmentSlot.MAINHAND));
+
     public static void register(IEventBus eventBus) {
         ENCHANTMENTS.register(eventBus);
     }

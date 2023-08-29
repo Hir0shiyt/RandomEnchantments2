@@ -16,5 +16,7 @@
   "enchantment.randomenchants2.grappling" : "Grappling",
   "enchantment.randomenchants2.grappling.desc" : "When getting hooked to a block, be prepared to land correctly!",
   "enchantment.randomenchants2.snatching" : "Snatching",
-  "enchantment.randomenchants2.snatching.desc" : "Pull out the armor off of any Mob"
+  "enchantment.randomenchants2.snatching.desc" : "Pull out the armor off of any Mob",
+  "enchantment.randomenchants2.resistant" : "Resistant",
+  "enchantment.randomenchants2.resistant.desc" : "Items can't be damaged"
 }
