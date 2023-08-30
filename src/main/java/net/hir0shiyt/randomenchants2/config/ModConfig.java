@@ -14,8 +14,9 @@ public class ModConfig {
     public static final EnchantmentConfigEntry eternalConfig;
     public static final EnchantmentConfigEntry dungeoneeringConfig;
     public static final EnchantmentConfigEntry grapplingConfig;
-    public static final EnchantmentConfigEntry snitchingConfig;
+    public static final EnchantmentConfigEntry snatchingConfig;
     public static final EnchantmentConfigEntry resistantConfig;
+    public static final EnchantmentConfigEntry teleportationConfig;
 
     static {
         Builder builder = new ForgeConfigSpec.Builder();
@@ -27,8 +28,9 @@ public class ModConfig {
         eternalConfig = new EnchantmentConfigEntry(builder,"Eternal Enchantment",true, true, false, false);
         dungeoneeringConfig = new EnchantmentConfigEntry(builder,"Dungeoneering Enchantment",true, true, false, false);
         grapplingConfig = new EnchantmentConfigEntry(builder,"Grappling Enchantment", true, true, false, false);
-        snitchingConfig = new EnchantmentConfigEntry(builder, "Snatching Enchantment", true,true,false,false);
+        snatchingConfig = new EnchantmentConfigEntry(builder, "Snatching Enchantment", true,true,false,false);
         resistantConfig = new EnchantmentConfigEntry(builder, "Resistant Enchantment", true,true,false,false);
+        teleportationConfig = new EnchantmentConfigEntry(builder,"Teleportation Enchantment", true, false, true, false);
 
 
         SERVER_SPEC = builder.build();

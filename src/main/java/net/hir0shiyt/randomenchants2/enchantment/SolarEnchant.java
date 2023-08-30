@@ -24,8 +24,8 @@ public class SolarEnchant extends Enchantment {
     public static final Enchantment SOLAR_ENCHANT = null;
     private static final int REPAIR_COOLDOWN = 20;
 
-    public SolarEnchant(Rarity veryRare, EnchantmentCategory breakable, EquipmentSlot mainhand, EquipmentSlot offhand) {
-        super(Rarity.VERY_RARE, RandomEnchants2.PICKAXE, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
+    public SolarEnchant(Rarity rarity, EnchantmentCategory category, EquipmentSlot[] slots) {
+        super(rarity, category, slots);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class SolarEnchant extends Enchantment {
     }
 
     @Override
-    public boolean canEnchant(@NotNull ItemStack stack) {
+    public boolean canEnchant(ItemStack stack) {
         return ModConfig.solarEnchantConfig.isEnabled.get();
     }
 

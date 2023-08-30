@@ -27,8 +27,8 @@ import java.util.List;
 
 @Mod.EventBusSubscriber (modid = RandomEnchants2.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class Dungeoneering extends Enchantment {
-    public Dungeoneering(Rarity veryRare, EnchantmentCategory pickaxe, EquipmentSlot mainhand) {
-        super(Rarity.RARE, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public Dungeoneering(Rarity rarity, EnchantmentCategory category, EquipmentSlot[] slots) {
+        super(rarity, category, slots);
     }
 
     @Override
@@ -43,12 +43,12 @@ public class Dungeoneering extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return ModConfig.dungeoneeringConfig.isEnabled.get() && ModConfig.dungeoneeringConfig.canApplyAtEnchantingTable.get();
+        return ModConfig.dungeoneeringConfig.isEnabled.get() && ModConfig.dungeoneeringConfig.canApplyAtEnchantingTable.get() && this.category.equals(EnchantmentCategory.WEAPON);
     }
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.dungeoneeringConfig.isEnabled.get();
+        return ModConfig.dungeoneeringConfig.isEnabled.get() && this.category.equals(EnchantmentCategory.WEAPON);
     }
 
     @Override

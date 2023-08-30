@@ -16,18 +16,18 @@ import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
 public class ObsidianBuster extends Enchantment {
-    public ObsidianBuster(Rarity rare, EnchantmentCategory digger, EquipmentSlot mainhand) {
-        super(Rarity.VERY_RARE, RandomEnchants2.PICKAXE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public ObsidianBuster(Rarity rarity, EnchantmentCategory category, EquipmentSlot[] slots) {
+        super(rarity, category, slots);
     }
 
     @Override
     public int getMinCost(int level) {
-        return 10; // You can adjust this value as needed
+        return 10;
     }
 
     @Override
     public int getMaxLevel() {
-        return 1; // Set the maximum enchantment level to 1
+        return 1;
     }
 
     @Override
@@ -38,12 +38,12 @@ public class ObsidianBuster extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return ModConfig.obsidianBusterConfig.isEnabled.get() && ModConfig.obsidianBusterConfig.canApplyAtEnchantingTable.get();
+        return ModConfig.obsidianBusterConfig.isEnabled.get() && ModConfig.obsidianBusterConfig.canApplyAtEnchantingTable.get() && this.category.equals(RandomEnchants2.PICKAXE);
     }
 
     @Override
-    public boolean canEnchant(@NotNull ItemStack stack) {
-        return ModConfig.obsidianBusterConfig.isEnabled.get();
+    public boolean canEnchant(ItemStack stack) {
+        return ModConfig.obsidianBusterConfig.isEnabled.get() && this.category.equals(RandomEnchants2.PICKAXE);
     }
 
     @Override

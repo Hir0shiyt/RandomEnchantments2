@@ -20,8 +20,8 @@ import java.util.Iterator;
 
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
 public class Resistant extends Enchantment {
-    public Resistant(Rarity rarity, EnchantmentCategory category, EquipmentSlot slots) {
-        super(Rarity.RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public Resistant(Rarity rarity, EnchantmentCategory category, EquipmentSlot[] slots) {
+        super(rarity, category, slots);
     }
 
     @Override

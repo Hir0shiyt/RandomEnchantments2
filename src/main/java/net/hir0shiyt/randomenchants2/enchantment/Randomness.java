@@ -24,8 +24,8 @@ import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
 public class Randomness extends Enchantment {
-    public Randomness(Rarity veryRare, EnchantmentCategory digger, EquipmentSlot mainhand) {
-        super(Rarity.VERY_RARE, EnchantmentCategory.DIGGER, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public Randomness(Enchantment.Rarity rarity, EnchantmentCategory category, EquipmentSlot[] slots) {
+        super(rarity, category, slots);
     }
 
 
@@ -47,12 +47,12 @@ public class Randomness extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return ModConfig.randomnessConfig.isEnabled.get() && ModConfig.randomnessConfig.canApplyAtEnchantingTable.get();
+        return ModConfig.randomnessConfig.isEnabled.get() && ModConfig.randomnessConfig.canApplyAtEnchantingTable.get() && this.category.equals(EnchantmentCategory.DIGGER);
     }
 
     @Override
-    public boolean canEnchant(@NotNull ItemStack stack) {
-        return ModConfig.randomnessConfig.isEnabled.get();
+    public boolean canEnchant(ItemStack stack) {
+        return ModConfig.randomnessConfig.isEnabled.get() && this.category.equals(EnchantmentCategory.DIGGER);
     }
 
     @Override

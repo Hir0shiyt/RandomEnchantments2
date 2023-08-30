@@ -15,8 +15,8 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
 public class Eternal extends Enchantment {
-    public Eternal(Rarity veryRare, EnchantmentCategory breakable, EquipmentSlot mainhand) {
-        super(Rarity.VERY_RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public Eternal(Rarity rarity, EnchantmentCategory category, EquipmentSlot[] slots) {
+        super(rarity, category, slots);
     }
 
     @Override

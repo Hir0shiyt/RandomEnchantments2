@@ -18,8 +18,8 @@ import org.jetbrains.annotations.NotNull;
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
 public class StoneLover extends Enchantment {
 
-    public StoneLover(Rarity rare, EnchantmentCategory digger, EquipmentSlot mainhand) {
-        super(Enchantment.Rarity.COMMON, EnchantmentCategory.DIGGER, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public StoneLover(Rarity rarity, EnchantmentCategory category, EquipmentSlot[] slots) {
+        super(rarity, category, slots);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class StoneLover extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return ModConfig.stoneLoverConfig.isEnabled.get() && ModConfig.stoneLoverConfig.canApplyAtEnchantingTable.get();
+        return ModConfig.stoneLoverConfig.isEnabled.get() && ModConfig.stoneLoverConfig.canApplyAtEnchantingTable.get() && this.category.equals(RandomEnchants2.PICKAXE);
     }
 
     @Override
@@ -43,8 +43,8 @@ public class StoneLover extends Enchantment {
     }
 
     @Override
-    public boolean canEnchant(@NotNull ItemStack stack) {
-        return ModConfig.stoneLoverConfig.isEnabled.get();
+    public boolean canEnchant(ItemStack stack) {
+        return ModConfig.stoneLoverConfig.isEnabled.get() && this.category.equals(RandomEnchants2.PICKAXE);
     }
 
     @Override

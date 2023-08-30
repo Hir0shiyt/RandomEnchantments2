@@ -18,11 +18,12 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
 public class Grappling extends Enchantment {
-    public Grappling(Rarity rare, EnchantmentCategory fishingRod, EquipmentSlot mainhand) {
-        super(Rarity.RARE, net.minecraft.world.item.enchantment.EnchantmentCategory.FISHING_ROD, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public Grappling(Rarity rarity, EnchantmentCategory category, EquipmentSlot[] slots) {
+        super(rarity, category, slots);
     }
 
     @Override
@@ -37,12 +38,12 @@ public class Grappling extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return ModConfig.grapplingConfig.isEnabled.get() && ModConfig.grapplingConfig.canApplyAtEnchantingTable.get();
+        return ModConfig.grapplingConfig.isEnabled.get() && ModConfig.grapplingConfig.canApplyAtEnchantingTable.get() && this.category.equals(EnchantmentCategory.FISHING_ROD);
     }
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.grapplingConfig.isEnabled.get();
+        return ModConfig.grapplingConfig.isEnabled.get() && this.category.equals(EnchantmentCategory.FISHING_ROD);
     }
 
     @Override

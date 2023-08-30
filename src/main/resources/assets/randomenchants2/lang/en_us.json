@@ -18,5 +18,7 @@
   "enchantment.randomenchants2.snatching" : "Snatching",
   "enchantment.randomenchants2.snatching.desc" : "Pull out the armor off of any Mob",
   "enchantment.randomenchants2.resistant" : "Resistant",
-  "enchantment.randomenchants2.resistant.desc" : "Items can't be damaged"
+  "enchantment.randomenchants2.resistant.desc" : "Items can't be damaged",
+  "enchantment.randomenchants2.teleportation" : "Teleportation",
+  "enchantment.randomenchants2.teleportation.desc" : "Teleports the shooter where the projectile was shot except when there's lava"
 }

@@ -25,8 +25,8 @@ import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
 public class Snatching extends Enchantment {
-    public Snatching(Rarity rarity, EnchantmentCategory category, EquipmentSlot slots) {
-        super(Rarity.RARE, EnchantmentCategory.FISHING_ROD, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public Snatching(Rarity rarity, EnchantmentCategory category, EquipmentSlot[] slots) {
+        super(rarity, category, slots);
     }
 
     @Override
@@ -41,27 +41,27 @@ public class Snatching extends Enchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.snitchingConfig.isEnabled.get();
+        return ModConfig.snatchingConfig.isEnabled.get() && this.category.equals(EnchantmentCategory.FISHING_ROD);
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return ModConfig.snitchingConfig.isEnabled.get() && ModConfig.snitchingConfig.canApplyAtEnchantingTable.get();
+        return ModConfig.snatchingConfig.isEnabled.get() && ModConfig.snatchingConfig.canApplyAtEnchantingTable.get() && this.category.equals(EnchantmentCategory.FISHING_ROD);
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.grapplingConfig.isEnabled.get() && ModConfig.snitchingConfig.isTreasureOnly.get();
+        return ModConfig.grapplingConfig.isEnabled.get() && ModConfig.snatchingConfig.isTreasureOnly.get();
     }
 
     @Override
     public boolean isTradeable() {
-        return ModConfig.grapplingConfig.isEnabled.get() && ModConfig.snitchingConfig.isTradeable.get();
+        return ModConfig.grapplingConfig.isEnabled.get() && ModConfig.snatchingConfig.isTradeable.get();
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.grapplingConfig.isEnabled.get();
+        return ModConfig.snatchingConfig.isEnabled.get();
     }
 
     private static final List<EquipmentSlot> ARMOR_SLOTS = new ArrayList<>();

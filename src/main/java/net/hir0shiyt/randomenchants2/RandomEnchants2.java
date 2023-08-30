@@ -27,7 +27,7 @@ public class RandomEnchants2 {
     public static final EnchantmentCategory SWORDS_BOWS = EnchantmentCategory.create("weapons", item -> item instanceof SwordItem || item instanceof BowItem);
 
     public static final EnchantmentCategory PICKAXE = EnchantmentCategory.create("pickaxes", PickaxeItem.class::isInstance);
-    public static final EnchantmentCategory SHOOTABLE = EnchantmentCategory.create("shootable", BowItem.class::isInstance);
+    public static final EnchantmentCategory SHOOTABLE = EnchantmentCategory.create("shootable", item -> item instanceof BowItem || item instanceof CrossbowItem);
     public static final EnchantmentCategory SHIELDS = EnchantmentCategory.create("shields", ShieldItem.class::isInstance);
     public static final EnchantmentCategory AXE = EnchantmentCategory.create("axes", AxeItem.class::isInstance);
     public static final EnchantmentCategory TOOLSANDWEAPONS = EnchantmentCategory.create("tools&weapons", item -> item instanceof SwordItem || item instanceof DiggerItem || item instanceof AxeItem);

@@ -20,8 +20,8 @@ import java.util.List;
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
 public class Magnetic extends Enchantment {
 
-    public Magnetic(Rarity rare, EnchantmentCategory digger, EquipmentSlot mainhand) {
-        super(Rarity.RARE, RandomEnchants2.PICKAXE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public Magnetic(Rarity rarity, EnchantmentCategory category, EquipmentSlot[] slots) {
+        super(rarity, category, slots);
     }
 
     @Override
@@ -42,12 +42,12 @@ public class Magnetic extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return ModConfig.magneticConfig.isEnabled.get() && ModConfig.magneticConfig.canApplyAtEnchantingTable.get();
+        return ModConfig.magneticConfig.isEnabled.get() && ModConfig.magneticConfig.canApplyAtEnchantingTable.get() && this.category.equals(EnchantmentCategory.DIGGER);
     }
 
     @Override
-    public boolean canEnchant(@NotNull ItemStack stack) {
-        return ModConfig.magneticConfig.isEnabled.get();
+    public boolean canEnchant(ItemStack stack) {
+        return ModConfig.magneticConfig.isEnabled.get() && this.category.equals(EnchantmentCategory.DIGGER);
     }
 
     @Override
