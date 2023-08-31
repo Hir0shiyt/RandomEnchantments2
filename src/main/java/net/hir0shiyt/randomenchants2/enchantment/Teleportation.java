@@ -35,7 +35,7 @@ public class Teleportation extends Enchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.teleportationConfig.isEnabled.get() && this.category.equals(RandomEnchants2.SHOOTABLE);
+        return ModConfig.teleportationConfig.isEnabled.get();
     }
 
     @Override
@@ -45,7 +45,7 @@ public class Teleportation extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return ModConfig.teleportationConfig.isEnabled.get() && ModConfig.teleportationConfig.canApplyAtEnchantingTable.get() && this.category.equals(RandomEnchants2.SHOOTABLE);
+        return ModConfig.teleportationConfig.isEnabled.get() && ModConfig.teleportationConfig.canApplyAtEnchantingTable.get();
     }
 
     @Override
@@ -62,6 +62,7 @@ public class Teleportation extends Enchantment {
     protected boolean checkCompatibility(Enchantment enchantment) {
         return !(enchantment instanceof TridentRiptideEnchantment) &&
                 !(enchantment instanceof MultiShotEnchantment) &&
+                !(enchantment instanceof Torches) &&
                 super.checkCompatibility(enchantment);
     }
 
@@ -77,9 +78,9 @@ public class Teleportation extends Enchantment {
         Player player = (Player) shooter;
         ItemStack heldItem = player.getMainHandItem();
 
-        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.TELEPORTATION.get(), heldItem) > 0) return;
+        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.TELEPORTATION, heldItem) > 0) {
 
-        BlockPos pos = ((BlockHitResult) e.getRayTraceResult()).getBlockPos();
+            BlockPos pos = ((BlockHitResult) e.getRayTraceResult()).getBlockPos();
         if (arrow.level.getBlockState(pos.above()).getMaterial() == Material.LAVA) return;
 
         shooter.teleportTo(pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5);
@@ -87,6 +88,7 @@ public class Teleportation extends Enchantment {
         arrow.remove(Entity.RemovalReason.DISCARDED);
     }
 
+}
     @SubscribeEvent
     public static void looseArrow(EntityJoinWorldEvent e) {
         if (e.getEntity() instanceof AbstractArrow) {
@@ -95,8 +97,8 @@ public class Teleportation extends Enchantment {
             if (owner instanceof Player) {
                 Player player = (Player) owner;
                 ItemStack heldItem = player.getMainHandItem();
-                if (owner instanceof LivingEntity && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.TELEPORTATION.get(), heldItem) > 0) {
-                    arrow.getPersistentData().putBoolean(ModEnchantments.TELEPORTATION.getKey().toString(), true);
+                if (owner instanceof LivingEntity && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.TELEPORTATION, heldItem) > 0) {
+                    arrow.getPersistentData().putBoolean(ModEnchantments.TELEPORTATION.toString(), true);
                 }
             }
         }

@@ -71,7 +71,7 @@ public class Dungeoneering extends Enchantment {
             ServerLevel serverWorld = (ServerLevel) player.level;
 
             if (heldItem.getItem() instanceof SwordItem && !player.level.isClientSide()) {
-                int enchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DUNGEONEERING.get(), heldItem);
+                int enchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DUNGEONEERING, heldItem);
 
                 if (enchantmentLevel > 0) {
                     LootContext.Builder lootBuilder = new LootContext.Builder(serverWorld)

@@ -34,7 +34,7 @@ public class StoneLover extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return ModConfig.stoneLoverConfig.isEnabled.get() && ModConfig.stoneLoverConfig.canApplyAtEnchantingTable.get() && this.category.equals(RandomEnchants2.PICKAXE);
+        return ModConfig.stoneLoverConfig.isEnabled.get() && ModConfig.stoneLoverConfig.canApplyAtEnchantingTable.get();
     }
 
     @Override
@@ -44,7 +44,7 @@ public class StoneLover extends Enchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.stoneLoverConfig.isEnabled.get() && this.category.equals(RandomEnchants2.PICKAXE);
+        return ModConfig.stoneLoverConfig.isEnabled.get();
     }
 
     @Override
@@ -62,7 +62,7 @@ public class StoneLover extends Enchantment {
         Player player = event.getPlayer();
         if (player != null) {
             ItemStack mainHandStack = player.getMainHandItem();
-            int mainHandLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.STONE_LOVER.get(), mainHandStack);
+            int mainHandLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.STONE_LOVER, mainHandStack);
 
             if (mainHandLevel > 0) {
                 Block block = event.getState().getBlock();

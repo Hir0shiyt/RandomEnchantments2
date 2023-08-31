@@ -73,6 +73,6 @@ public class Eternal extends Enchantment {
     }
 
     private static boolean hasEternal(ItemStack stack) {
-        return EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.ETERNAL.get(), stack) > 0;
+        return EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.ETERNAL, stack) > 0;
     }
 }

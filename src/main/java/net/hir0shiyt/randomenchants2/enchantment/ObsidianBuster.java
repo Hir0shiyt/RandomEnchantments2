@@ -38,12 +38,12 @@ public class ObsidianBuster extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return ModConfig.obsidianBusterConfig.isEnabled.get() && ModConfig.obsidianBusterConfig.canApplyAtEnchantingTable.get() && this.category.equals(RandomEnchants2.PICKAXE);
+        return ModConfig.obsidianBusterConfig.isEnabled.get() && ModConfig.obsidianBusterConfig.canApplyAtEnchantingTable.get();
     }
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.obsidianBusterConfig.isEnabled.get() && this.category.equals(RandomEnchants2.PICKAXE);
+        return ModConfig.obsidianBusterConfig.isEnabled.get();
     }
 
     @Override
@@ -67,7 +67,7 @@ public class ObsidianBuster extends Enchantment {
         ItemStack heldItem = player.getItemInHand(player.getUsedItemHand());
 
         // Check if the enchantment is enabled
-        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.OBSIDIAN_BUSTER.get(), heldItem) <= 0) {
+        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.OBSIDIAN_BUSTER, heldItem) <= 0) {
             return;
         }
 

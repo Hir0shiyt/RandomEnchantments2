@@ -82,7 +82,7 @@ public class SolarEnchant extends Enchantment {
 
         // Check if the item is in the main hand and the enchantment is enabled
         ItemStack mainHandStack = event.player.getMainHandItem();
-        int mainHandLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SOLAR_ENCHANT.get(), mainHandStack);
+        int mainHandLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SOLAR_ENCHANT, mainHandStack);
 
         if (mainHandStack.isDamaged() && mainHandLevel > 0) {
             BlockPos playerPos = event.player.blockPosition();

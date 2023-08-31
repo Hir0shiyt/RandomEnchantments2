@@ -66,7 +66,7 @@ public class Grappling extends Enchantment {
         Player player = event.getPlayer();
         ItemStack heldItem = player.getMainHandItem();
 
-        if (heldItem.getItem() instanceof FishingRodItem && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.GRAPPLING.get(), heldItem) > 0) {
+        if (heldItem.getItem() instanceof FishingRodItem && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.GRAPPLING, heldItem) > 0) {
             FishingHook hookEntity = player.fishing;
 
             if (hookEntity != null && hookEntity.isOnGround()) {

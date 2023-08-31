@@ -17,6 +17,7 @@ public class ModConfig {
     public static final EnchantmentConfigEntry snatchingConfig;
     public static final EnchantmentConfigEntry resistantConfig;
     public static final EnchantmentConfigEntry teleportationConfig;
+    public static final EnchantmentConfigEntry torchesConfig;
 
     static {
         Builder builder = new ForgeConfigSpec.Builder();
@@ -31,6 +32,7 @@ public class ModConfig {
         snatchingConfig = new EnchantmentConfigEntry(builder, "Snatching Enchantment", true,true,false,false);
         resistantConfig = new EnchantmentConfigEntry(builder, "Resistant Enchantment", true,true,false,false);
         teleportationConfig = new EnchantmentConfigEntry(builder,"Teleportation Enchantment", true, false, true, false);
+        torchesConfig = new EnchantmentConfigEntry(builder,"Torches Enchantment", true, false, true,false);
 
 
         SERVER_SPEC = builder.build();

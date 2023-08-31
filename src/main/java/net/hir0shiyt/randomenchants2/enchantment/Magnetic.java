@@ -86,6 +86,6 @@ public class Magnetic extends Enchantment {
     }
 
     private static boolean hasMagnetic(ItemStack stack) {
-        return EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.MAGNETIC.get(), stack) > 0;
+        return EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.MAGNETIC, stack) > 0;
     }
 }

@@ -72,7 +72,7 @@ public class Randomness extends Enchantment {
 
 
     public static Enchantment getRandomnessEnchant() {
-        return ModEnchantments.RANDOMNESS.get();
+        return ModEnchantments.RANDOMNESS;
     }
 
     public static List<ItemStack> getRandomItems(Random random, int level) {
