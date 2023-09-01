@@ -41,12 +41,16 @@ public class Snatching extends Enchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.snatchingConfig.isEnabled.get() && this.category.equals(EnchantmentCategory.FISHING_ROD);
+        return ModConfig.snatchingConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return ModConfig.snatchingConfig.isEnabled.get() && ModConfig.snatchingConfig.canApplyAtEnchantingTable.get() && this.category.equals(EnchantmentCategory.FISHING_ROD);
+        if (stack.getItem() instanceof FishingRodItem) {
+            return ModConfig.snatchingConfig.isEnabled.get() && ModConfig.snatchingConfig.canApplyAtEnchantingTable.get();
+        } else {
+            return false;
+        }
     }
 
     @Override

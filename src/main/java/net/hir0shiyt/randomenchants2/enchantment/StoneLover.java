@@ -3,6 +3,7 @@ package net.hir0shiyt.randomenchants2.enchantment;
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
 import net.hir0shiyt.randomenchants2.config.ModConfig;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
@@ -34,7 +35,11 @@ public class StoneLover extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return ModConfig.stoneLoverConfig.isEnabled.get() && ModConfig.stoneLoverConfig.canApplyAtEnchantingTable.get();
+        if (stack.getItem() instanceof PickaxeItem) {
+            return ModConfig.stoneLoverConfig.isEnabled.get() && ModConfig.stoneLoverConfig.canApplyAtEnchantingTable.get();
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -44,7 +49,7 @@ public class StoneLover extends Enchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.stoneLoverConfig.isEnabled.get();
+        return ModConfig.stoneLoverConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
     }
 
     @Override

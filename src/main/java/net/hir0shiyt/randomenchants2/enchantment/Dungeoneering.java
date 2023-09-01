@@ -8,6 +8,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.SwordItem;
@@ -43,12 +44,16 @@ public class Dungeoneering extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return ModConfig.dungeoneeringConfig.isEnabled.get() && ModConfig.dungeoneeringConfig.canApplyAtEnchantingTable.get() && this.category.equals(EnchantmentCategory.WEAPON);
+        if (stack.getItem() instanceof SwordItem && stack.getItem() instanceof AxeItem) {
+            return ModConfig.dungeoneeringConfig.isEnabled.get() && ModConfig.dungeoneeringConfig.canApplyAtEnchantingTable.get();
+        } else {
+            return false;
+        }
     }
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.dungeoneeringConfig.isEnabled.get() && this.category.equals(EnchantmentCategory.WEAPON);
+        return ModConfig.dungeoneeringConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
     }
 
     @Override

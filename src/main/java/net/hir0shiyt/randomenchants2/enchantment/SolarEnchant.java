@@ -80,7 +80,6 @@ public class SolarEnchant extends Enchantment {
         long time = world.getDayTime();
         boolean isDaytime = time >= 0 && time < 12000;
 
-        // Check if the item is in the main hand and the enchantment is enabled
         ItemStack mainHandStack = event.player.getMainHandItem();
         int mainHandLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SOLAR_ENCHANT, mainHandStack);
 

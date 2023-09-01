@@ -1,7 +1,6 @@
 package net.hir0shiyt.randomenchants2;
 
 import net.hir0shiyt.randomenchants2.config.ModConfig;
-import net.hir0shiyt.randomenchants2.enchantment.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;

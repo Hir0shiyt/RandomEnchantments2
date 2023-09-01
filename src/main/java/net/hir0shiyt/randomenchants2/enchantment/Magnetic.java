@@ -4,8 +4,8 @@ import net.hir0shiyt.randomenchants2.RandomEnchants2;
 import net.hir0shiyt.randomenchants2.config.ModConfig;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.Block;
@@ -42,12 +42,16 @@ public class Magnetic extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return ModConfig.magneticConfig.isEnabled.get() && ModConfig.magneticConfig.canApplyAtEnchantingTable.get() && this.category.equals(EnchantmentCategory.DIGGER);
+        if (stack.getItem() instanceof PickaxeItem && stack.getItem() instanceof AxeItem && stack.getItem() instanceof ShovelItem && stack.getItem() instanceof HoeItem) {
+            return ModConfig.magneticConfig.isEnabled.get() && ModConfig.magneticConfig.canApplyAtEnchantingTable.get();
+        } else {
+            return false;
+        }
     }
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.magneticConfig.isEnabled.get() && this.category.equals(EnchantmentCategory.DIGGER);
+        return ModConfig.magneticConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
     }
 
     @Override

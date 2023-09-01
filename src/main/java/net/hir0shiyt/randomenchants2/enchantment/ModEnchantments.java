@@ -32,6 +32,7 @@ public class ModEnchantments {
     public static final Enchantment SNATCHING = new Snatching(Enchantment.Rarity.RARE, EnchantmentCategory.FISHING_ROD, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     public static final Enchantment TELEPORTATION = new Teleportation(Enchantment.Rarity.VERY_RARE, ModEnchantments.SHOOTABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     public static final Enchantment TORCHES = new Torches(Enchantment.Rarity.RARE, ModEnchantments.SHOOTABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public static final Enchantment TRUE_SHOT = new TrueShot(Enchantment.Rarity.RARE, ModEnchantments.SHOOTABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
 
 
     @SubscribeEvent
@@ -48,6 +49,7 @@ public class ModEnchantments {
         register(event.getRegistry(), "snatching", SNATCHING);
         register(event.getRegistry(), "teleportation", TELEPORTATION);
         register(event.getRegistry(), "torches", TORCHES);
+        register(event.getRegistry(), "true_shot", TRUE_SHOT);
     }
 
     private static <T extends IForgeRegistryEntry<T>> void register(IForgeRegistry<T> registry, String name, T object) {

@@ -6,6 +6,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
@@ -36,12 +37,16 @@ public class Resistant extends Enchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.resistantConfig.isEnabled.get();
+        return ModConfig.resistantConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return ModConfig.resistantConfig.isEnabled.get() && ModConfig.resistantConfig.canApplyAtEnchantingTable.get();
+        if (stack.getItem() instanceof Item) {
+            return ModConfig.resistantConfig.isEnabled.get() && ModConfig.resistantConfig.canApplyAtEnchantingTable.get();
+        } else {
+            return false;
+        }
     }
 
     @Override
