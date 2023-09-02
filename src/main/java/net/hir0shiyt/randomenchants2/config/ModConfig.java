@@ -19,6 +19,7 @@ public class ModConfig {
     public static final EnchantmentConfigEntry teleportationConfig;
     public static final EnchantmentConfigEntry torchesConfig;
     public static final EnchantmentConfigEntry trueShotConfig;
+    public static final EnchantmentConfigEntry equalMineConfig;
 
     static {
         Builder builder = new ForgeConfigSpec.Builder();
@@ -35,7 +36,7 @@ public class ModConfig {
         teleportationConfig = new EnchantmentConfigEntry(builder,"Teleportation Enchantment", true, false, true, false);
         torchesConfig = new EnchantmentConfigEntry(builder,"Torches Enchantment", true, false, true,false);
         trueShotConfig = new EnchantmentConfigEntry(builder, "True Shot Enchantment",true,false,true,false);
-
+        equalMineConfig = new EnchantmentConfigEntry(builder, "Equal Mine Enchantment", true, true, false, false);
 
         SERVER_SPEC = builder.build();
     }

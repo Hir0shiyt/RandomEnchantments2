@@ -24,5 +24,7 @@
   "enchantment.randomenchants2.torches" : "Torches",
   "enchantment.randomenchants2.torches.desc" : "Illuminate the are with an arrow!",
   "enchantment.randomenchants2.true_shot" : "True Shot",
-  "enchantment.randomenchants2.true_shot.desc" : "Accuracy improvement a.k.a no gravity in arrows"
+  "enchantment.randomenchants2.true_shot.desc" : "Accuracy improvement a.k.a no gravity in arrows",
+  "enchantment.randomenchants2.equal_mine" : "Equal Mine",
+  "enchantment.randomenchants2.equal_mine.desc" : "Blocks above hardness 1 are mine at the same speed"
 }
