@@ -43,7 +43,7 @@ public class Resistant extends Enchantment {
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof Item) {
-            return ModConfig.resistantConfig.isEnabled.get() && ModConfig.resistantConfig.canApplyAtEnchantingTable.get();
+            return ModConfig.resistantConfig.isEnabled.get();
         } else {
             return false;
         }

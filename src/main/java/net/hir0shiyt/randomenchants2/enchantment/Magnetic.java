@@ -2,19 +2,20 @@ package net.hir0shiyt.randomenchants2.enchantment;
 
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
 import net.hir0shiyt.randomenchants2.config.ModConfig;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.ThrownTrident;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraft.world.item.enchantment.*;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
@@ -35,15 +36,16 @@ public class Magnetic extends Enchantment {
     }
 
     @Override
-    protected boolean checkCompatibility (Enchantment enchantment) {
+    protected boolean checkCompatibility(Enchantment enchantment) {
         return !(enchantment instanceof Randomness) &&
+                !(enchantment instanceof MultiShotEnchantment) &&
                 super.checkCompatibility(enchantment);
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        if (stack.getItem() instanceof PickaxeItem && stack.getItem() instanceof AxeItem && stack.getItem() instanceof ShovelItem && stack.getItem() instanceof HoeItem) {
-            return ModConfig.magneticConfig.isEnabled.get() && ModConfig.magneticConfig.canApplyAtEnchantingTable.get();
+        if (stack.getItem() instanceof AxeItem || stack.getItem() instanceof SwordItem || stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem) {
+            return ModConfig.magneticConfig.isEnabled.get();
         } else {
             return false;
         }
@@ -69,27 +71,49 @@ public class Magnetic extends Enchantment {
         return ModConfig.magneticConfig.isEnabled.get() && ModConfig.magneticConfig.isTreasureOnly.get();
     }
 
-
     @SubscribeEvent
-    public static void onBlockBreak(BlockEvent.BreakEvent event) {
-        BlockState state = event.getState();
-        Block block = state.getBlock();
-        ItemStack toolStack = event.getPlayer().getMainHandItem();
+    public static void onEnemyKilled(LivingDropsEvent e) {
+        Entity attacker = e.getSource().getDirectEntity();
 
-        if (hasMagnetic(toolStack) && !event.getWorld().isClientSide()) {
-            List<ItemStack> drops = Block.getDrops(state, (ServerLevel) event.getWorld(), event.getPos(), null); // Passing null here
+        if (attacker instanceof Player) {
+            Player player = (Player) attacker;
+            if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.MAGNETIC, player.getMainHandItem()) > 0) {
+                List<ItemStack> stacks = getStacksFromEntityItems(e.getDrops());
 
-            if (!drops.isEmpty()) {
-                // Add drops to player's inventory
-                for (ItemStack drop : drops) {
-                    event.getPlayer().getInventory().placeItemBackInInventory(drop);
+                for (ItemEntity itemEntity : e.getDrops()) {
+                    if (player.addItem(itemEntity.getItem())) {
+                        stacks.remove(itemEntity.getItem());
+                    }
                 }
-                event.getWorld().destroyBlock(event.getPos(), false); // Destroy the block
+
+            }
+        }
+        else if (attacker instanceof AbstractArrow) {
+            AbstractArrow arrow = (AbstractArrow) attacker;
+            Entity shooter = arrow.getOwner();
+
+            if (shooter instanceof Player) {
+                Player player = (Player) shooter;
+                ItemStack heldItem = player.getMainHandItem();
+
+                if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.MAGNETIC, heldItem) > 0) {
+                    List<ItemStack> stacks = getStacksFromEntityItems(e.getDrops());
+
+                    for (ItemEntity itemEntity : e.getDrops()) {
+                        if (player.addItem(itemEntity.getItem())) {
+                            stacks.remove(itemEntity.getItem());
+                        }
+                    }
+                }
             }
         }
     }
 
-    private static boolean hasMagnetic(ItemStack stack) {
-        return EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.MAGNETIC, stack) > 0;
+    public static List<ItemStack> getStacksFromEntityItems(Collection<ItemEntity> l) {
+        List<ItemStack> stacks = new ArrayList<>();
+        for (ItemEntity item : l) {
+            stacks.add(item.getItem());
+        }
+        return stacks;
     }
 }

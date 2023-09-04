@@ -8,11 +8,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.item.BowItem;
-import net.minecraft.world.item.CrossbowItem;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.entity.projectile.*;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -53,8 +50,8 @@ public class Torches extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        if (stack.getItem() instanceof BowItem && stack.getItem() instanceof CrossbowItem) {
-            return ModConfig.torchesConfig.isEnabled.get() && ModConfig.torchesConfig.canApplyAtEnchantingTable.get();
+        if (stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem || stack.getItem() instanceof TridentItem) {
+            return ModConfig.torchesConfig.isEnabled.get();
         } else {
             return false;
         }
@@ -81,26 +78,36 @@ public class Torches extends Enchantment {
     @SubscribeEvent
     public static void onBlockHit(ProjectileImpactEvent e) {
         Entity arrow = e.getEntity();
-        Entity shooter = ((AbstractArrow) arrow).getOwner();
-        LivingEntity user = (LivingEntity) ((AbstractArrow) arrow).getOwner();
+        if (arrow instanceof ThrownEgg ||
+                arrow instanceof Snowball ||
+                arrow instanceof ThrownEnderpearl ||
+                arrow instanceof ThrownPotion ||
+                arrow instanceof ThrownExperienceBottle ||
+                arrow instanceof FishingHook ||
+                arrow instanceof FireworkRocketEntity) {
+            return;
+        }
+
+        LivingEntity shooter = null;
+
+        if (arrow instanceof AbstractArrow) {
+            shooter = (LivingEntity) ((AbstractArrow) arrow).getOwner();
+        } else if (arrow instanceof ThrowableProjectile) {
+            shooter = (LivingEntity) ((ThrowableProjectile) arrow).getOwner();
+        }
 
         if (shooter instanceof Player) {
             Player player = (Player) shooter;
             ItemStack heldItem = player.getMainHandItem();
 
-            // Check for the "Torches" enchantment
-            if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.TORCHES, heldItem) > 0) {
+            if (!heldItem.isEmpty() && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.TORCHES, heldItem) > 0) {
                 HitResult result = e.getRayTraceResult();
 
-                // Handle different result types
                 if (result instanceof BlockHitResult) {
                     BlockHitResult blockHitResult = (BlockHitResult) result;
                     Level level = arrow.level;
                     BlockPos pos = blockHitResult.getBlockPos().relative(blockHitResult.getDirection());
                     BlockState blockState;
-
-                    // Rest of your logic for the enchantment goes here
-                    if (!(arrow instanceof AbstractArrow)) return;
 
                     if (!level.isClientSide) {
                         if (blockHitResult.getDirection() == Direction.UP) {
@@ -132,7 +139,3 @@ public class Torches extends Enchantment {
         }
     }
 }
-
-
-
-

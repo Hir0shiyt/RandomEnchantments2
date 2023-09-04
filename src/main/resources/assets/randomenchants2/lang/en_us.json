@@ -6,7 +6,7 @@
   "enchantment.randomenchants2.randomness": "Randomness",
   "enchantment.randomenchants2.randomness.desc": "Gives random blocks/items when a block is broken",
   "enchantment.randomenchants2.magnetic" : "Magnetic",
-  "enchantment.randomenchants2.magnetic.desc" : "Broken blocks go directly into the player's inventory",
+  "enchantment.randomenchants2.magnetic.desc" : "Entity loot goes directly into the player's inventory",
   "enchantment.randomenchants2.stone_lover" : "Stone Lover",
   "enchantment.randomenchants2.stone_lover.desc" : "80% Chance of repairing the pickaxe when braking Stone Blocks",
   "enchantment.randomenchants2.eternal" : "Eternal",
@@ -26,5 +26,9 @@
   "enchantment.randomenchants2.true_shot" : "True Shot",
   "enchantment.randomenchants2.true_shot.desc" : "Accuracy improvement a.k.a no gravity in arrows",
   "enchantment.randomenchants2.equal_mine" : "Equal Mine",
-  "enchantment.randomenchants2.equal_mine.desc" : "Blocks above hardness 1 are mine at the same speed"
+  "enchantment.randomenchants2.equal_mine.desc" : "Blocks above hardness 1 are mine at the same speed",
+  "enchantment.randomenchants2.assimilation" : "Assimilation",
+  "enchantment.randomenchants2.assimilation.desc" : "Allows players to repair their held item by consuming suitable items as fuel",
+  "enchantment.randomenchants2.transposition" : "Transposition",
+  "enchantment.randomenchants2.transposition.desc" : "Change positions with hit entities"
 }

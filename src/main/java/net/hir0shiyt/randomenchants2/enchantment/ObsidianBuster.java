@@ -40,7 +40,7 @@ public class ObsidianBuster extends Enchantment {
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof PickaxeItem) {
-            return ModConfig.obsidianBusterConfig.isEnabled.get() && ModConfig.obsidianBusterConfig.canApplyAtEnchantingTable.get();
+            return ModConfig.obsidianBusterConfig.isEnabled.get();
         } else {
             return false;
         }

@@ -36,7 +36,7 @@ public class StoneLover extends Enchantment {
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof PickaxeItem) {
-            return ModConfig.stoneLoverConfig.isEnabled.get() && ModConfig.stoneLoverConfig.canApplyAtEnchantingTable.get();
+            return ModConfig.stoneLoverConfig.isEnabled.get();
         } else {
             return false;
         }

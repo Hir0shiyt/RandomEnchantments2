@@ -48,7 +48,7 @@ public class SolarEnchant extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return ModConfig.solarEnchantConfig.isEnabled.get() && ModConfig.solarEnchantConfig.canApplyAtEnchantingTable.get();
+        return ModConfig.solarEnchantConfig.isEnabled.get();
     }
 
     @Override

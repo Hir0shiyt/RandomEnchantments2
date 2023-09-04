@@ -45,7 +45,7 @@ public class Dungeoneering extends Enchantment {
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof SwordItem && stack.getItem() instanceof AxeItem) {
-            return ModConfig.dungeoneeringConfig.isEnabled.get() && ModConfig.dungeoneeringConfig.canApplyAtEnchantingTable.get();
+            return ModConfig.dungeoneeringConfig.isEnabled.get();
         } else {
             return false;
         }

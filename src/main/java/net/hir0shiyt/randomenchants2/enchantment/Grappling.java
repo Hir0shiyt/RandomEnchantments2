@@ -39,7 +39,7 @@ public class Grappling extends Enchantment {
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof FishingRodItem) {
-            return ModConfig.grapplingConfig.isEnabled.get() && ModConfig.grapplingConfig.canApplyAtEnchantingTable.get();
+            return ModConfig.grapplingConfig.isEnabled.get();
         } else {
             return false;
         }

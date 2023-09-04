@@ -39,8 +39,8 @@ public class TrueShot extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        if (stack.getItem() instanceof BowItem && stack.getItem() instanceof CrossbowItem) {
-            return ModConfig.trueShotConfig.isEnabled.get() && ModConfig.trueShotConfig.canApplyAtEnchantingTable.get();
+        if (stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem) {
+            return ModConfig.trueShotConfig.isEnabled.get();
         }
         else {
             return false;

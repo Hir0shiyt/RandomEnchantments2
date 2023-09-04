@@ -36,7 +36,7 @@ public class Eternal extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return ModConfig.eternalConfig.isEnabled.get() && ModConfig.eternalConfig.canApplyAtEnchantingTable.get();
+        return ModConfig.eternalConfig.isEnabled.get();
     }
 
     @Override

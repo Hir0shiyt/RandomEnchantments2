@@ -47,7 +47,7 @@ public class Snatching extends Enchantment {
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof FishingRodItem) {
-            return ModConfig.snatchingConfig.isEnabled.get() && ModConfig.snatchingConfig.canApplyAtEnchantingTable.get();
+            return ModConfig.snatchingConfig.isEnabled.get();
         } else {
             return false;
         }

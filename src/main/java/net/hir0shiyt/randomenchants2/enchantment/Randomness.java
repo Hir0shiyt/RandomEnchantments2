@@ -47,7 +47,7 @@ public class Randomness extends Enchantment {
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof PickaxeItem && stack.getItem() instanceof ShovelItem && stack.getItem() instanceof AxeItem && stack.getItem() instanceof HoeItem) {
-            return ModConfig.randomnessConfig.isEnabled.get() && ModConfig.randomnessConfig.canApplyAtEnchantingTable.get();
+            return ModConfig.randomnessConfig.isEnabled.get();
         } else {
             return false;
         }

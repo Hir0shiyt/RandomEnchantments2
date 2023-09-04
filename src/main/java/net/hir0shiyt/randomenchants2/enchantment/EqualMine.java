@@ -31,12 +31,16 @@ public class EqualMine extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-            return ModConfig.equalMineConfig.isEnabled.get() && ModConfig.equalMineConfig.canApplyAtEnchantingTable.get();
+        if (stack.getItem() instanceof DiggerItem) {
+            return ModConfig.equalMineConfig.isEnabled.get();
+        } else {
+            return false;
+        }
     }
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.equalMineConfig.isEnabled.get();
+        return ModConfig.equalMineConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
     }
 
     @Override
