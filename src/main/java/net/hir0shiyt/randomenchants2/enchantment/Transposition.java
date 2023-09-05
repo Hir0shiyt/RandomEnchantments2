@@ -9,10 +9,12 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.BowItem;
+import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.MultiShotEnchantment;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -42,7 +44,7 @@ public class Transposition extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        if (stack.getItem() instanceof BowItem) {
+        if (stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem) {
             return ModConfig.transpositionConfig.isEnabled.get();
         } else {
             return false;
@@ -68,6 +70,7 @@ public class Transposition extends Enchantment {
     public boolean checkCompatibility(Enchantment enchantment) {
         return !(enchantment instanceof Teleportation) &&
                 !(enchantment instanceof Torches) &&
+                !(enchantment instanceof MultiShotEnchantment) &&
                 super.checkCompatibility(enchantment);
     }
 

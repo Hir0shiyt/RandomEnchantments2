@@ -50,7 +50,7 @@ public class Torches extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        if (stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem || stack.getItem() instanceof TridentItem) {
+        if (stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem) {
             return ModConfig.torchesConfig.isEnabled.get();
         } else {
             return false;

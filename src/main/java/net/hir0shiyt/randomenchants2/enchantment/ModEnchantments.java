@@ -36,6 +36,9 @@ public class ModEnchantments {
     public static final Enchantment EQUAL_MINE = new EqualMine(Enchantment.Rarity.RARE, EnchantmentCategory.DIGGER, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     public static final Enchantment ASSIMILATION = new Assimilation(Enchantment.Rarity.VERY_RARE, EnchantmentCategory.DIGGER, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     public static final Enchantment TRANSPOSITION = new Transposition(Enchantment.Rarity.RARE, EnchantmentCategory.BOW, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public static final Enchantment RICOCHET = new Ricochet(Enchantment.Rarity.RARE, ModEnchantments.SHOOTABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public static final Enchantment EXPLODING = new Exploding(Enchantment.Rarity.RARE, ModEnchantments.SHOOTABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+
 
     @SubscribeEvent
     public static void registerEnchantments(RegistryEvent.Register<Enchantment> event) {
@@ -55,6 +58,8 @@ public class ModEnchantments {
         register(event.getRegistry(), "equal_mine", EQUAL_MINE);
         register(event.getRegistry(), "assimilation", ASSIMILATION);
         register(event.getRegistry(), "transposition", TRANSPOSITION);
+        register(event.getRegistry(), "ricochet", RICOCHET);
+        register(event.getRegistry(), "exploding", EXPLODING);
     }
 
     private static <T extends IForgeRegistryEntry<T>> void register(IForgeRegistry<T> registry, String name, T object) {

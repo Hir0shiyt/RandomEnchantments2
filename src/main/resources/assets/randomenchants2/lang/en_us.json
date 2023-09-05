@@ -30,5 +30,9 @@
   "enchantment.randomenchants2.assimilation" : "Assimilation",
   "enchantment.randomenchants2.assimilation.desc" : "Allows players to repair their held item by consuming suitable items as fuel",
   "enchantment.randomenchants2.transposition" : "Transposition",
-  "enchantment.randomenchants2.transposition.desc" : "Change positions with hit entities"
+  "enchantment.randomenchants2.transposition.desc" : "Change positions with hit entities",
+  "enchantment.randomenchants2.ricochet" : "Ricochet",
+  "enchantment.randomenchants2.ricochet.desc" : "Arrows bounce off of walls",
+  "enchantment.randomenchants2.exploding" : "Exploding",
+  "enchantment.randomenchants2.exploding.desc" : "Explode your enemies!"
 }

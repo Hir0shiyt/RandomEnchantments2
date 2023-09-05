@@ -22,6 +22,8 @@ public class ModConfig {
     public static final EnchantmentConfigEntry equalMineConfig;
     public static final EnchantmentConfigEntry assimilationConfig;
     public static final EnchantmentConfigEntry transpositionConfig;
+    public static final EnchantmentConfigEntry ricochetConfig;
+    public static final EnchantmentConfigEntry explodingConfig;
 
     static {
         Builder builder = new ForgeConfigSpec.Builder();
@@ -41,6 +43,8 @@ public class ModConfig {
         equalMineConfig = new EnchantmentConfigEntry(builder, "Equal Mine Enchantment", true, true,  false);
         assimilationConfig = new EnchantmentConfigEntry(builder, "Assimilation Enchantment", true, true,  false);
         transpositionConfig = new EnchantmentConfigEntry(builder, "Transposition Enchantment", true, false, false);
+        ricochetConfig = new EnchantmentConfigEntry(builder, "Ricochet Enchantment", true, false, false);
+        explodingConfig = new EnchantmentConfigEntry(builder, "Exploding Enchantment", true, false, false);
 
         SERVER_SPEC = builder.build();
     }

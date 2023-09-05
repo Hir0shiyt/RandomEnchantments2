@@ -47,7 +47,7 @@ public class Teleportation extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        if (stack.getItem() instanceof BowItem && stack.getItem() instanceof CrossbowItem) {
+        if (stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem) {
             return ModConfig.teleportationConfig.isEnabled.get();
         } else {
             return false;
