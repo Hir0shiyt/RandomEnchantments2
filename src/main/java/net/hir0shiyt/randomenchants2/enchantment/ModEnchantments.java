@@ -5,10 +5,13 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.*;
+
+import static net.hir0shiyt.randomenchants2.RandomEnchants2.enchants;
 
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEnchantments {
@@ -38,7 +41,8 @@ public class ModEnchantments {
     public static final Enchantment TRANSPOSITION = new Transposition(Enchantment.Rarity.RARE, EnchantmentCategory.BOW, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     public static final Enchantment RICOCHET = new Ricochet(Enchantment.Rarity.RARE, ModEnchantments.SHOOTABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     public static final Enchantment EXPLODING = new Exploding(Enchantment.Rarity.RARE, ModEnchantments.SHOOTABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-
+    public static final Enchantment BACK_TO_THE_CHAMBER = new BackToTheChamber(Enchantment.Rarity.RARE, ModEnchantments.SHOOTABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public static final Enchantment QUICK_DRAW = new QuickDraw(Enchantment.Rarity.RARE, ModEnchantments.SHOOTABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
 
     @SubscribeEvent
     public static void registerEnchantments(RegistryEvent.Register<Enchantment> event) {
@@ -60,6 +64,19 @@ public class ModEnchantments {
         register(event.getRegistry(), "transposition", TRANSPOSITION);
         register(event.getRegistry(), "ricochet", RICOCHET);
         register(event.getRegistry(), "exploding", EXPLODING);
+        register(event.getRegistry(), "back_to_the_chamber", BACK_TO_THE_CHAMBER);
+        register(event.getRegistry(), "quick_draw", QUICK_DRAW);
+
+
+        IForgeRegistry<Enchantment> r = event.getRegistry();
+
+        for (Enchantment enchantment : enchants)
+            r.register(enchantment);
+        RandomEnchants2.logger.info("Registered" + enchants.size() + " enchantments!");
+
+        if (false) {
+            //For future enchantments
+        }
     }
 
     private static <T extends IForgeRegistryEntry<T>> void register(IForgeRegistry<T> registry, String name, T object) {

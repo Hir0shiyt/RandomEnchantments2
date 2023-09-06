@@ -34,5 +34,9 @@
   "enchantment.randomenchants2.ricochet" : "Ricochet",
   "enchantment.randomenchants2.ricochet.desc" : "Arrows bounce off of walls",
   "enchantment.randomenchants2.exploding" : "Exploding",
-  "enchantment.randomenchants2.exploding.desc" : "Explode your enemies!"
+  "enchantment.randomenchants2.exploding.desc" : "Explode your enemies!",
+  "enchantment.randomenchants2.back_to_the_chamber" : "Back to the Chamber",
+  "enchantment.randomenchants2.back_to_the_chamber.desc" : "Chance of getting arrows back when a mob is stroke by an arrow",
+  "enchantment.randomenchants2.quick_draw" : "Quick Draw",
+  "enchantment.randomenchants2.quick_draw.desc" : "Draw arrows faster depending on the level"
 }

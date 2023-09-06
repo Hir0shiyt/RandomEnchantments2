@@ -24,6 +24,8 @@ public class ModConfig {
     public static final EnchantmentConfigEntry transpositionConfig;
     public static final EnchantmentConfigEntry ricochetConfig;
     public static final EnchantmentConfigEntry explodingConfig;
+    public static final EnchantmentConfigEntry backToTheChamberConfig;
+    public static final EnchantmentConfigEntry quickDrawConfig;
 
     static {
         Builder builder = new ForgeConfigSpec.Builder();
@@ -45,6 +47,8 @@ public class ModConfig {
         transpositionConfig = new EnchantmentConfigEntry(builder, "Transposition Enchantment", true, false, false);
         ricochetConfig = new EnchantmentConfigEntry(builder, "Ricochet Enchantment", true, false, false);
         explodingConfig = new EnchantmentConfigEntry(builder, "Exploding Enchantment", true, false, false);
+        backToTheChamberConfig = new EnchantmentConfigEntry(builder, "Back To The Chamber Enchantment", true, false, false);
+        quickDrawConfig = new EnchantmentConfigEntry(builder, "Quick Draw Enchantment", true, false ,false);
 
         SERVER_SPEC = builder.build();
     }
