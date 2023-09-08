@@ -38,5 +38,11 @@
   "enchantment.randomenchants2.back_to_the_chamber" : "Back to the Chamber",
   "enchantment.randomenchants2.back_to_the_chamber.desc" : "Chance of getting arrows back when a mob is stroke by an arrow",
   "enchantment.randomenchants2.quick_draw" : "Quick Draw",
-  "enchantment.randomenchants2.quick_draw.desc" : "Draw arrows faster depending on the level"
+  "enchantment.randomenchants2.quick_draw.desc" : "Draw arrows faster depending on the level",
+  "enchantment.randomenchants2.phasing" : "Phasing",
+  "enchantment.randomenchants2.phasing.desc" : "Arrows go through 1 block only",
+  "enchantment.randomenchants2.discord" : "Discord",
+  "enchantment.randomenchants2.discord.desc" : "allows the player's attacks to provoke nearby hostile mobs to target the hit entity",
+  "enchantment.randomenchants2.swift" : "Swift",
+  "enchantment.randomenchants2.swift.desc" : "Weapons like swords and axes will recharge the attack faster"
 }

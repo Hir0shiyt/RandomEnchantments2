@@ -43,6 +43,9 @@ public class ModEnchantments {
     public static final Enchantment EXPLODING = new Exploding(Enchantment.Rarity.RARE, ModEnchantments.SHOOTABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     public static final Enchantment BACK_TO_THE_CHAMBER = new BackToTheChamber(Enchantment.Rarity.RARE, ModEnchantments.SHOOTABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     public static final Enchantment QUICK_DRAW = new QuickDraw(Enchantment.Rarity.RARE, ModEnchantments.SHOOTABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public static final Enchantment PHASING = new Phasing(Enchantment.Rarity.RARE, ModEnchantments.SHOOTABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public static final Enchantment DISCORD = new Discord(Enchantment.Rarity.RARE, ModEnchantments.SWORDS_BOWS, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public static final Enchantment SWIFT = new Swift(Enchantment.Rarity.RARE, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
 
     @SubscribeEvent
     public static void registerEnchantments(RegistryEvent.Register<Enchantment> event) {
@@ -66,7 +69,9 @@ public class ModEnchantments {
         register(event.getRegistry(), "exploding", EXPLODING);
         register(event.getRegistry(), "back_to_the_chamber", BACK_TO_THE_CHAMBER);
         register(event.getRegistry(), "quick_draw", QUICK_DRAW);
-
+        register(event.getRegistry(), "phasing", PHASING);
+        register(event.getRegistry(), "discord", DISCORD);
+        register(event.getRegistry(), "swift", SWIFT);
 
         IForgeRegistry<Enchantment> r = event.getRegistry();
 

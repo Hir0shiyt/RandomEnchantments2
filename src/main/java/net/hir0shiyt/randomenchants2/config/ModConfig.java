@@ -26,6 +26,9 @@ public class ModConfig {
     public static final EnchantmentConfigEntry explodingConfig;
     public static final EnchantmentConfigEntry backToTheChamberConfig;
     public static final EnchantmentConfigEntry quickDrawConfig;
+    public static final EnchantmentConfigEntry phasingConfig;
+    public static final EnchantmentConfigEntry discordConfig;
+    public static final EnchantmentConfigEntry swiftConfig;
 
     static {
         Builder builder = new ForgeConfigSpec.Builder();
@@ -49,6 +52,9 @@ public class ModConfig {
         explodingConfig = new EnchantmentConfigEntry(builder, "Exploding Enchantment", true, false, false);
         backToTheChamberConfig = new EnchantmentConfigEntry(builder, "Back To The Chamber Enchantment", true, false, false);
         quickDrawConfig = new EnchantmentConfigEntry(builder, "Quick Draw Enchantment", true, false ,false);
+        phasingConfig = new EnchantmentConfigEntry(builder, "Phasing Enchantment", true, false ,false);
+        discordConfig = new EnchantmentConfigEntry(builder, "Discord Enchantment", true, false, false);
+        swiftConfig = new EnchantmentConfigEntry(builder, "Swift Enchantment", true, false, false);
 
         SERVER_SPEC = builder.build();
     }
