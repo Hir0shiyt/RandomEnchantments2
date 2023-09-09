@@ -29,6 +29,7 @@ public class ModConfig {
     public static final EnchantmentConfigEntry phasingConfig;
     public static final EnchantmentConfigEntry discordConfig;
     public static final EnchantmentConfigEntry swiftConfig;
+    public static final EnchantmentConfigEntry disarmConfig;
 
     static {
         Builder builder = new ForgeConfigSpec.Builder();
@@ -55,6 +56,7 @@ public class ModConfig {
         phasingConfig = new EnchantmentConfigEntry(builder, "Phasing Enchantment", true, false ,false);
         discordConfig = new EnchantmentConfigEntry(builder, "Discord Enchantment", true, false, false);
         swiftConfig = new EnchantmentConfigEntry(builder, "Swift Enchantment", true, false, false);
+        disarmConfig = new EnchantmentConfigEntry(builder, "Disarm Enchantment", true, false, false);
 
         SERVER_SPEC = builder.build();
     }

@@ -44,5 +44,7 @@
   "enchantment.randomenchants2.discord" : "Discord",
   "enchantment.randomenchants2.discord.desc" : "allows the player's attacks to provoke nearby hostile mobs to target the hit entity",
   "enchantment.randomenchants2.swift" : "Swift",
-  "enchantment.randomenchants2.swift.desc" : "Weapons like swords and axes will recharge the attack faster"
+  "enchantment.randomenchants2.swift.desc" : "Weapons like swords and axes will recharge the attack faster",
+  "enchantment.randomenchants2.disarm" : "Disarm",
+  "enchantment.randomenchants2.disarm.desc" : "Get items in the main hand of the hit entity"
 }

@@ -46,6 +46,7 @@ public class ModEnchantments {
     public static final Enchantment PHASING = new Phasing(Enchantment.Rarity.RARE, ModEnchantments.SHOOTABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     public static final Enchantment DISCORD = new Discord(Enchantment.Rarity.RARE, ModEnchantments.SWORDS_BOWS, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     public static final Enchantment SWIFT = new Swift(Enchantment.Rarity.RARE, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public static final Enchantment DISARM = new Disarm(Enchantment.Rarity.RARE, ModEnchantments.SWORDS_BOWS, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
 
     @SubscribeEvent
     public static void registerEnchantments(RegistryEvent.Register<Enchantment> event) {
@@ -72,6 +73,7 @@ public class ModEnchantments {
         register(event.getRegistry(), "phasing", PHASING);
         register(event.getRegistry(), "discord", DISCORD);
         register(event.getRegistry(), "swift", SWIFT);
+        register(event.getRegistry(), "disarm", DISARM);
 
         IForgeRegistry<Enchantment> r = event.getRegistry();
 
