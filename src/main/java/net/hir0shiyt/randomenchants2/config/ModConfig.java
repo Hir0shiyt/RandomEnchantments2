@@ -30,6 +30,9 @@ public class ModConfig {
     public static final EnchantmentConfigEntry discordConfig;
     public static final EnchantmentConfigEntry swiftConfig;
     public static final EnchantmentConfigEntry disarmConfig;
+    public static final EnchantmentConfigEntry shatteringConfig;
+    public static final EnchantmentConfigEntry homingConfig;
+    public static final EnchantmentConfigEntry paralysisConfig;
 
     static {
         Builder builder = new ForgeConfigSpec.Builder();
@@ -57,6 +60,9 @@ public class ModConfig {
         discordConfig = new EnchantmentConfigEntry(builder, "Discord Enchantment", true, false, false);
         swiftConfig = new EnchantmentConfigEntry(builder, "Swift Enchantment", true, false, false);
         disarmConfig = new EnchantmentConfigEntry(builder, "Disarm Enchantment", true, false, false);
+        shatteringConfig = new EnchantmentConfigEntry(builder, "Shattering Enchantment", true, false, false);
+        homingConfig = new EnchantmentConfigEntry(builder, "Homing Enchantment", true, false, false);
+        paralysisConfig = new EnchantmentConfigEntry(builder, "Paralysis Enchantment", true, false, false);
 
         SERVER_SPEC = builder.build();
     }

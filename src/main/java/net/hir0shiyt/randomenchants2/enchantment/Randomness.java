@@ -80,15 +80,12 @@ public class Randomness extends Enchantment {
 
     public static List<ItemStack> getRandomItems(Random random, int level) {
         List<ItemStack> drops = new ArrayList<>();
-        // Add normal block items
         drops.addAll(getNormalBlockItems(random, level));
-        // Add random items from the enchantment
         drops.addAll(getRandomEnchantmentItems(random, level));
         return drops;
     }
 
     private static List<ItemStack> getNormalBlockItems(Random random, int level) {
-        // Add normal block items implementation (currently empty)
         return new ArrayList<>();
     }
 
@@ -118,30 +115,18 @@ public class Randomness extends Enchantment {
         Player player = event.getPlayer();
         ItemStack stack = player.getMainHandItem();
 
-        // Check if the enchantment is enabled
         if (EnchantmentHelper.getItemEnchantmentLevel(Randomness.getRandomnessEnchant(), stack) <= 0 || event.getWorld().isClientSide()) {
             return;
         }
 
         Level world = (Level) event.getWorld();
         int level = EnchantmentHelper.getItemEnchantmentLevel(Randomness.getRandomnessEnchant(), stack);
-
-        // Get the block state before it's broken
         BlockState blockState = world.getBlockState(event.getPos());
-
-        // Cancel the original block break event
         event.setCanceled(true);
-
-        // Destroy the block without dropping block items
         world.destroyBlock(event.getPos(), false);
-
-        // Prevent the normal block drops from appearing
         event.setExpToDrop(0);
-
-        // Choose between normal block drops and random drops
         List<ItemStack> drops = Randomness.getRandomItems(world.random, level);
 
-        // Spawn the chosen drops
         for (ItemStack drop : drops) {
             if (!drop.isEmpty()) {
                 ItemHandlerHelper.giveItemToPlayer(player, drop); // Give the item to the player

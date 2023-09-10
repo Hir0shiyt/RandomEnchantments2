@@ -46,5 +46,11 @@
   "enchantment.randomenchants2.swift" : "Swift",
   "enchantment.randomenchants2.swift.desc" : "Weapons like swords and axes will recharge the attack faster",
   "enchantment.randomenchants2.disarm" : "Disarm",
-  "enchantment.randomenchants2.disarm.desc" : "Get items in the main hand of the hit entity"
+  "enchantment.randomenchants2.disarm.desc" : "Get items in the main hand of the hit entity",
+  "enchantment.randomenchants2.shattering" : "Shattering",
+  "enchantment.randomenchants2.shattering.desc" : "Destroy glass blocks or panes with an arrow",
+  "enchantment.randomenchants2.homing" : "Homing",
+  "enchantment.randomenchants2.homing.desc" : "Arrows will go directly to where you're aiming",
+  "enchantment.randomenchants2.paralysis" : "Paralysis",
+  "enchantment.randomenchants2.paralysis.desc" : "Paralyze hit entities"
 }

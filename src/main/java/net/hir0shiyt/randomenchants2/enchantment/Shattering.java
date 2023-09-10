@@ -1,0 +1,96 @@
+package net.hir0shiyt.randomenchants2.enchantment;
+
+import net.hir0shiyt.randomenchants2.EnchantUtils;
+import net.hir0shiyt.randomenchants2.RandomEnchants2;
+import net.hir0shiyt.randomenchants2.config.ModConfig;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.BowItem;
+import net.minecraft.world.item.CrossbowItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.enchantment.MultiShotEnchantment;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraftforge.event.entity.ProjectileImpactEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+
+@Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
+public class Shattering extends Enchantment {
+    public Shattering(Rarity rarity, EnchantmentCategory category, EquipmentSlot[] slots) {
+        super(rarity, category, slots);
+    }
+
+    @Override
+    public int getMinCost(int level) {
+        return 25;
+    }
+
+    @Override
+    public int getMaxLevel() {
+        return 1;
+    }
+
+    @Override
+    public boolean canEnchant(ItemStack stack) {
+        return ModConfig.shatteringConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack) {
+        if (stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem) {
+            return ModConfig.shatteringConfig.isEnabled.get();
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean isAllowedOnBooks() {
+        return ModConfig.shatteringConfig.isEnabled.get();
+    }
+
+    @Override
+    public boolean isTradeable() {
+        return ModConfig.shatteringConfig.isEnabled.get() && ModConfig.shatteringConfig.isTradeable.get();
+    }
+
+    @Override
+    public boolean isTreasureOnly() {
+        return ModConfig.shatteringConfig.isEnabled.get() && ModConfig.shatteringConfig.isTreasureOnly.get();
+    }
+
+    @Override
+    public boolean checkCompatibility(Enchantment enchantment) {
+        return !(enchantment instanceof MultiShotEnchantment) &&
+                !(enchantment instanceof Teleportation) &&
+                !(enchantment instanceof Ricochet) &&
+                !(enchantment instanceof Phasing) &&
+                super.checkCompatibility(enchantment);
+    }
+
+    @SubscribeEvent
+    public static void arrowHit(ProjectileImpactEvent event) {
+        HitResult result = event.getRayTraceResult();
+        if (!(result instanceof BlockHitResult)) return;
+        Entity arrow = event.getEntity();
+        if (!(arrow instanceof AbstractArrow)) return;
+        Entity shooter = ((AbstractArrow) arrow).getOwner();
+        if (!(shooter instanceof Player)) return;
+        Player player = (Player) ((AbstractArrow) arrow).getOwner();
+        if (player == null) return;
+        if (!EnchantUtils.hasEnch(player.getMainHandItem(), ModEnchantments.SHATTERING)) return;
+        BlockPos pos = ((BlockHitResult) result).getBlockPos();
+        Block glass = arrow.level.getBlockState(pos).getBlock();
+        if (!(glass instanceof GlassBlock || glass instanceof StainedGlassBlock || glass instanceof StainedGlassPaneBlock)) return;
+        arrow.getLevel().destroyBlock(pos, true);
+        event.setCanceled(true);
+    }
+}
