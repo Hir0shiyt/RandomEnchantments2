@@ -34,9 +34,14 @@ public class StoneLover extends Enchantment {
     }
 
     @Override
+    public boolean canEnchant(ItemStack stack) {
+        return ModConfig.ServerConfig.stoneLoverConfig.get() != ModConfig.Restriction.DISABLED && super.canEnchant(stack);
+    }
+
+    @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof PickaxeItem) {
-            return ModConfig.stoneLoverConfig.isEnabled.get();
+            return ModConfig.ServerConfig.stoneLoverConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
         } else {
             return false;
         }
@@ -44,22 +49,18 @@ public class StoneLover extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.stoneLoverConfig.isEnabled.get();
-    }
-
-    @Override
-    public boolean canEnchant(ItemStack stack) {
-        return ModConfig.stoneLoverConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
-    }
-
-    @Override
-    public boolean isTradeable() {
-        return ModConfig.stoneLoverConfig.isEnabled.get() && ModConfig.stoneLoverConfig.isTradeable.get();
+        return ModConfig.ServerConfig.stoneLoverConfig.get() == ModConfig.Restriction.NORMAL;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.stoneLoverConfig.isEnabled.get() && ModConfig.stoneLoverConfig.isTreasureOnly.get();
+        return ModConfig.ServerConfig.stoneLoverConfig.get() == ModConfig.Restriction.ANVIL;
+    }
+
+    @Override
+    protected boolean checkCompatibility(Enchantment enchantment) {
+        return !(enchantment instanceof SolarEnchant) &&
+                super.checkCompatibility(enchantment);
     }
 
     @SubscribeEvent

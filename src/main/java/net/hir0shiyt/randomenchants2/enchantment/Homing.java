@@ -18,6 +18,8 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import javax.annotation.Nonnull;
+
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
 public class Homing extends Enchantment {
     public Homing(Rarity rarity, EnchantmentCategory category, EquipmentSlot[] slots) {
@@ -35,14 +37,14 @@ public class Homing extends Enchantment {
     }
 
     @Override
-    public boolean canEnchant(ItemStack stack) {
-        return ModConfig.homingConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
+    public boolean canEnchant(@Nonnull ItemStack stack) {
+        return ModConfig.ServerConfig.homingConfig.get() != ModConfig.Restriction.DISABLED && super.canEnchant(stack);
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem) {
-            return ModConfig.homingConfig.isEnabled.get();
+            return ModConfig.ServerConfig.homingConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
         } else {
             return false;
         }
@@ -50,17 +52,12 @@ public class Homing extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.homingConfig.isEnabled.get();
-    }
-
-    @Override
-    public boolean isTradeable() {
-        return ModConfig.homingConfig.isEnabled.get() && ModConfig.homingConfig.isTradeable.get();
+        return ModConfig.ServerConfig.homingConfig.get() == ModConfig.Restriction.NORMAL;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.homingConfig.isEnabled.get() && ModConfig.homingConfig.isTreasureOnly.get();
+        return ModConfig.ServerConfig.homingConfig.get() == ModConfig.Restriction.ANVIL;
     }
 
     @Override

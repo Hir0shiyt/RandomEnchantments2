@@ -39,40 +39,34 @@ public class Randomness extends Enchantment {
     }
 
     @Override
-    protected boolean checkCompatibility (Enchantment enchantment) {
-        return !(enchantment instanceof SolarEnchant) &&
-                super.checkCompatibility(enchantment);
+    public boolean canEnchant(ItemStack stack) {
+        return ModConfig.ServerConfig.randomnessConfig.get() != ModConfig.Restriction.DISABLED && super.canEnchant(stack);
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof PickaxeItem && stack.getItem() instanceof ShovelItem && stack.getItem() instanceof AxeItem && stack.getItem() instanceof HoeItem) {
-            return ModConfig.randomnessConfig.isEnabled.get();
+            return ModConfig.ServerConfig.randomnessConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
         } else {
             return false;
         }
     }
 
     @Override
-    public boolean canEnchant(ItemStack stack) {
-        return ModConfig.randomnessConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
-    }
-
-    @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.randomnessConfig.isEnabled.get();
-    }
-
-    @Override
-    public boolean isTradeable() {
-        return ModConfig.randomnessConfig.isEnabled.get() && ModConfig.randomnessConfig.isTradeable.get();
+        return ModConfig.ServerConfig.randomnessConfig.get() == ModConfig.Restriction.NORMAL;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.randomnessConfig.isEnabled.get() && ModConfig.randomnessConfig.isTreasureOnly.get();
+        return ModConfig.ServerConfig.randomnessConfig.get() == ModConfig.Restriction.ANVIL;
     }
 
+    @Override
+    protected boolean checkCompatibility (Enchantment enchantment) {
+        return !(enchantment instanceof SolarEnchant) &&
+                super.checkCompatibility(enchantment);
+    }
 
     public static Enchantment getRandomnessEnchant() {
         return ModEnchantments.RANDOMNESS;
@@ -129,7 +123,7 @@ public class Randomness extends Enchantment {
 
         for (ItemStack drop : drops) {
             if (!drop.isEmpty()) {
-                ItemHandlerHelper.giveItemToPlayer(player, drop); // Give the item to the player
+                ItemHandlerHelper.giveItemToPlayer(player, drop);
             }
         }
     }

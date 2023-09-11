@@ -45,26 +45,26 @@ public class Ricochet extends Enchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.ricochetConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
+        return ModConfig.ServerConfig.ricochetConfig.get() != ModConfig.Restriction.DISABLED && super.canEnchant(stack);
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem) {
-            return ModConfig.ricochetConfig.isEnabled.get();
+            return ModConfig.ServerConfig.ricochetConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
         } else {
             return false;
         }
     }
 
     @Override
-    public boolean isTradeable() {
-        return ModConfig.ricochetConfig.isEnabled.get() && ModConfig.ricochetConfig.isTradeable.get();
+    public boolean isAllowedOnBooks() {
+        return ModConfig.ServerConfig.ricochetConfig.get() == ModConfig.Restriction.NORMAL;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ricochetConfig.isEnabled.get() && ModConfig.ricochetConfig.isTreasureOnly.get();
+        return ModConfig.ServerConfig.ricochetConfig.get() == ModConfig.Restriction.ANVIL;
     }
 
     @Override

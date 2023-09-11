@@ -40,13 +40,13 @@ public class Shattering extends Enchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.shatteringConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
+        return ModConfig.ServerConfig.ricochetConfig.get() != ModConfig.Restriction.DISABLED && super.canEnchant(stack);
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem) {
-            return ModConfig.shatteringConfig.isEnabled.get();
+            return ModConfig.ServerConfig.ricochetConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
         } else {
             return false;
         }
@@ -54,17 +54,12 @@ public class Shattering extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.shatteringConfig.isEnabled.get();
-    }
-
-    @Override
-    public boolean isTradeable() {
-        return ModConfig.shatteringConfig.isEnabled.get() && ModConfig.shatteringConfig.isTradeable.get();
+        return ModConfig.ServerConfig.shatteringConfig.get() == ModConfig.Restriction.NORMAL;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.shatteringConfig.isEnabled.get() && ModConfig.shatteringConfig.isTreasureOnly.get();
+        return ModConfig.ServerConfig.ricochetConfig.get() == ModConfig.Restriction.ANVIL;
     }
 
     @Override

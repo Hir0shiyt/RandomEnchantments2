@@ -39,13 +39,13 @@ public class Transposition extends Enchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.transpositionConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
+        return ModConfig.ServerConfig.transpositionConfig.get() != ModConfig.Restriction.DISABLED && super.canEnchant(stack);
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem) {
-            return ModConfig.transpositionConfig.isEnabled.get();
+            return ModConfig.ServerConfig.transpositionConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
         } else {
             return false;
         }
@@ -53,17 +53,12 @@ public class Transposition extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.transpositionConfig.isEnabled.get();
+        return ModConfig.ServerConfig.transpositionConfig.get() == ModConfig.Restriction.NORMAL;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.transpositionConfig.isEnabled.get() && ModConfig.transpositionConfig.isTreasureOnly.get();
-    }
-
-    @Override
-    public boolean isTradeable() {
-        return ModConfig.transpositionConfig.isEnabled.get() && ModConfig.transpositionConfig.isTradeable.get();
+        return ModConfig.ServerConfig.transpositionConfig.get() == ModConfig.Restriction.ANVIL;
     }
 
     @Override

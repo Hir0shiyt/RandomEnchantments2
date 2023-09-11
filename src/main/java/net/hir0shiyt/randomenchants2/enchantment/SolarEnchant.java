@@ -20,8 +20,6 @@ import org.jetbrains.annotations.NotNull;
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
 public class SolarEnchant extends Enchantment {
 
-    @ObjectHolder(RandomEnchants2.MOD_ID + ":solar_enchant")
-    public static final Enchantment SOLAR_ENCHANT = null;
     private static final int REPAIR_COOLDOWN = 20;
 
     public SolarEnchant(Rarity rarity, EnchantmentCategory category, EquipmentSlot[] slots) {
@@ -39,36 +37,31 @@ public class SolarEnchant extends Enchantment {
     }
 
     @Override
+    public boolean canEnchant(ItemStack stack) {
+        return ModConfig.ServerConfig.solarEnchantConfig.get() != ModConfig.Restriction.DISABLED && super.canEnchant(stack);
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack) {
+        return ModConfig.ServerConfig.solarEnchantConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
+    }
+
+    @Override
+    public boolean isAllowedOnBooks() {
+        return ModConfig.ServerConfig.solarEnchantConfig.get() == ModConfig.Restriction.NORMAL;
+    }
+
+    @Override
+    public boolean isTreasureOnly() {
+        return ModConfig.ServerConfig.solarEnchantConfig.get() == ModConfig.Restriction.ANVIL;
+    }
+
+    @Override
     protected boolean checkCompatibility(Enchantment enchantment) {
         return !(enchantment instanceof Randomness) &&
                 !(enchantment instanceof MendingEnchantment) &&
                 !(enchantment instanceof Eternal) &&
                 super.checkCompatibility(enchantment);
-    }
-
-    @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return ModConfig.solarEnchantConfig.isEnabled.get();
-    }
-
-    @Override
-    public boolean canEnchant(ItemStack stack) {
-        return ModConfig.solarEnchantConfig.isEnabled.get();
-    }
-
-    @Override
-    public boolean isAllowedOnBooks() {
-        return ModConfig.solarEnchantConfig.isEnabled.get();
-    }
-
-    @Override
-    public boolean isTreasureOnly() {
-        return ModConfig.solarEnchantConfig.isEnabled.get() && ModConfig.solarEnchantConfig.isTreasureOnly.get();
-    }
-
-    @Override
-    public boolean isTradeable() {
-        return ModConfig.solarEnchantConfig.isEnabled.get() && ModConfig.solarEnchantConfig.isTradeable.get();
     }
 
     @SubscribeEvent

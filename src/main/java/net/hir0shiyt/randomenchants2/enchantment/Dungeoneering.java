@@ -42,28 +42,24 @@ public class Dungeoneering extends Enchantment {
         return 5;
     }
 
+
+    @Override
+    public boolean canEnchant(ItemStack stack) {
+        return ModConfig.ServerConfig.dungeoneeringConfig.get() != ModConfig.Restriction.DISABLED && super.canEnchant(stack);
+    }
+
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof SwordItem && stack.getItem() instanceof AxeItem) {
-            return ModConfig.dungeoneeringConfig.isEnabled.get();
+            return ModConfig.ServerConfig.dungeoneeringConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
         } else {
             return false;
         }
     }
 
     @Override
-    public boolean canEnchant(ItemStack stack) {
-        return ModConfig.dungeoneeringConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
-    }
-
-    @Override
     public boolean isTreasureOnly() {
-        return ModConfig.dungeoneeringConfig.isEnabled.get() && ModConfig.dungeoneeringConfig.isTreasureOnly.get();
-    }
-
-    @Override
-    public boolean isTradeable() {
-        return ModConfig.dungeoneeringConfig.isEnabled.get() && ModConfig.dungeoneeringConfig.isTradeable.get();
+        return ModConfig.ServerConfig.dungeoneeringConfig.get() == ModConfig.Restriction.ANVIL;
     }
 
     @SubscribeEvent(priority = EventPriority.NORMAL)

@@ -31,22 +31,22 @@ public class Eternal extends Enchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.eternalConfig.isEnabled.get();
+        return ModConfig.ServerConfig.eternalConfig.get() != ModConfig.Restriction.DISABLED && super.canEnchant(stack);
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return ModConfig.eternalConfig.isEnabled.get();
-    }
-
-    @Override
-    public boolean isTradeable() {
-        return ModConfig.eternalConfig.isEnabled.get() && ModConfig.eternalConfig.isTradeable.get();
+        return ModConfig.ServerConfig.eternalConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.eternalConfig.isEnabled.get();
+        return ModConfig.ServerConfig.eternalConfig.get() == ModConfig.Restriction.NORMAL;
+    }
+
+    @Override
+    public boolean isTreasureOnly() {
+        return ModConfig.ServerConfig.eternalConfig.get() == ModConfig.Restriction.ANVIL;
     }
 
     @Override
@@ -54,11 +54,6 @@ public class Eternal extends Enchantment {
         return !(enchantment instanceof SolarEnchant) &&
                 !(enchantment instanceof MendingEnchantment) &&
                 super.checkCompatibility(enchantment);
-    }
-
-    @Override
-    public boolean isTreasureOnly() {
-        return ModConfig.eternalConfig.isEnabled.get() && ModConfig.eternalConfig.isTreasureOnly.get();
     }
 
     @SubscribeEvent

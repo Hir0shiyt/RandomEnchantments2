@@ -34,13 +34,13 @@ public class TrueShot extends Enchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.trueShotConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
+        return ModConfig.ServerConfig.trueShotConfig.get() != ModConfig.Restriction.DISABLED && super.canEnchant(stack);
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem) {
-            return ModConfig.trueShotConfig.isEnabled.get();
+            return ModConfig.ServerConfig.trueShotConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
         }
         else {
             return false;
@@ -48,18 +48,13 @@ public class TrueShot extends Enchantment {
     }
 
     @Override
-    public boolean isTreasureOnly() {
-        return ModConfig.trueShotConfig.isEnabled.get() && ModConfig.trueShotConfig.isTreasureOnly.get();
-    }
-
-    @Override
-    public boolean isTradeable() {
-        return ModConfig.trueShotConfig.isEnabled.get() && ModConfig.trueShotConfig.isTradeable.get();
-    }
-
-    @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.trueShotConfig.isEnabled.get();
+        return ModConfig.ServerConfig.trueShotConfig.get() == ModConfig.Restriction.NORMAL;
+    }
+
+    @Override
+    public boolean isTreasureOnly() {
+        return ModConfig.ServerConfig.trueShotConfig.get() == ModConfig.Restriction.ANVIL;
     }
 
     @SubscribeEvent

@@ -43,32 +43,27 @@ public class Magnetic extends Enchantment {
     }
 
     @Override
+    public boolean canEnchant(ItemStack stack) {
+        return ModConfig.ServerConfig.magneticConfig.get() != ModConfig.Restriction.DISABLED && super.canEnchant(stack);
+    }
+
+    @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof AxeItem || stack.getItem() instanceof SwordItem || stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem) {
-            return ModConfig.magneticConfig.isEnabled.get();
+            return ModConfig.ServerConfig.magneticConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
         } else {
             return false;
         }
     }
 
     @Override
-    public boolean canEnchant(ItemStack stack) {
-        return ModConfig.magneticConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
-    }
-
-    @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.magneticConfig.isEnabled.get();
-    }
-
-    @Override
-    public boolean isTradeable() {
-        return ModConfig.magneticConfig.isEnabled.get() && ModConfig.magneticConfig.isTradeable.get();
+        return ModConfig.ServerConfig.magneticConfig.get() == ModConfig.Restriction.NORMAL;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.magneticConfig.isEnabled.get() && ModConfig.magneticConfig.isTreasureOnly.get();
+        return ModConfig.ServerConfig.magneticConfig.get() == ModConfig.Restriction.ANVIL;
     }
 
     @SubscribeEvent

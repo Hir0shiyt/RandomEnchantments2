@@ -43,26 +43,26 @@ public class Disarm extends Enchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.disarmConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
+        return ModConfig.ServerConfig.disarmConfig.get() != ModConfig.Restriction.DISABLED && super.canEnchant(stack);
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof SwordItem || stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem) {
-            return ModConfig.disarmConfig.isEnabled.get();
+            return ModConfig.ServerConfig.disarmConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
         } else {
             return false;
         }
     }
 
     @Override
-    public boolean isTradeable() {
-        return ModConfig.disarmConfig.isEnabled.get() && ModConfig.disarmConfig.isTradeable.get();
+    public boolean isAllowedOnBooks() {
+        return ModConfig.ServerConfig.disarmConfig.get() == ModConfig.Restriction.NORMAL;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.disarmConfig.isEnabled.get() && ModConfig.disarmConfig.isTreasureOnly.get();
+        return ModConfig.ServerConfig.disarmConfig.get() == ModConfig.Restriction.ANVIL;
     }
 
     @Override

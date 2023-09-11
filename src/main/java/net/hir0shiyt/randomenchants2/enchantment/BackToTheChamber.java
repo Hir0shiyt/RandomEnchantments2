@@ -5,17 +5,13 @@ import net.hir0shiyt.randomenchants2.config.ModConfig;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
-import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -40,26 +36,26 @@ public class BackToTheChamber extends Enchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.backToTheChamberConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
+        return ModConfig.ServerConfig.backToTheChamberConfig.get() != ModConfig.Restriction.DISABLED && super.canEnchant(stack);
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem) {
-            return ModConfig.backToTheChamberConfig.isEnabled.get();
+            return ModConfig.ServerConfig.backToTheChamberConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
         } else {
             return false;
         }
     }
 
     @Override
-    public boolean isTradeable() {
-        return ModConfig.backToTheChamberConfig.isEnabled.get() && ModConfig.backToTheChamberConfig.isTradeable.get();
+    public boolean isAllowedOnBooks() {
+        return ModConfig.ServerConfig.backToTheChamberConfig.get() == ModConfig.Restriction.NORMAL;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.backToTheChamberConfig.isEnabled.get() && ModConfig.backToTheChamberConfig.isTreasureOnly.get();
+        return ModConfig.ServerConfig.backToTheChamberConfig.get() == ModConfig.Restriction.ANVIL;
     }
 
     @Override

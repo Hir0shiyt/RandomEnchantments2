@@ -38,13 +38,13 @@ public class QuickDraw extends Enchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.quickDrawConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
+        return ModConfig.ServerConfig.quickDrawConfig.get() != ModConfig.Restriction.DISABLED && super.canEnchant(stack);
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem) {
-            return ModConfig.quickDrawConfig.isEnabled.get();
+            return ModConfig.ServerConfig.quickDrawConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
         } else {
             return false;
         }
@@ -52,17 +52,12 @@ public class QuickDraw extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.quickDrawConfig.isEnabled.get();
-    }
-
-    @Override
-    public boolean isTradeable() {
-        return ModConfig.quickDrawConfig.isEnabled.get() && ModConfig.quickDrawConfig.isTradeable.get();
+        return ModConfig.ServerConfig.quickDrawConfig.get() == ModConfig.Restriction.NORMAL;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.quickDrawConfig.isEnabled.get() && ModConfig.quickDrawConfig.isTreasureOnly.get();
+        return ModConfig.ServerConfig.quickDrawConfig.get() == ModConfig.Restriction.ANVIL;
     }
 
     @SubscribeEvent

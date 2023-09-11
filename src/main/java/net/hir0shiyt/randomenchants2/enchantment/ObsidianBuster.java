@@ -32,38 +32,33 @@ public class ObsidianBuster extends Enchantment {
     }
 
     @Override
-    protected boolean checkCompatibility(Enchantment enchantment) {
-        return !(enchantment instanceof Randomness) &&
-                super.checkCompatibility(enchantment);
+    public boolean canEnchant(ItemStack stack) {
+        return ModConfig.ServerConfig.obsidianBusterConfig.get() != ModConfig.Restriction.DISABLED && super.canEnchant(stack);
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof PickaxeItem) {
-            return ModConfig.obsidianBusterConfig.isEnabled.get();
+            return ModConfig.ServerConfig.obsidianBusterConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
         } else {
             return false;
         }
     }
 
     @Override
-    public boolean canEnchant(ItemStack stack) {
-        return ModConfig.obsidianBusterConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
-    }
-
-    @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.obsidianBusterConfig.isEnabled.get();
-    }
-
-    @Override
-    public boolean isTradeable() {
-        return ModConfig.obsidianBusterConfig.isEnabled.get() && ModConfig.obsidianBusterConfig.isTradeable.get();
+        return ModConfig.ServerConfig.obsidianBusterConfig.get() == ModConfig.Restriction.NORMAL;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.obsidianBusterConfig.isEnabled.get() && ModConfig.obsidianBusterConfig.isTreasureOnly.get();
+        return ModConfig.ServerConfig.obsidianBusterConfig.get() == ModConfig.Restriction.ANVIL;
+    }
+
+    @Override
+    protected boolean checkCompatibility(Enchantment enchantment) {
+        return !(enchantment instanceof Randomness) &&
+                super.checkCompatibility(enchantment);
     }
 
     @SubscribeEvent

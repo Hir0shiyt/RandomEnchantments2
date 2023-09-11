@@ -28,34 +28,28 @@ public class EqualMine extends Enchantment {
         return 1;
     }
 
+    @Override
+    public boolean canEnchant(ItemStack stack) {
+        return ModConfig.ServerConfig.equalMineConfig.get() != ModConfig.Restriction.DISABLED && super.canEnchant(stack);
+    }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof DiggerItem) {
-            return ModConfig.equalMineConfig.isEnabled.get();
+            return ModConfig.ServerConfig.equalMineConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
         } else {
             return false;
         }
     }
 
     @Override
-    public boolean canEnchant(ItemStack stack) {
-        return ModConfig.equalMineConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
-    }
-
-    @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.equalMineConfig.isEnabled.get();
-    }
-
-    @Override
-    public boolean isTradeable() {
-        return ModConfig.equalMineConfig.isEnabled.get() && ModConfig.equalMineConfig.isTradeable.get();
+        return ModConfig.ServerConfig.equalMineConfig.get() == ModConfig.Restriction.NORMAL;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.equalMineConfig.isEnabled.get() && ModConfig.equalMineConfig.isTreasureOnly.get();
+        return ModConfig.ServerConfig.equalMineConfig.get() == ModConfig.Restriction.ANVIL;
     }
 
     @SubscribeEvent

@@ -37,26 +37,21 @@ public class Exploding extends Enchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.explodingConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
+        return ModConfig.ServerConfig.explodingConfig.get() != ModConfig.Restriction.DISABLED && super.canEnchant(stack);
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem) {
-            return ModConfig.explodingConfig.isEnabled.get();
+            return ModConfig.ServerConfig.explodingConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
         } else {
             return false;
         }
     }
 
     @Override
-    public boolean isTradeable() {
-        return ModConfig.explodingConfig.isEnabled.get() && ModConfig.explodingConfig.isTradeable.get();
-    }
-
-    @Override
     public boolean isTreasureOnly() {
-        return ModConfig.explodingConfig.isEnabled.get() && ModConfig.explodingConfig.isTreasureOnly.get();
+        return ModConfig.ServerConfig.explodingConfig.get() == ModConfig.Restriction.ANVIL;
     }
 
     @Override

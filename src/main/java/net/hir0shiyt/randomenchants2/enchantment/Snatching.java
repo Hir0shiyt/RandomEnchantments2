@@ -41,31 +41,26 @@ public class Snatching extends Enchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.snatchingConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
+        return ModConfig.ServerConfig.snatchingConfig.get() != ModConfig.Restriction.DISABLED && super.canEnchant(stack);
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof FishingRodItem) {
-            return ModConfig.snatchingConfig.isEnabled.get();
+            return ModConfig.ServerConfig.snatchingConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
         } else {
             return false;
         }
     }
 
     @Override
-    public boolean isTreasureOnly() {
-        return ModConfig.grapplingConfig.isEnabled.get() && ModConfig.snatchingConfig.isTreasureOnly.get();
-    }
-
-    @Override
-    public boolean isTradeable() {
-        return ModConfig.grapplingConfig.isEnabled.get() && ModConfig.snatchingConfig.isTradeable.get();
-    }
-
-    @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.snatchingConfig.isEnabled.get();
+        return ModConfig.ServerConfig.snatchingConfig.get() == ModConfig.Restriction.NORMAL;
+    }
+
+    @Override
+    public boolean isTreasureOnly() {
+        return ModConfig.ServerConfig.snatchingConfig.get() == ModConfig.Restriction.ANVIL;
     }
 
     private static final List<EquipmentSlot> ARMOR_SLOTS = new ArrayList<>();

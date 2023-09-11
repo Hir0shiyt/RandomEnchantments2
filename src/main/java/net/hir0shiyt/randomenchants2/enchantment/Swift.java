@@ -35,13 +35,13 @@ public class Swift extends Enchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.swiftConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
+        return ModConfig.ServerConfig.swiftConfig.get() != ModConfig.Restriction.DISABLED && super.canEnchant(stack);
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof SwordItem || stack.getItem() instanceof AxeItem) {
-            return ModConfig.swiftConfig.isEnabled.get();
+            return ModConfig.ServerConfig.swiftConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
         } else {
             return false;
         }
@@ -49,17 +49,12 @@ public class Swift extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.swiftConfig.isEnabled.get();
-    }
-
-    @Override
-    public boolean isTradeable() {
-        return ModConfig.swiftConfig.isEnabled.get() && ModConfig.swiftConfig.isTradeable.get();
+        return ModConfig.ServerConfig.swiftConfig.get() == ModConfig.Restriction.NORMAL;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.swiftConfig.isEnabled.get() && ModConfig.swiftConfig.isTreasureOnly.get();
+        return ModConfig.ServerConfig.swiftConfig.get() == ModConfig.Restriction.ANVIL;
     }
 
     @SubscribeEvent

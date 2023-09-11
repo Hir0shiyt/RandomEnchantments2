@@ -1,33 +1,16 @@
 package net.hir0shiyt.randomenchants2.enchantment;
 
-import net.hir0shiyt.randomenchants2.EnchantUtils;
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
 import net.hir0shiyt.randomenchants2.config.ModConfig;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
-import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.MultiShotEnchantment;
-import net.minecraft.world.level.levelgen.structure.templatesystem.AxisAlignedLinearPosTest;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
 public class Discord extends Enchantment {
@@ -47,13 +30,13 @@ public class Discord extends Enchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.discordConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
+        return ModConfig.ServerConfig.discordConfig.get() != ModConfig.Restriction.DISABLED && super.canEnchant(stack);
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof SwordItem || stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem) {
-            return ModConfig.discordConfig.isEnabled.get();
+            return ModConfig.ServerConfig.discordConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
         } else {
             return false;
         }
@@ -61,17 +44,12 @@ public class Discord extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.discordConfig.isEnabled.get();
-    }
-
-    @Override
-    public boolean isTradeable() {
-        return ModConfig.discordConfig.isEnabled.get() && ModConfig.discordConfig.isTradeable.get();
+        return ModConfig.ServerConfig.discordConfig.get() == ModConfig.Restriction.NORMAL;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.discordConfig.isEnabled.get() && ModConfig.discordConfig.isTreasureOnly.get();
+        return ModConfig.ServerConfig.discordConfig.get() != ModConfig.Restriction.ANVIL;
     }
 
     @Override

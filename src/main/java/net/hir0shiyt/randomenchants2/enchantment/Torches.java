@@ -39,32 +39,27 @@ public class Torches extends Enchantment {
     }
 
     @Override
-    public boolean isAllowedOnBooks() {
-        return ModConfig.torchesConfig.isEnabled.get();
-    }
-
-    @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.torchesConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
+        return ModConfig.ServerConfig.torchesConfig.get() != ModConfig.Restriction.DISABLED && super.canEnchant(stack);
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem) {
-            return ModConfig.torchesConfig.isEnabled.get();
+            return ModConfig.ServerConfig.torchesConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
         } else {
             return false;
         }
     }
 
     @Override
-    public boolean isTreasureOnly() {
-        return ModConfig.teleportationConfig.isEnabled.get() && ModConfig.teleportationConfig.isTreasureOnly.get();
+    public boolean isAllowedOnBooks() {
+        return ModConfig.ServerConfig.torchesConfig.get() == ModConfig.Restriction.NORMAL;
     }
 
     @Override
-    public boolean isTradeable() {
-        return ModConfig.teleportationConfig.isEnabled.get() && ModConfig.torchesConfig.isTradeable.get();
+    public boolean isTreasureOnly() {
+        return ModConfig.ServerConfig.teleportationConfig.get() == ModConfig.Restriction.ANVIL;
     }
 
     @Override

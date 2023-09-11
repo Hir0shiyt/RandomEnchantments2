@@ -37,13 +37,13 @@ public class Resistant extends Enchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return ModConfig.resistantConfig.isEnabled.get() && this.canApplyAtEnchantingTable(stack);
+        return ModConfig.ServerConfig.resistantConfig.get() != ModConfig.Restriction.DISABLED && super.canEnchant(stack);
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         if (stack.getItem() instanceof Item) {
-            return ModConfig.resistantConfig.isEnabled.get();
+            return ModConfig.ServerConfig.resistantConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
         } else {
             return false;
         }
@@ -51,17 +51,12 @@ public class Resistant extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.resistantConfig.isEnabled.get() && ModConfig.resistantConfig.isTreasureOnly.get();
-    }
-
-    @Override
-    public boolean isTradeable() {
-        return ModConfig.resistantConfig.isEnabled.get() && ModConfig.resistantConfig.isTradeable.get();
+        return ModConfig.ServerConfig.resistantConfig.get() == ModConfig.Restriction.NORMAL;
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.resistantConfig.isEnabled.get();
+        return ModConfig.ServerConfig.resistantConfig.get() == ModConfig.Restriction.ANVIL;
     }
 
     @SubscribeEvent

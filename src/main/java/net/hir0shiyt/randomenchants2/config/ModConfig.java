@@ -1,86 +1,115 @@
 package net.hir0shiyt.randomenchants2.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
+import net.minecraftforge.common.ForgeConfigSpec.EnumValue;
 import net.minecraftforge.common.ForgeConfigSpec.Builder;
+import org.apache.commons.lang3.tuple.Pair;
 
 public class ModConfig {
-    public static ForgeConfigSpec SERVER_SPEC = null;
-    public static final EnchantmentConfigEntry solarEnchantConfig;
-    public static final EnchantmentConfigEntry obsidianBusterConfig;
-    public static final EnchantmentConfigEntry randomnessConfig;
-    public static final EnchantmentConfigEntry magneticConfig;
-    public static final EnchantmentConfigEntry stoneLoverConfig;
-    public static final EnchantmentConfigEntry eternalConfig;
-    public static final EnchantmentConfigEntry dungeoneeringConfig;
-    public static final EnchantmentConfigEntry grapplingConfig;
-    public static final EnchantmentConfigEntry snatchingConfig;
-    public static final EnchantmentConfigEntry resistantConfig;
-    public static final EnchantmentConfigEntry teleportationConfig;
-    public static final EnchantmentConfigEntry torchesConfig;
-    public static final EnchantmentConfigEntry trueShotConfig;
-    public static final EnchantmentConfigEntry equalMineConfig;
-    public static final EnchantmentConfigEntry assimilationConfig;
-    public static final EnchantmentConfigEntry transpositionConfig;
-    public static final EnchantmentConfigEntry ricochetConfig;
-    public static final EnchantmentConfigEntry explodingConfig;
-    public static final EnchantmentConfigEntry backToTheChamberConfig;
-    public static final EnchantmentConfigEntry quickDrawConfig;
-    public static final EnchantmentConfigEntry phasingConfig;
-    public static final EnchantmentConfigEntry discordConfig;
-    public static final EnchantmentConfigEntry swiftConfig;
-    public static final EnchantmentConfigEntry disarmConfig;
-    public static final EnchantmentConfigEntry shatteringConfig;
-    public static final EnchantmentConfigEntry homingConfig;
-    public static final EnchantmentConfigEntry paralysisConfig;
+
+    public static final ServerConfig SERVER;
+    public static final ForgeConfigSpec SERVER_SPEC;
 
     static {
-        Builder builder = new ForgeConfigSpec.Builder();
-        solarEnchantConfig = new EnchantmentConfigEntry(builder, "Solar Enchantment", true, true,  false);
-        obsidianBusterConfig = new EnchantmentConfigEntry(builder, "Obsidian Buster Enchantment", true, false,  false);
-        randomnessConfig = new EnchantmentConfigEntry(builder, "Randomness Enchantment", true, true,  false);
-        magneticConfig = new EnchantmentConfigEntry(builder, "Magnetic Enchantment", true, false,  false);
-        stoneLoverConfig = new EnchantmentConfigEntry(builder,"Stone Lover Enchantment",true, false,  false);
-        eternalConfig = new EnchantmentConfigEntry(builder,"Eternal Enchantment",true, true,  false);
-        dungeoneeringConfig = new EnchantmentConfigEntry(builder,"Dungeoneering Enchantment",true, true,  false);
-        grapplingConfig = new EnchantmentConfigEntry(builder,"Grappling Enchantment", true, true,  false);
-        snatchingConfig = new EnchantmentConfigEntry(builder, "Snatching Enchantment", true,true,false);
-        resistantConfig = new EnchantmentConfigEntry(builder, "Resistant Enchantment", true,true,false);
-        teleportationConfig = new EnchantmentConfigEntry(builder,"Teleportation Enchantment", true, false,  false);
-        torchesConfig = new EnchantmentConfigEntry(builder,"Torches Enchantment", true, false, false);
-        trueShotConfig = new EnchantmentConfigEntry(builder, "True Shot Enchantment",true,false,false);
-        equalMineConfig = new EnchantmentConfigEntry(builder, "Equal Mine Enchantment", true, true,  false);
-        assimilationConfig = new EnchantmentConfigEntry(builder, "Assimilation Enchantment", true, true,  false);
-        transpositionConfig = new EnchantmentConfigEntry(builder, "Transposition Enchantment", true, false, false);
-        ricochetConfig = new EnchantmentConfigEntry(builder, "Ricochet Enchantment", true, false, false);
-        explodingConfig = new EnchantmentConfigEntry(builder, "Exploding Enchantment", true, false, false);
-        backToTheChamberConfig = new EnchantmentConfigEntry(builder, "Back To The Chamber Enchantment", true, false, false);
-        quickDrawConfig = new EnchantmentConfigEntry(builder, "Quick Draw Enchantment", true, false ,false);
-        phasingConfig = new EnchantmentConfigEntry(builder, "Phasing Enchantment", true, false ,false);
-        discordConfig = new EnchantmentConfigEntry(builder, "Discord Enchantment", true, false, false);
-        swiftConfig = new EnchantmentConfigEntry(builder, "Swift Enchantment", true, false, false);
-        disarmConfig = new EnchantmentConfigEntry(builder, "Disarm Enchantment", true, false, false);
-        shatteringConfig = new EnchantmentConfigEntry(builder, "Shattering Enchantment", true, false, false);
-        homingConfig = new EnchantmentConfigEntry(builder, "Homing Enchantment", true, false, false);
-        paralysisConfig = new EnchantmentConfigEntry(builder, "Paralysis Enchantment", true, false, false);
-
-        SERVER_SPEC = builder.build();
+        final Pair<ServerConfig, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(ServerConfig::new);
+        SERVER_SPEC = specPair.getRight();
+        SERVER = specPair.getLeft();
     }
 
-    public static class EnchantmentConfigEntry {
-        public final BooleanValue isEnabled;
-        public final BooleanValue isTreasureOnly;
-        public final BooleanValue isTradeable;
+    public static class ServerConfig {
 
-        public EnchantmentConfigEntry(Builder builder, String enchantmentName, boolean defaultValue, boolean defaultTreasureValue, boolean defaultIsTradeableValue) {
-            builder.push(enchantmentName);
-            isEnabled = builder.comment("Enable or disable the " + enchantmentName)
-                    .define("Enabled", defaultValue);
-            isTreasureOnly = builder.comment(enchantmentName + " is Only Treasure")
-                            .define("TreasureOnly",defaultTreasureValue);
-            isTradeable = builder.comment(enchantmentName + " is tradeable")
-                            .define("isTradeable", defaultIsTradeableValue);
+        public static ForgeConfigSpec.EnumValue<Restriction> solarEnchantConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> obsidianBusterConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> randomnessConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> magneticConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> stoneLoverConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> eternalConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> dungeoneeringConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> grapplingConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> snatchingConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> resistantConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> teleportationConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> torchesConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> trueShotConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> equalMineConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> assimilationConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> transpositionConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> ricochetConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> explodingConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> backToTheChamberConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> quickDrawConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> phasingConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> discordConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> swiftConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> disarmConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> shatteringConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> homingConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> paralysisConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> cursedJumpingConfig;
+
+        ServerConfig(ForgeConfigSpec.Builder builder) {
+            builder.push("general");
+            solarEnchantConfig = builder.comment("Restriction for Solar Enchantment")
+                    .defineEnum("solarEnchantConfig", ModConfig.Restriction.NORMAL);
+            obsidianBusterConfig = builder.comment("Restriction for Obsidian Buster Enchantment")
+                    .defineEnum("obsidianBusterConfig", ModConfig.Restriction.NORMAL);
+            randomnessConfig = builder.comment("Restriction for Randomness Enchantment")
+                    .defineEnum("randomnessConfig", ModConfig.Restriction.NORMAL);
+            magneticConfig = builder.comment("Restriction for Magnetic Enchantment")
+                    .defineEnum("magneticConfig", ModConfig.Restriction.NORMAL);
+            stoneLoverConfig = builder.comment("Restriction for Stone Lover Enchantment")
+                    .defineEnum("stoneLoverConfig", ModConfig.Restriction.NORMAL);
+            eternalConfig = builder.comment("Restriction for Eternal Enchantment")
+                    .defineEnum("eternalConfig", ModConfig.Restriction.NORMAL);
+            dungeoneeringConfig = builder.comment("Restriction for Dungeoneering Enchantment")
+                    .defineEnum("dungeoneeringConfig", ModConfig.Restriction.NORMAL);
+            grapplingConfig = builder.comment("Restriction for Grappling Enchantment")
+                    .defineEnum("grapplingConfig", ModConfig.Restriction.NORMAL);
+            snatchingConfig = builder.comment("Restriction for Snatching Enchantment")
+                    .defineEnum("snatchingConfig", ModConfig.Restriction.NORMAL);
+            resistantConfig = builder.comment("Restriction for Resistant Enchantment")
+                    .defineEnum("resistantConfig", ModConfig.Restriction.NORMAL);
+            teleportationConfig = builder.comment("Restriction for Teleportation Enchantment")
+                    .defineEnum("teleportationConfig", ModConfig.Restriction.NORMAL);
+            torchesConfig = builder.comment("Restriction for Torches Enchantment")
+                    .defineEnum("torchesConfig", ModConfig.Restriction.NORMAL);
+            trueShotConfig = builder.comment("Restriction for True Shot Enchantment")
+                    .defineEnum("trueShotConfig", ModConfig.Restriction.NORMAL);
+            equalMineConfig = builder.comment("Restriction for Equal Mine Enchantment")
+                    .defineEnum("equalMineConfig", ModConfig.Restriction.NORMAL);
+            assimilationConfig = builder.comment("Restriction for Assimilation Enchantment")
+                    .defineEnum("assimilationConfig", ModConfig.Restriction.NORMAL);
+            transpositionConfig = builder.comment("Restriction for Transposition Enchantment")
+                    .defineEnum("transpositionConfig", ModConfig.Restriction.NORMAL);
+            ricochetConfig = builder.comment("Restriction for Ricochet Enchantment")
+                    .defineEnum("ricochetConfig", ModConfig.Restriction.NORMAL);
+            explodingConfig = builder.comment("Restriction for Exploding Enchantment")
+                    .defineEnum("explodingConfig", ModConfig.Restriction.NORMAL);
+            backToTheChamberConfig = builder.comment("Restriction for Back To The Chamber Enchantment")
+                    .defineEnum("backToTheChamberConfig", ModConfig.Restriction.NORMAL);
+            quickDrawConfig = builder.comment("Restriction for Quick Draw Enchantment")
+                    .defineEnum("quickDrawConfig", ModConfig.Restriction.NORMAL);
+            phasingConfig = builder.comment("Restriction for Phasing Enchantment")
+                    .defineEnum("phasingConfig", ModConfig.Restriction.NORMAL);
+            discordConfig = builder.comment("Restriction for Discord Enchantment")
+                    .defineEnum("discordConfig", ModConfig.Restriction.NORMAL);
+            swiftConfig = builder.comment("Restriction for Swift Enchantment")
+                    .defineEnum("swiftConfig", ModConfig.Restriction.NORMAL);
+            disarmConfig = builder.comment("Restriction for Disarm Enchantment")
+                    .defineEnum("disarmConfig", ModConfig.Restriction.NORMAL);
+            shatteringConfig = builder.comment("Restriction for Shattering Enchantment")
+                    .defineEnum("shatteringConfig", ModConfig.Restriction.NORMAL);
+            homingConfig = builder.comment("Restriction for Homing Enchantment")
+                    .defineEnum("homingConfig", ModConfig.Restriction.NORMAL);
+            paralysisConfig = builder.comment("Restriction for Paralysis Enchantment")
+                    .defineEnum("paralysisConfig", ModConfig.Restriction.NORMAL);
+            cursedJumpingConfig = builder.comment("Restriction for Cursed Jumping Enchantment")
+                    .defineEnum("cursedJumpConfig", ModConfig.Restriction.NORMAL);
+
             builder.pop();
         }
+    }
+    public enum Restriction {
+        DISABLED, NORMAL, ANVIL
     }
 }
