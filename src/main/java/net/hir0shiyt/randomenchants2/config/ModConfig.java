@@ -46,6 +46,14 @@ public class ModConfig {
         public static ForgeConfigSpec.EnumValue<Restriction> homingConfig;
         public static ForgeConfigSpec.EnumValue<Restriction> paralysisConfig;
         public static ForgeConfigSpec.EnumValue<Restriction> cursedJumpingConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> deflectConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> floatingConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> harvestConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> instantDeathConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> lightningConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> lumberjackConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> trueLifeStealConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> reflectConfig;
 
         ServerConfig(ForgeConfigSpec.Builder builder) {
             builder.push("general");
@@ -105,6 +113,22 @@ public class ModConfig {
                     .defineEnum("paralysisConfig", ModConfig.Restriction.NORMAL);
             cursedJumpingConfig = builder.comment("Restriction for Cursed Jumping Enchantment")
                     .defineEnum("cursedJumpConfig", ModConfig.Restriction.NORMAL);
+            deflectConfig = builder.comment("Restriction for Deflect Enchantment")
+                    .defineEnum("reflectConfig", Restriction.NORMAL);
+            floatingConfig = builder.comment("Restriction for Floating Enchantment")
+                    .defineEnum("floatingConfig", Restriction.NORMAL);
+            harvestConfig = builder.comment("Restriction for Harvest Enchantment")
+                    .defineEnum("harvestConfig", Restriction.NORMAL);
+            instantDeathConfig = builder.comment("Restriction for Instant Death Enchantment")
+                    .defineEnum("instantDeathConfig", Restriction.NORMAL);
+            lightningConfig = builder.comment("Restriction for Lighting Enchantment")
+                    .defineEnum("lightningConfig", Restriction.NORMAL);
+            lumberjackConfig = builder.comment("Restriction for Lumberjack Enchantment")
+                    .defineEnum("lumberjackConfig", Restriction.NORMAL);
+            trueLifeStealConfig = builder.comment("Restriction for True Life Steal Enchantment")
+                    .defineEnum("trueLifeStealConfig", Restriction.NORMAL);
+            reflectConfig = builder.comment("Restriction for Reflect Enchantment")
+                    .defineEnum("reflectConfig", Restriction.NORMAL);
 
             builder.pop();
         }

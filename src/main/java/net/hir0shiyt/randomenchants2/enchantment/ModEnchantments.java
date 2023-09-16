@@ -5,7 +5,6 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -19,7 +18,7 @@ public class ModEnchantments {
     //CREATE ENCHANTMENT CATEGORIES
     public static final EnchantmentCategory SWORDS_BOWS = EnchantmentCategory.create("weapons", item -> item instanceof SwordItem || item instanceof BowItem || item instanceof CrossbowItem);
     public static final EnchantmentCategory PICKAXE = EnchantmentCategory.create("pickaxes", PickaxeItem.class::isInstance);
-    public static final EnchantmentCategory SHOOTABLE = EnchantmentCategory.create("shootable", item -> item instanceof BowItem || item instanceof CrossbowItem || item instanceof TridentItem);
+    public static final EnchantmentCategory SHOOTABLE = EnchantmentCategory.create("shootable", item -> item instanceof BowItem || item instanceof CrossbowItem);
     public static final EnchantmentCategory SHIELDS = EnchantmentCategory.create("shields", ShieldItem.class::isInstance);
     public static final EnchantmentCategory AXES = EnchantmentCategory.create("axes", AxeItem.class::isInstance);
     public static final EnchantmentCategory TOOLSANDWEAPONS = EnchantmentCategory.create("tools&weapons", item -> item instanceof SwordItem || item instanceof AxeItem || item instanceof ShovelItem || item instanceof HoeItem || item instanceof BowItem || item instanceof CrossbowItem);
@@ -52,6 +51,15 @@ public class ModEnchantments {
     public static final Enchantment SHATTERING = new Shattering(Enchantment.Rarity.RARE, ModEnchantments.SHOOTABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     public static final Enchantment HOMING = new Homing(Enchantment.Rarity.RARE, ModEnchantments.SHOOTABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     public static final Enchantment PARALYSIS = new Paralysis(Enchantment.Rarity.RARE, ModEnchantments.SWORDS_BOWS, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public static final Enchantment CURSED_JUMPING = new CursedJumping(Enchantment.Rarity.RARE, ModEnchantments.SWORDS_BOWS, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public static final Enchantment DEFLECT = new Deflect(Enchantment.Rarity.RARE, EnchantmentCategory.ARMOR_CHEST, new EquipmentSlot[]{EquipmentSlot.CHEST});
+    public static final Enchantment FLOATING = new Floating(Enchantment.Rarity.RARE, ModEnchantments.SWORDS_BOWS, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public static final Enchantment HARVEST = new Harvest(Enchantment.Rarity.RARE, ModEnchantments.SHOOTABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public static final Enchantment INSTANT_DEATH = new InstantDeath(Enchantment.Rarity.RARE, ModEnchantments.SWORDS_BOWS, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public static final Enchantment LIGHTNING = new Lightning(Enchantment.Rarity.RARE, ModEnchantments.SWORDS_BOWS, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public static final Enchantment LUMBERJACK = new Lumberjack(Enchantment.Rarity.RARE, ModEnchantments.AXES, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public static final Enchantment TRUE_LIFE_STEAL = new TrueLifeSteal(Enchantment.Rarity.RARE, ModEnchantments.SWORDS_BOWS, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public static final Enchantment REFLECT = new Reflect(Enchantment.Rarity.RARE, ModEnchantments.SHIELDS, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
 
     @SubscribeEvent
     public static void registerEnchantments(RegistryEvent.Register<Enchantment> event) {
@@ -83,6 +91,15 @@ public class ModEnchantments {
         register(event.getRegistry(), "shattering", SHATTERING);
         register(event.getRegistry(), "homing", HOMING);
         register(event.getRegistry(), "paralysis", PARALYSIS);
+        register(event.getRegistry(), "cursed_jumping", CURSED_JUMPING);
+        register(event.getRegistry(), "deflect", DEFLECT);
+        register(event.getRegistry(), "floating", FLOATING);
+        register(event.getRegistry(), "harvest", HARVEST);
+        register(event.getRegistry(), "instant_death", INSTANT_DEATH);
+        register(event.getRegistry(), "lightning", LIGHTNING);
+        register(event.getRegistry(), "lumberjack", LUMBERJACK);
+        register(event.getRegistry(), "true_life_steal", TRUE_LIFE_STEAL);
+        register(event.getRegistry(), "reflect", REFLECT);
 
         //register logger for very useful purposes, yeah....
         IForgeRegistry<Enchantment> r = event.getRegistry();
