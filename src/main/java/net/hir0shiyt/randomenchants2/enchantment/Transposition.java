@@ -3,6 +3,7 @@ package net.hir0shiyt.randomenchants2.enchantment;
 import net.hir0shiyt.randomenchants2.EnchantUtils;
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
 import net.hir0shiyt.randomenchants2.config.ModConfig;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -70,21 +71,24 @@ public class Transposition extends Enchantment {
     }
 
     @SubscribeEvent
-    public static void teleportArrow(ProjectileImpactEvent e) {
-        if (!(e.getRayTraceResult() instanceof EntityHitResult) || !(((EntityHitResult) e.getRayTraceResult()).getEntity() instanceof LivingEntity)) return;
-        if (!(e.getEntity() instanceof AbstractArrow) || e.getEntity().level.isClientSide) return;
-        AbstractArrow arrow = (AbstractArrow) e.getEntity();
-        Entity shooter = arrow.getOwner();
-        if (!(shooter instanceof LivingEntity)) return;
-        LivingEntity e1 = (LivingEntity) shooter;
-        if (shooter instanceof Player) {
-            if (!(EnchantUtils.hasEnch(e1, ModEnchantments.TRANSPOSITION))) return;
-            float[] pos1 = new float[]{(float)e1.getX(), (float)e1.getY(), (float)e1.getZ(), e1.getXRot(), e1.getYHeadRot()};
-            LivingEntity e2 = (LivingEntity) ((EntityHitResult) e.getRayTraceResult()).getEntity();
-            float[] pos2 = new float[]{(float)e2.getX(), (float)e2.getY(), (float)e2.getZ(), e2.getXRot(), e2.getYHeadRot()};
-            e1.setPos(pos2[0], pos2[1], pos2[2]);
-            e2.setPos(pos1[0], pos1[1], pos1[2]);
-            arrow.remove(Entity.RemovalReason.DISCARDED);
+    public static void onArrowHit(ProjectileImpactEvent event) {
+        if (!(event.getRayTraceResult() instanceof EntityHitResult)) return;
+        Entity targetEntity = ((EntityHitResult) event.getRayTraceResult()).getEntity();
+        Entity arrowEntity = event.getEntity();
+        if (arrowEntity instanceof AbstractArrow) {
+            AbstractArrow arrow= (AbstractArrow) arrowEntity;
+            Entity shooter = arrow.getOwner();
+            if (shooter instanceof Player) {
+                Player playerShooter = (Player) shooter;
+                ItemStack heldItem = playerShooter.getMainHandItem();
+                if (EnchantUtils.hasEnch(heldItem, ModEnchantments.TRANSPOSITION)) {
+                    BlockPos shooterPos = playerShooter.getOnPos();
+                    BlockPos targetPos = targetEntity.getOnPos();
+                        shooter.teleportTo(targetPos.getX(), targetPos.getY() + 1, targetPos.getZ());
+                        targetEntity.teleportTo(shooterPos.getX(), shooterPos.getY() + 1, shooterPos.getZ());
+                    arrow.remove(Entity.RemovalReason.DISCARDED);
+                }
+            }
         }
     }
 }

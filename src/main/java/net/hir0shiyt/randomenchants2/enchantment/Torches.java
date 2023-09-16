@@ -73,13 +73,7 @@ public class Torches extends Enchantment {
     @SubscribeEvent
     public static void onBlockHit(ProjectileImpactEvent e) {
         Entity arrow = e.getEntity();
-        if (arrow instanceof ThrownEgg ||
-                arrow instanceof Snowball ||
-                arrow instanceof ThrownEnderpearl ||
-                arrow instanceof ThrownPotion ||
-                arrow instanceof ThrownExperienceBottle ||
-                arrow instanceof FishingHook ||
-                arrow instanceof FireworkRocketEntity) {
+        if (arrow instanceof ThrowableProjectile || arrow instanceof FishingHook || arrow instanceof FireworkRocketEntity || arrow instanceof Fireball || arrow instanceof EyeOfEnder || arrow instanceof DragonFireball || arrow instanceof ThrownTrident) {
             return;
         }
 
