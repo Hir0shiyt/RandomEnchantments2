@@ -1,7 +1,6 @@
 package net.hir0shiyt.randomenchants2.enchantment;
 
-import com.mojang.math.Vector3d;
-import net.hir0shiyt.randomenchants2.EnchantUtils;
+import net.hir0shiyt.randomenchants2.util.EnchantUtils;
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
 import net.hir0shiyt.randomenchants2.config.ModConfig;
 import net.minecraft.world.InteractionHand;
@@ -9,7 +8,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;

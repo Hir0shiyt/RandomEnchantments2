@@ -1,6 +1,6 @@
 package net.hir0shiyt.randomenchants2.enchantment;
 
-import net.hir0shiyt.randomenchants2.EnchantUtils;
+import net.hir0shiyt.randomenchants2.util.EnchantUtils;
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
 import net.hir0shiyt.randomenchants2.config.ModConfig;
 import net.minecraft.core.BlockPos;

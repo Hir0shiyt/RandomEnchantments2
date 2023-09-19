@@ -4,4 +4,4 @@ Original mod was created by tfarecnim but hasn't been updated from 1.16 to newer
 
 The goal is making every single enchantment there is, with the same functionalities of course.
 
-The mod will update at least 4 times a week, so keep an eye on the mod page and drop a follow! 
+The mod will update at least 4 times a week, so keep an eye on the mod page and drop a follow!

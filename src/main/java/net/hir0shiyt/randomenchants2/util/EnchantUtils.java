@@ -1,4 +1,4 @@
-package net.hir0shiyt.randomenchants2;
+package net.hir0shiyt.randomenchants2.util;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
