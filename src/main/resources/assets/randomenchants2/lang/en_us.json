@@ -70,5 +70,15 @@
   "enchantment.randomenchants2.true_life_steal" : "True Life Steal",
   "enchantment.randomenchants2.true_life_steal.desc" : "gives a *vampiric* touch to minecraft",
   "enchantment.randomenchants2.reflect" : "Reflect",
-  "enchantment.randomenchants2.reflect.desc" : "Reflect projectile attacks back to the enemy"
+  "enchantment.randomenchants2.reflect.desc" : "Reflect projectile attacks back to the enemy",
+
+
+  "enchantment.randomenchants2.breaking" : "Breaking Curse",
+  "enchantment.randomenchants2.breaking.desc" : "Items Break way faster",
+  "enchantment.randomenchants2.butter_fingers" : "Butter Fingers",
+  "enchantment.randomenchants2.butter_fingers.desc" : "Items slip from your hand",
+  "enchantment.randomenchants2.fumbling" : "Fumbling",
+  "enchantment.randomenchants2.fumbling.desc" : "Tools don't mine as quickly as they should",
+  "enchantment.randomenchants2.shadows" : "Shadows",
+  "enchantment.randomenchants2.shadows.desc" : "Equipment weakens in the light"
 }

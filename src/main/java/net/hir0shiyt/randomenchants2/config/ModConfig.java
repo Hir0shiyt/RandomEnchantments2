@@ -54,9 +54,13 @@ public class ModConfig {
         public static ForgeConfigSpec.EnumValue<Restriction> lumberjackConfig;
         public static ForgeConfigSpec.EnumValue<Restriction> trueLifeStealConfig;
         public static ForgeConfigSpec.EnumValue<Restriction> reflectConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> breakingConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> butterFingersConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> fumblingConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> shadowsConfig;
 
         ServerConfig(ForgeConfigSpec.Builder builder) {
-            builder.push("general");
+            builder.push("enchantments");
             solarEnchantConfig = builder.comment("Restriction for Solar Enchantment")
                     .defineEnum("solarEnchantConfig", ModConfig.Restriction.NORMAL);
             obsidianBusterConfig = builder.comment("Restriction for Obsidian Buster Enchantment")
@@ -129,6 +133,16 @@ public class ModConfig {
                     .defineEnum("trueLifeStealConfig", Restriction.NORMAL);
             reflectConfig = builder.comment("Restriction for Reflect Enchantment")
                     .defineEnum("reflectConfig", Restriction.NORMAL);
+
+            builder.push("curses");
+            breakingConfig = builder.comment("Restriction for Breaking Curse")
+                    .defineEnum("breakingConfig", Restriction.NORMAL);
+            butterFingersConfig = builder.comment("Restriction for Butter Fingers Curse")
+                    .defineEnum("butterFingersConfig", Restriction.NORMAL);
+            fumblingConfig = builder.comment("Restriction for Fumbling Curse")
+                    .defineEnum("fumblingConfig", Restriction.NORMAL);
+            shadowsConfig = builder.comment("Restriction for Shadows Curse")
+                    .defineEnum("shadowsConfig", Restriction.NORMAL);
 
             builder.pop();
         }

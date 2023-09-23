@@ -1,6 +1,10 @@
 package net.hir0shiyt.randomenchants2.enchantment;
 
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
+import net.hir0shiyt.randomenchants2.curse.BreakingCurse;
+import net.hir0shiyt.randomenchants2.curse.ButterFingersCurse;
+import net.hir0shiyt.randomenchants2.curse.FumblingCurse;
+import net.hir0shiyt.randomenchants2.curse.ShadowsCurse;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -23,7 +27,7 @@ public class ModEnchantments {
     public static final EnchantmentCategory AXES = EnchantmentCategory.create("axes", AxeItem.class::isInstance);
     public static final EnchantmentCategory TOOLSANDWEAPONS = EnchantmentCategory.create("tools&weapons", item -> item instanceof SwordItem || item instanceof AxeItem || item instanceof ShovelItem || item instanceof HoeItem || item instanceof BowItem || item instanceof CrossbowItem);
 
-    //REGISTER ENCHANTMENTS SUPER METHODS
+    //REGISTER ENCHANTMENTS
     public static final Enchantment SOLAR_ENCHANT = new SolarEnchant(Enchantment.Rarity.VERY_RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
     public static final Enchantment OBSIDIAN_BUSTER = new ObsidianBuster(Enchantment.Rarity.VERY_RARE, ModEnchantments.PICKAXE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     public static final Enchantment RANDOMNESS = new Randomness(Enchantment.Rarity.VERY_RARE, EnchantmentCategory.DIGGER, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
@@ -60,6 +64,12 @@ public class ModEnchantments {
     public static final Enchantment LUMBERJACK = new Lumberjack(Enchantment.Rarity.RARE, ModEnchantments.AXES, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     public static final Enchantment TRUE_LIFE_STEAL = new TrueLifeSteal(Enchantment.Rarity.RARE, ModEnchantments.SWORDS_BOWS, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     public static final Enchantment REFLECT = new Reflect(Enchantment.Rarity.RARE, ModEnchantments.SHIELDS, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
+
+    //REGISTER CURSES
+    public static final Enchantment BREAKING_CURSE = new BreakingCurse(Enchantment.Rarity.RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public static final Enchantment BUTTER_FINGERS_CURSE = new ButterFingersCurse(Enchantment.Rarity.RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public static final Enchantment FUMBLING_CURSE = new FumblingCurse(Enchantment.Rarity.RARE, EnchantmentCategory.DIGGER, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public static final Enchantment SHADOWS_CURSE = new ShadowsCurse(Enchantment.Rarity.RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET, EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
 
     @SubscribeEvent
     public static void registerEnchantments(RegistryEvent.Register<Enchantment> event) {
@@ -101,16 +111,18 @@ public class ModEnchantments {
         register(event.getRegistry(), "true_life_steal", TRUE_LIFE_STEAL);
         register(event.getRegistry(), "reflect", REFLECT);
 
+        //CURSE REGISTRIES
+        register(event.getRegistry(), "breaking", BREAKING_CURSE);
+        register(event.getRegistry(), "butter_fingers", BUTTER_FINGERS_CURSE);
+        register(event.getRegistry(), "fumbling", FUMBLING_CURSE);
+        register(event.getRegistry(), "shadows", SHADOWS_CURSE);
+
         //register logger for very useful purposes, yeah....
         IForgeRegistry<Enchantment> r = event.getRegistry();
 
         for (Enchantment enchantment : enchants)
             r.register(enchantment);
-        RandomEnchants2.logger.info("Registered" + enchants.size() + " enchantments!");
 
-        if (false) {
-            //For future enchantments
-        }
     }
     //Register ModEnchantments in RandomEnchants2.java
     private static <T extends IForgeRegistryEntry<T>> void register(IForgeRegistry<T> registry, String name, T object) {

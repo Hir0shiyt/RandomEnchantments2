@@ -2,10 +2,8 @@ package net.hir0shiyt.randomenchants2;
 
 import net.hir0shiyt.randomenchants2.config.ModConfig;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -32,6 +30,7 @@ public class RandomEnchants2 {
 
         ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.SERVER, ModConfig.SERVER_SPEC, "randomenchants2-server.toml");
         logger.info("Random Enchants 2 is initializing");
+        logger.info("Registered " + enchants.size() + " enchantments");
     }
 
     public static ResourceLocation getLocation(String name) {
