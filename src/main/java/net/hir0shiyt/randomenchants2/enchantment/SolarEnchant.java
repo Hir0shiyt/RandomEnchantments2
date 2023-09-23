@@ -78,8 +78,8 @@ public class SolarEnchant extends Enchantment {
 
         if (mainHandStack.isDamaged() && mainHandLevel > 0) {
             BlockPos playerPos = event.player.blockPosition();
-            int skyLight = world.getBrightness(LightLayer.SKY, playerPos); // Skylight
-            int blockLight = world.getBrightness(LightLayer.BLOCK, playerPos); // Block light
+            int skyLight = world.getBrightness(LightLayer.SKY, playerPos);
+            int blockLight = world.getBrightness(LightLayer.BLOCK, playerPos);
 
             if (isDaytime || (skyLight >= 8 && blockLight >= 8)) {
                 if (event.player.tickCount % REPAIR_COOLDOWN == 0) {
