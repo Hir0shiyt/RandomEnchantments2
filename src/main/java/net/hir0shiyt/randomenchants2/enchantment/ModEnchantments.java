@@ -64,6 +64,7 @@ public class ModEnchantments {
     public static final Enchantment LUMBERJACK = new Lumberjack(Enchantment.Rarity.RARE, ModEnchantments.AXES, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     public static final Enchantment TRUE_LIFE_STEAL = new TrueLifeSteal(Enchantment.Rarity.RARE, ModEnchantments.SWORDS_BOWS, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     public static final Enchantment REFLECT = new Reflect(Enchantment.Rarity.RARE, ModEnchantments.SHIELDS, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
+    public static final Enchantment STONE_BOUND = new StoneBound(Enchantment.Rarity.RARE, EnchantmentCategory.DIGGER, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
 
     //REGISTER CURSES
     public static final Enchantment BREAKING_CURSE = new BreakingCurse(Enchantment.Rarity.RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
@@ -110,6 +111,7 @@ public class ModEnchantments {
         register(event.getRegistry(), "lumberjack", LUMBERJACK);
         register(event.getRegistry(), "true_life_steal", TRUE_LIFE_STEAL);
         register(event.getRegistry(), "reflect", REFLECT);
+        register(event.getRegistry(), "stone_bound", STONE_BOUND);
 
         //CURSE REGISTRIES
         register(event.getRegistry(), "breaking", BREAKING_CURSE);

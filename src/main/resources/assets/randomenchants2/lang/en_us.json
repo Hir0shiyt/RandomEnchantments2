@@ -71,6 +71,8 @@
   "enchantment.randomenchants2.true_life_steal.desc" : "gives a *vampiric* touch to minecraft",
   "enchantment.randomenchants2.reflect" : "Reflect",
   "enchantment.randomenchants2.reflect.desc" : "Reflect projectile attacks back to the enemy",
+  "enchantment.randomenchants2.stone_bound" : "Stone Bound",
+  "enchantment.randomenchants2.stone_bound.desc" : "Tool gains more mining speed at lower durability, but reduced damage",
 
 
   "enchantment.randomenchants2.breaking" : "Breaking Curse",

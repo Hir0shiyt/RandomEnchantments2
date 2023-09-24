@@ -54,6 +54,9 @@ public class ModConfig {
         public static ForgeConfigSpec.EnumValue<Restriction> lumberjackConfig;
         public static ForgeConfigSpec.EnumValue<Restriction> trueLifeStealConfig;
         public static ForgeConfigSpec.EnumValue<Restriction> reflectConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> stoneBoundConfig;
+
+        //curses
         public static ForgeConfigSpec.EnumValue<Restriction> breakingConfig;
         public static ForgeConfigSpec.EnumValue<Restriction> butterFingersConfig;
         public static ForgeConfigSpec.EnumValue<Restriction> fumblingConfig;
@@ -133,6 +136,8 @@ public class ModConfig {
                     .defineEnum("trueLifeStealConfig", Restriction.NORMAL);
             reflectConfig = builder.comment("Restriction for Reflect Enchantment")
                     .defineEnum("reflectConfig", Restriction.NORMAL);
+            stoneBoundConfig = builder.comment("Restriction for Stone Bound Enchantment")
+                    .defineEnum("stoneBoundConfig", Restriction.NORMAL);
 
             builder.push("curses");
             breakingConfig = builder.comment("Restriction for Breaking Curse")
