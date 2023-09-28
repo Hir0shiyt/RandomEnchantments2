@@ -1,10 +1,7 @@
 package net.hir0shiyt.randomenchants2.enchantment;
 
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
-import net.hir0shiyt.randomenchants2.curse.BreakingCurse;
-import net.hir0shiyt.randomenchants2.curse.ButterFingersCurse;
-import net.hir0shiyt.randomenchants2.curse.FumblingCurse;
-import net.hir0shiyt.randomenchants2.curse.ShadowsCurse;
+import net.hir0shiyt.randomenchants2.curse.*;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -65,12 +62,16 @@ public class ModEnchantments {
     public static final Enchantment TRUE_LIFE_STEAL = new TrueLifeSteal(Enchantment.Rarity.RARE, ModEnchantments.SWORDS_BOWS, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     public static final Enchantment REFLECT = new Reflect(Enchantment.Rarity.RARE, ModEnchantments.SHIELDS, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
     public static final Enchantment STONE_BOUND = new StoneBound(Enchantment.Rarity.RARE, EnchantmentCategory.DIGGER, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public static final Enchantment CHAOS_STRIKE = new ChaosStrike(Enchantment.Rarity.VERY_RARE, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public static final Enchantment ETHEREAL_EMBRACE = new EtherealEmbrace(Enchantment.Rarity.VERY_RARE, EnchantmentCategory.ARMOR_CHEST, new EquipmentSlot[]{EquipmentSlot.CHEST});
+    public static final Enchantment DIMENSIONAL_SHUFFLE = new DimensionalShuffle(Enchantment.Rarity.VERY_RARE, EnchantmentCategory.ARMOR_CHEST, new EquipmentSlot[]{EquipmentSlot.CHEST});
 
     //REGISTER CURSES
     public static final Enchantment BREAKING_CURSE = new BreakingCurse(Enchantment.Rarity.RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     public static final Enchantment BUTTER_FINGERS_CURSE = new ButterFingersCurse(Enchantment.Rarity.RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     public static final Enchantment FUMBLING_CURSE = new FumblingCurse(Enchantment.Rarity.RARE, EnchantmentCategory.DIGGER, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     public static final Enchantment SHADOWS_CURSE = new ShadowsCurse(Enchantment.Rarity.RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET, EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
+    public static final Enchantment LINGERING_SHADOWS_CURSE = new LingeringShadowsCurse(Enchantment.Rarity.VERY_RARE, ModEnchantments.TOOLSANDWEAPONS, new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET, EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
 
     @SubscribeEvent
     public static void registerEnchantments(RegistryEvent.Register<Enchantment> event) {
@@ -112,12 +113,17 @@ public class ModEnchantments {
         register(event.getRegistry(), "true_life_steal", TRUE_LIFE_STEAL);
         register(event.getRegistry(), "reflect", REFLECT);
         register(event.getRegistry(), "stone_bound", STONE_BOUND);
+        register(event.getRegistry(), "chaos_strike", CHAOS_STRIKE);
+        register(event.getRegistry(), "ethereal_embrace", ETHEREAL_EMBRACE);
+        register(event.getRegistry(), "dimensional_shuffle", DIMENSIONAL_SHUFFLE);
 
         //CURSE REGISTRIES
         register(event.getRegistry(), "breaking", BREAKING_CURSE);
         register(event.getRegistry(), "butter_fingers", BUTTER_FINGERS_CURSE);
         register(event.getRegistry(), "fumbling", FUMBLING_CURSE);
         register(event.getRegistry(), "shadows", SHADOWS_CURSE);
+        register(event.getRegistry(), "lingering_shadows", LINGERING_SHADOWS_CURSE);
+
 
         //register logger for very useful purposes, yeah....
         IForgeRegistry<Enchantment> r = event.getRegistry();

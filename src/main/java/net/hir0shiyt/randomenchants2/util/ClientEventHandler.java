@@ -8,9 +8,11 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -39,6 +41,19 @@ public class ClientEventHandler {
             ListTag nbtTagList = EnchantedBookItem.getEnchantments(event.getItemStack());
             for (int i = 0; i < nbtTagList.size(); ++i) {
             }
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void playerTooltip(ItemTooltipEvent event) {
+        Player player = event.getPlayer();
+        if (player == null) return;
+        List<Component> tooltip = event.getToolTip();
+        if (EnchantUtils.hasEnch(player, ModEnchantments.DIMENSIONAL_SHUFFLE)) {
+            ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
+            if (event.getItemStack() != chest) return;
+            tooltip.add(new TextComponent("Teleportation Range: " + ChatFormatting.AQUA + EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DIMENSIONAL_SHUFFLE, chest) * 10 + " blocks"));
+            tooltip.add(new TextComponent("Shuffle Cooldown: " + ChatFormatting.GOLD + (16 - EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DIMENSIONAL_SHUFFLE, chest) * EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DIMENSIONAL_SHUFFLE, chest)) + " seconds"));
         }
     }
 }

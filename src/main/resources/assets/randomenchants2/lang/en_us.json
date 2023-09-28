@@ -73,6 +73,12 @@
   "enchantment.randomenchants2.reflect.desc" : "Reflect projectile attacks back to the enemy",
   "enchantment.randomenchants2.stone_bound" : "Stone Bound",
   "enchantment.randomenchants2.stone_bound.desc" : "Tool gains more mining speed at lower durability, but reduced damage",
+  "enchantment.randomenchants2.chaos_strike" : "Chaos Strike",
+  "enchantment.randomenchants2.chaos_strike.desc" : "Apply random effects by attacking entities",
+  "enchantment.randomenchants2.ethereal_embrace" : "Ethereal Embrace",
+  "enchantment.randomenchants2.ethereal_embrace.desc" : "Chance to phase through enemy's attacks",
+  "enchantment.randomenchants2.dimensional_shuffle" : "Dimensional Shuffle",
+  "enchantment.randomenchants2.dimensional_shuffle.desc" : "Get out of a very risky situation",
 
 
   "enchantment.randomenchants2.breaking" : "Breaking Curse",
@@ -82,5 +88,7 @@
   "enchantment.randomenchants2.fumbling" : "Fumbling",
   "enchantment.randomenchants2.fumbling.desc" : "Tools don't mine as quickly as they should",
   "enchantment.randomenchants2.shadows" : "Shadows",
-  "enchantment.randomenchants2.shadows.desc" : "Equipment weakens in the light"
+  "enchantment.randomenchants2.shadows.desc" : "Equipment weakens in the light",
+  "enchantment.randomenchants2.lingering_shadows" : "Lingering Shadows",
+  "enchantment.randomenchants2.lingering_shadows.desc" : "Careful, don't attack any mobs"
 }

@@ -55,12 +55,16 @@ public class ModConfig {
         public static ForgeConfigSpec.EnumValue<Restriction> trueLifeStealConfig;
         public static ForgeConfigSpec.EnumValue<Restriction> reflectConfig;
         public static ForgeConfigSpec.EnumValue<Restriction> stoneBoundConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> chaosStrikeConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> etherealEmbraceConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> dimensionalShuffleConfig;
 
         //curses
         public static ForgeConfigSpec.EnumValue<Restriction> breakingConfig;
         public static ForgeConfigSpec.EnumValue<Restriction> butterFingersConfig;
         public static ForgeConfigSpec.EnumValue<Restriction> fumblingConfig;
         public static ForgeConfigSpec.EnumValue<Restriction> shadowsConfig;
+        public static ForgeConfigSpec.EnumValue<Restriction> lingeringShadowsConfig;
 
         ServerConfig(ForgeConfigSpec.Builder builder) {
             builder.push("enchantments");
@@ -139,7 +143,9 @@ public class ModConfig {
             stoneBoundConfig = builder.comment("Restriction for Stone Bound Enchantment")
                     .defineEnum("stoneBoundConfig", Restriction.NORMAL);
 
+//---------------------------------------------------------------------------------------
             builder.push("curses");
+
             breakingConfig = builder.comment("Restriction for Breaking Curse")
                     .defineEnum("breakingConfig", Restriction.NORMAL);
             butterFingersConfig = builder.comment("Restriction for Butter Fingers Curse")
@@ -148,6 +154,18 @@ public class ModConfig {
                     .defineEnum("fumblingConfig", Restriction.NORMAL);
             shadowsConfig = builder.comment("Restriction for Shadows Curse")
                     .defineEnum("shadowsConfig", Restriction.NORMAL);
+
+//----------------------------------------------------------------------------------------
+            builder.push("custom enchantments / curses");
+
+            lingeringShadowsConfig = builder.comment("Restriction for Chaotic Shifting Curse")
+                    .defineEnum("lingeringShadowsConfig", Restriction.NORMAL);
+            chaosStrikeConfig = builder.comment("Restriction for Chaos Strike Enchantment")
+                    .defineEnum("chaosStrikeConfig", Restriction.NORMAL);
+            etherealEmbraceConfig = builder.comment("Restriction for Ethereal Embrace Enchantment")
+                    .defineEnum("etherealEmbraceConfig", Restriction.NORMAL);
+            dimensionalShuffleConfig = builder.comment("Restriction for Dimensional Shuffle Enchantment")
+                    .defineEnum("dimensionalShuffleConfig", Restriction.NORMAL);
 
             builder.pop();
         }
