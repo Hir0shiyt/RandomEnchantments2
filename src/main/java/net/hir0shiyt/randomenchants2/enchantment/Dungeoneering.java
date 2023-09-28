@@ -50,11 +50,7 @@ public class Dungeoneering extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        if (stack.getItem() instanceof SwordItem && stack.getItem() instanceof AxeItem) {
             return ModConfig.ServerConfig.dungeoneeringConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
-        } else {
-            return false;
-        }
     }
 
     @Override
@@ -84,10 +80,10 @@ public class Dungeoneering extends Enchantment {
                     LootTable lootTable = serverWorld.getServer().getLootTables().get(new ResourceLocation("minecraft", "chests/simple_dungeon"));
                     List<ItemStack> generatedLoot = lootTable.getRandomItems(lootBuilder.create(LootContextParamSets.ENTITY));
 
-                    int numberOfDrops = enchantmentLevel; // Number of items to drop based on enchantment level
+                    int numberOfDrops = enchantmentLevel;
 
                     for (int i = 0; i < numberOfDrops; i++) {
-                        double chanceForDrop = 0.10; // The chance for this specific drop to appear
+                        double chanceForDrop = 0.10;
 
                         if (serverWorld.random.nextDouble() <= chanceForDrop) {
                             ItemStack stack = generatedLoot.get(serverWorld.random.nextInt(generatedLoot.size()));
