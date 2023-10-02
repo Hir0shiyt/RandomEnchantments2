@@ -2,6 +2,8 @@ package net.hir0shiyt.randomenchants2.enchantment;
 
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
 import net.hir0shiyt.randomenchants2.config.ModConfig;
+import net.hir0shiyt.randomenchants2.util.AssimilationEventHandler;
+import net.hir0shiyt.randomenchants2.util.EnchantUtils;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;

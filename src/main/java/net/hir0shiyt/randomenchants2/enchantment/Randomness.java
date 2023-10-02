@@ -65,6 +65,7 @@ public class Randomness extends Enchantment {
     @Override
     protected boolean checkCompatibility (Enchantment enchantment) {
         return !(enchantment instanceof SolarEnchant) &&
+                !(enchantment instanceof Magnetic) &&
                 super.checkCompatibility(enchantment);
     }
 

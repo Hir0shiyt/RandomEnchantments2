@@ -159,13 +159,20 @@ public class ModConfig {
             builder.push("custom enchantments / curses");
 
             lingeringShadowsConfig = builder.comment("Restriction for Chaotic Shifting Curse")
-                    .defineEnum("lingeringShadowsConfig", Restriction.NORMAL);
+                    .comment("This Curse is Disabled by Default, use NORMAL if you want to enable it!")
+                    .defineEnum("lingeringShadowsConfig", Restriction.DISABLED);
+
             chaosStrikeConfig = builder.comment("Restriction for Chaos Strike Enchantment")
-                    .defineEnum("chaosStrikeConfig", Restriction.NORMAL);
+                    .comment("Extra Enchantments are Disabled by Default, use NORMAL if you want to enable them!")
+                    .defineEnum("chaosStrikeConfig", Restriction.DISABLED);
+
             etherealEmbraceConfig = builder.comment("Restriction for Ethereal Embrace Enchantment")
-                    .defineEnum("etherealEmbraceConfig", Restriction.NORMAL);
+                    .comment("Extra Enchantments are Disabled by Default, use NORMAL if you want to enable them!")
+                    .defineEnum("etherealEmbraceConfig", Restriction.DISABLED);
+
             dimensionalShuffleConfig = builder.comment("Restriction for Dimensional Shuffle Enchantment")
-                    .defineEnum("dimensionalShuffleConfig", Restriction.NORMAL);
+                    .comment("Extra Enchantments are Disabled by Default, use NORMAL if you want to enable them!")
+                    .defineEnum("dimensionalShuffleConfig", Restriction.DISABLED);
 
             builder.pop();
         }

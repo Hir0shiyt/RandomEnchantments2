@@ -1,7 +1,6 @@
 package net.hir0shiyt.randomenchants2.util;
 
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
-import net.hir0shiyt.randomenchants2.enchantment.EnchantmentConfigs;
 import net.hir0shiyt.randomenchants2.enchantment.ModEnchantments;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
@@ -18,7 +17,6 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import java.util.List;
 
@@ -54,6 +52,32 @@ public class ClientEventHandler {
             if (event.getItemStack() != chest) return;
             tooltip.add(new TextComponent("Teleportation Range: " + ChatFormatting.AQUA + EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DIMENSIONAL_SHUFFLE, chest) * 10 + " blocks"));
             tooltip.add(new TextComponent("Shuffle Cooldown: " + ChatFormatting.GOLD + (16 - EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DIMENSIONAL_SHUFFLE, chest) * EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DIMENSIONAL_SHUFFLE, chest)) + " seconds"));
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void tooltip(ItemTooltipEvent event) {
+        Player player = event.getPlayer();
+        if (player == null) return;
+        List<Component> tooltip = event.getToolTip();
+        if (EnchantUtils.hasEnch(player, ModEnchantments.ETHEREAL_EMBRACE)) {
+            ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
+            double eLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.ETHEREAL_EMBRACE, chest) * 0.05;
+            if (event.getItemStack() != chest) return;
+            tooltip.add(new TextComponent("Chance of phasing through attacks: " + ChatFormatting.LIGHT_PURPLE + eLevel));
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void itemTooltip(ItemTooltipEvent event) {
+        Player player = event.getPlayer();
+        if (player == null) return;
+        List<Component> tooltip = event.getToolTip();
+        if (EnchantUtils.hasEnch(player, ModEnchantments.EXPLODING)) {
+            ItemStack heldItem = player.getMainHandItem();
+            float explosionSize = 1.0f + (float) EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.EXPLODING, heldItem);
+            if (event.getItemStack() != heldItem) return;
+            tooltip.add(new TextComponent("Explosion Size: " + ChatFormatting.DARK_RED + explosionSize));
         }
     }
 }

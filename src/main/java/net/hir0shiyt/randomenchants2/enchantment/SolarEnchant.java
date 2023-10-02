@@ -61,6 +61,7 @@ public class SolarEnchant extends Enchantment {
         return !(enchantment instanceof Randomness) &&
                 !(enchantment instanceof MendingEnchantment) &&
                 !(enchantment instanceof Eternal) &&
+                !(enchantment instanceof Torches) &&
                 super.checkCompatibility(enchantment);
     }
 
