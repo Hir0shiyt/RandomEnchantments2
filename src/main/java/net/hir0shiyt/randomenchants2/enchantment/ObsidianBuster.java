@@ -5,7 +5,6 @@ import net.hir0shiyt.randomenchants2.config.ModConfig;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -37,11 +36,7 @@ public class ObsidianBuster extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        if (stack.getItem() instanceof PickaxeItem) {
             return ModConfig.ServerConfig.obsidianBusterConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
-        } else {
-            return false;
-        }
     }
 
     @Override

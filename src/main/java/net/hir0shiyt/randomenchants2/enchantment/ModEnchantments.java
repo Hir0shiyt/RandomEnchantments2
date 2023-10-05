@@ -144,6 +144,7 @@ public class ModEnchantments {
     public static final RegistryObject<Enchantment> DIMENSIONAL_SHUFFLE = ENCHANTMENTS.register("dimensional_shuffle",
             () -> new DimensionalShuffle(Enchantment.Rarity.VERY_RARE, EnchantmentCategory.ARMOR_CHEST, new EquipmentSlot[]{EquipmentSlot.CHEST}));
 
+
     // CURSES REGISTRIES
     public static final RegistryObject<Enchantment> BREAKING_CURSE = ENCHANTMENTS.register("breaking_curse",
             () -> new BreakingCurse(Enchantment.Rarity.RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
@@ -159,7 +160,6 @@ public class ModEnchantments {
 
     public static final RegistryObject<Enchantment> LINGERING_SHADOWS_CURSE = ENCHANTMENTS.register("lingering_shadows_curse",
             () -> new LingeringShadowsCurse(Enchantment.Rarity.VERY_RARE, ModEnchantments.TOOLSANDWEAPONS, new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET, EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND}));
-    //REGISTER CURSES
 
     public static void register(IEventBus eventBus) {
         ENCHANTMENTS.register(eventBus);

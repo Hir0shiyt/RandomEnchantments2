@@ -2,23 +2,22 @@ package net.hir0shiyt.randomenchants2.enchantment;
 
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
 import net.hir0shiyt.randomenchants2.config.ModConfig;
-import net.minecraft.core.Registry;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.ItemHandlerHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
 public class Randomness extends Enchantment {
@@ -72,36 +71,34 @@ public class Randomness extends Enchantment {
         return ModEnchantments.RANDOMNESS.get();
     }
 
-    public static List<ItemStack> getRandomItems(Random random, int level) {
+    public static List<ItemStack> getRandomItems(RandomSource randomSource, int level) {
         List<ItemStack> drops = new ArrayList<>();
-        drops.addAll(getNormalBlockItems(random, level));
-        drops.addAll(getRandomEnchantmentItems(random, level));
+        drops.addAll(getNormalBlockItems(randomSource, level));
+        drops.addAll(getRandomEnchantmentItems(randomSource, level));
         return drops;
     }
 
-    private static List<ItemStack> getNormalBlockItems(Random random, int level) {
+    private static List<ItemStack> getNormalBlockItems(RandomSource randomSource, int level) {
         return new ArrayList<>();
     }
 
-    private static List<ItemStack> getRandomEnchantmentItems(Random random, int level) {
+    private static List<ItemStack> getRandomEnchantmentItems(RandomSource randomSource, int level) {
         List<ItemStack> drops = new ArrayList<>();
-        for (int i = 0; i < level; i++) {
-            Item randomItem = getRandomItem(random);
-            if (randomItem != null) {
-                int randomCount = 1 + random.nextInt(level); // Random drop count based on enchantment level
-                ItemStack drop = new ItemStack(randomItem, randomCount);
-                drops.add(drop);
-            }
+        Item randomItem = getRandomItem(randomSource);
+        if (randomItem != null) {
+            int randomCount = 1 + randomSource.nextInt(level);
+            ItemStack drop = new ItemStack(randomItem, randomCount);
+            drops.add(drop);
         }
         return drops;
     }
 
-    private static Item getRandomItem(Random random) {
+    private static Item getRandomItem(RandomSource randomSource) {
         List<Item> items = new ArrayList<>();
-        for (Item item : Registry.ITEM) {
+        for (Item item : ForgeRegistries.ITEMS) {
             items.add(item);
         }
-        return items.isEmpty() ? null : items.get(random.nextInt(items.size()));
+        return items.isEmpty() ? null : items.get(randomSource.nextInt(items.size()));
     }
 
     @SubscribeEvent
@@ -115,11 +112,10 @@ public class Randomness extends Enchantment {
 
         Level world = (Level) event.getLevel();
         int level = EnchantmentHelper.getItemEnchantmentLevel(Randomness.getRandomnessEnchant(), stack);
-        BlockState blockState = world.getBlockState(event.getPos());
         event.setCanceled(true);
         world.destroyBlock(event.getPos(), false);
         event.setExpToDrop(0);
-        List<ItemStack> drops = Randomness.getRandomItems((Random) world.random, level);
+        List<ItemStack> drops = Randomness.getRandomItems(world.random, level);
 
         for (ItemStack drop : drops) {
             if (!drop.isEmpty()) {
