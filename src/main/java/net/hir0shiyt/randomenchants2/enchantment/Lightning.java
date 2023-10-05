@@ -52,12 +52,12 @@ public class Lightning extends Enchantment {
 
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
-        LivingEntity target = event.getEntityLiving();
+        LivingEntity target = event.getEntity();
         Entity attacker = event.getSource().getEntity();
         if (attacker instanceof Player) {
             Player playerAttacker = (Player) attacker;
             ItemStack heldItem = playerAttacker.getMainHandItem();
-            if (EnchantUtils.hasEnch(heldItem, ModEnchantments.LIGHTNING)) {
+            if (EnchantUtils.hasEnch(heldItem, ModEnchantments.LIGHTNING.get())) {
                 Level level = playerAttacker.level;
                 if (!(target instanceof Creeper) || !((Creeper) target).isPowered()) {
                     double targetX = target.getX();

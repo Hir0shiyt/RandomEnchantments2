@@ -61,7 +61,7 @@ public class QuickDraw extends Enchantment {
     }
 
     @SubscribeEvent
-    public static void onPlayerUpdate(LivingEvent.LivingUpdateEvent event) {
+    public static void onPlayerUpdate(LivingEvent.LivingTickEvent event) {
         if (event.getEntity() instanceof Player) {
             Player player = (Player) event.getEntity();
             ItemStack heldItem = player.getItemInHand(InteractionHand.MAIN_HAND);
@@ -70,12 +70,12 @@ public class QuickDraw extends Enchantment {
                 heldItem = player.getItemInHand(InteractionHand.OFF_HAND);
             }
 
-            if (!(heldItem.getItem() instanceof BowItem || heldItem.getItem() instanceof CrossbowItem) || !EnchantUtils.hasEnch(player, ModEnchantments.QUICK_DRAW)) {
+            if (!(heldItem.getItem() instanceof BowItem || heldItem.getItem() instanceof CrossbowItem) || !EnchantUtils.hasEnch(player, ModEnchantments.QUICK_DRAW.get())) {
                 return;
             }
 
             if (player.isUsingItem()) {
-                for (int i = 0; i < EnchantmentHelper.getEnchantmentLevel(ModEnchantments.QUICK_DRAW, player); i++) {
+                for (int i = 0; i < EnchantmentHelper.getEnchantmentLevel(ModEnchantments.QUICK_DRAW.get(), player); i++) {
                     updateActiveHand(player);
                 }
             }

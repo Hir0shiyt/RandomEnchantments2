@@ -3,10 +3,8 @@ package net.hir0shiyt.randomenchants2.util;
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
 import net.hir0shiyt.randomenchants2.enchantment.ModEnchantments;
 import net.minecraft.ChatFormatting;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.EnchantedBookItem;
@@ -25,59 +23,59 @@ public class ClientEventHandler {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onTooltip(ItemTooltipEvent event) {
-        Player player = event.getPlayer();
+        Player player = event.getEntity();
         if (player == null) return;
         List<Component> tooltip = event.getToolTip();
-        if ((EnchantUtils.hasEnch(event.getItemStack(), ModEnchantments.STONE_BOUND))) {
+        if ((EnchantUtils.hasEnch(event.getItemStack(), ModEnchantments.STONE_BOUND.get()))) {
             ItemStack stack = player.getMainHandItem();
             if (event.getItemStack() != stack) return;
-            tooltip.add(new TextComponent("Mining Bonus: " + ChatFormatting.GREEN + "+" + stack.getDamageValue() * .02));
-            tooltip.add(new TextComponent("Damage Penalty: " + ChatFormatting.RED + "-" + stack.getDamageValue() * .02));
-        }
+            tooltip.add(Component.literal("Mining Bonus: " + ChatFormatting.GREEN + "+" + stack.getDamageValue() * .02));
+            tooltip.add(Component.literal("Damage Penalty: " + ChatFormatting.RED + "-" + stack.getDamageValue() * .02));
 
-        if (event.getItemStack().getItem() instanceof EnchantedBookItem) {
-            ListTag nbtTagList = EnchantedBookItem.getEnchantments(event.getItemStack());
-            for (int i = 0; i < nbtTagList.size(); ++i) {
+            if (event.getItemStack().getItem() instanceof EnchantedBookItem) {
+                ListTag nbtTagList = EnchantedBookItem.getEnchantments(event.getItemStack());
+                for (int i = 0; i < nbtTagList.size(); ++i) {
+                }
             }
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void playerTooltip(ItemTooltipEvent event) {
-        Player player = event.getPlayer();
+        @SubscribeEvent(priority = EventPriority.HIGHEST)
+        public static void playerTooltip(ItemTooltipEvent event) {
+        Player player = event.getEntity();
         if (player == null) return;
         List<Component> tooltip = event.getToolTip();
-        if (EnchantUtils.hasEnch(player, ModEnchantments.DIMENSIONAL_SHUFFLE)) {
+        if (EnchantUtils.hasEnch(player, ModEnchantments.DIMENSIONAL_SHUFFLE.get())) {
             ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
             if (event.getItemStack() != chest) return;
-            tooltip.add(new TextComponent("Teleportation Range: " + ChatFormatting.AQUA + EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DIMENSIONAL_SHUFFLE, chest) * 10 + " blocks"));
-            tooltip.add(new TextComponent("Shuffle Cooldown: " + ChatFormatting.GOLD + (16 - EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DIMENSIONAL_SHUFFLE, chest) * EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DIMENSIONAL_SHUFFLE, chest)) + " seconds"));
+            tooltip.add(Component.literal("Teleportation Range: " + ChatFormatting.AQUA + EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DIMENSIONAL_SHUFFLE.get(), chest) * 10 + " blocks"));
+            tooltip.add(Component.literal("Shuffle Cooldown: " + ChatFormatting.GOLD + (16 - EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DIMENSIONAL_SHUFFLE.get(), chest) * EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DIMENSIONAL_SHUFFLE.get(), chest)) + " seconds"));
         }
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void tooltip(ItemTooltipEvent event) {
-        Player player = event.getPlayer();
+        Player player = event.getEntity();
         if (player == null) return;
         List<Component> tooltip = event.getToolTip();
-        if (EnchantUtils.hasEnch(player, ModEnchantments.ETHEREAL_EMBRACE)) {
+        if (EnchantUtils.hasEnch(player, ModEnchantments.ETHEREAL_EMBRACE.get())) {
             ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
-            double eLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.ETHEREAL_EMBRACE, chest) * 0.05;
+            double eLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.ETHEREAL_EMBRACE.get(), chest) * 0.05;
             if (event.getItemStack() != chest) return;
-            tooltip.add(new TextComponent("Chance of phasing through attacks: " + ChatFormatting.LIGHT_PURPLE + eLevel));
+            tooltip.add(Component.literal("Chance of phasing through attacks: " + ChatFormatting.LIGHT_PURPLE + eLevel));
         }
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void itemTooltip(ItemTooltipEvent event) {
-        Player player = event.getPlayer();
+        Player player = event.getEntity();
         if (player == null) return;
         List<Component> tooltip = event.getToolTip();
-        if (EnchantUtils.hasEnch(player, ModEnchantments.EXPLODING)) {
+        if (EnchantUtils.hasEnch(player, ModEnchantments.EXPLODING.get())) {
             ItemStack heldItem = player.getMainHandItem();
-            float explosionSize = 1.0f + (float) EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.EXPLODING, heldItem);
+            float explosionSize = 1.0f + (float) EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.EXPLODING.get(), heldItem);
             if (event.getItemStack() != heldItem) return;
-            tooltip.add(new TextComponent("Explosion Size: " + ChatFormatting.DARK_RED + explosionSize));
+            tooltip.add(Component.literal("Explosion Size: " + ChatFormatting.DARK_RED + explosionSize));
         }
     }
 }

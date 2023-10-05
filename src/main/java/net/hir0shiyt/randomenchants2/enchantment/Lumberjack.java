@@ -14,7 +14,7 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -59,13 +59,13 @@ public class Lumberjack extends Enchantment {
     @SubscribeEvent
     public static void onWoodBreak(BlockEvent.BreakEvent e) {
         Player p = e.getPlayer();
-        if (!EnchantUtils.hasEnch(p, ModEnchantments.LUMBERJACK)) return;
+        if (!EnchantUtils.hasEnch(p, ModEnchantments.LUMBERJACK.get())) return;
         ItemStack stack = p.getMainHandItem();
         BlockState state = e.getState();
         Block block = state.getBlock();
         BlockPos pos = e.getPos();
-        int maxLogsToBreak = 64; // Maximum logs to break
-        int maxLogsDetected = 64; // Maximum logs to detect (including diagonals)
+        int maxLogsToBreak = 64;
+        int maxLogsDetected = 64;
         if (isLog(block)) {
             List<BlockPos> logsToBreak = new ArrayList<>();
             int logsFound = findConnectedLogs(logsToBreak, e.getPlayer().getLevel(), pos, maxLogsToBreak);
@@ -79,7 +79,7 @@ public class Lumberjack extends Enchantment {
     }
 
     private static boolean isLog(Block block) {
-        ResourceLocation registryName = block.getRegistryName();
+        ResourceLocation registryName = block.getLootTable();
         if (registryName != null) {
             String namespace = registryName.getNamespace();
             return namespace.equals("minecraft") && registryName.getPath().contains("log");

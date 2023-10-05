@@ -82,7 +82,7 @@ public class CursedJumping extends Enchantment {
             if (attacker instanceof Player) {
                 Player player = (Player) attacker;
                 ItemStack heldItem = player.getMainHandItem();
-                if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.CURSED_JUMPING, heldItem) > 0) {
+                if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.CURSED_JUMPING.get(), heldItem) > 0) {
                     applyEffects(livingTarget);
                 }
             }
@@ -97,7 +97,7 @@ public class CursedJumping extends Enchantment {
             LivingEntity shooter = (LivingEntity) ((AbstractArrow) arrow).getOwner();
             if (shooter instanceof Player) {
                 Player player = (Player) shooter;
-                if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.CURSED_JUMPING, player.getMainHandItem()) > 0) {
+                if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.CURSED_JUMPING.get(), player.getMainHandItem()) > 0) {
                     if (event.getRayTraceResult().getType() == HitResult.Type.ENTITY) {
                         Entity target = ((EntityHitResult) event.getRayTraceResult()).getEntity();
                         if (target instanceof LivingEntity) {

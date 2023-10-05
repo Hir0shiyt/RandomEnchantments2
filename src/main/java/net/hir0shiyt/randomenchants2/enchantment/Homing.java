@@ -18,7 +18,7 @@ import net.minecraft.world.item.enchantment.MultiShotEnchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.NotNull;
@@ -77,11 +77,11 @@ public class Homing extends Enchantment {
     }
 
     @SubscribeEvent
-    public static void onEntityJoinWorld(EntityJoinWorldEvent event) {
+    public static void onEntityJoinWorld(EntityJoinLevelEvent event) {
         Entity entity = event.getEntity();
         if (entity instanceof AbstractArrow && ((AbstractArrow) entity).getOwner() instanceof Player player) {
             ItemStack heldItem = player.getMainHandItem();
-            if (EnchantUtils.hasEnch(heldItem, ModEnchantments.HOMING)) {
+            if (EnchantUtils.hasEnch(heldItem, ModEnchantments.HOMING.get())) {
                 AbstractArrow arrow = (AbstractArrow) entity;
 
                 double arrowVelocity = arrow.getDeltaMovement().length();

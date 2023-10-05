@@ -3,8 +3,6 @@ package net.hir0shiyt.randomenchants2.enchantment;
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
 import net.hir0shiyt.randomenchants2.config.ModConfig;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.EntityDamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -81,8 +79,8 @@ public class Disarm extends Enchantment {
             if (attacker instanceof Player) {
                 Player player = (Player) attacker;
                 ItemStack heldItem = player.getMainHandItem();
-                if (!targetItem.isEmpty() && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DISARM, heldItem) > 0) {
-                    event.getPlayer().addItem(targetItem.copy());
+                if (!targetItem.isEmpty() && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DISARM.get(), heldItem) > 0) {
+                    event.getEntity().addItem(targetItem.copy());
                     target.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
                 }
             }
@@ -102,7 +100,7 @@ public class Disarm extends Enchantment {
                 LivingEntity target = (LivingEntity) ((EntityHitResult) hitResult).getEntity();
                 if (shooter instanceof Player) {
                     Player player = (Player) shooter;
-                    if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DISARM, player.getMainHandItem()) > 0) {
+                    if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DISARM.get(), player.getMainHandItem()) > 0) {
                         ItemStack bowStack = player.getItemInHand(InteractionHand.MAIN_HAND);
 
                         if (bowStack.getItem() instanceof BowItem || bowStack.getItem() instanceof CrossbowItem) {

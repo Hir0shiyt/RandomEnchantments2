@@ -1,6 +1,5 @@
 package net.hir0shiyt.randomenchants2.enchantment;
 
-import net.hir0shiyt.randomenchants2.util.EnchantUtils;
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
 import net.hir0shiyt.randomenchants2.config.ModConfig;
 import net.minecraft.world.effect.MobEffect;
@@ -73,7 +72,7 @@ public class Paralysis extends Enchantment {
             LivingEntity shooter = (LivingEntity) ((AbstractArrow) arrow).getOwner();
             if (shooter instanceof Player) {
                 Player player = (Player) shooter;
-                if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.PARALYSIS, player.getMainHandItem()) > 0) {
+                if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.PARALYSIS.get(), player.getMainHandItem()) > 0) {
                     if (event.getRayTraceResult().getType() == HitResult.Type.ENTITY) {
                         Entity target = ((EntityHitResult) event.getRayTraceResult()).getEntity();
                         if (target instanceof LivingEntity) {
@@ -95,7 +94,7 @@ public class Paralysis extends Enchantment {
             if (attacker instanceof Player) {
                 Player player = (Player) attacker;
                 ItemStack heldItem = player.getMainHandItem();
-                if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.PARALYSIS, heldItem) > 0) {
+                if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.PARALYSIS.get(), heldItem) > 0) {
                     applyEffects(livingTarget);
                 }
             }

@@ -12,8 +12,8 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
-import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.event.world.ExplosionEvent;
+import net.minecraftforge.event.level.BlockEvent;
+import net.minecraftforge.event.level.ExplosionEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -61,9 +61,9 @@ public class Resistant extends Enchantment {
 
     @SubscribeEvent
     public static void itemSpawn(ItemTossEvent event) {
-        ItemEntity entityItem = event.getEntityItem();
+        ItemEntity entityItem = event.getEntity();
         ItemStack stack = entityItem.getItem();
-        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RESISTANT, stack) > 0) {
+        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RESISTANT.get(), stack) > 0) {
             entityItem.setInvulnerable(true);
         }
     }
@@ -76,7 +76,7 @@ public class Resistant extends Enchantment {
             if (entity instanceof ItemEntity) {
                 ItemEntity itemEntity = (ItemEntity) entity;
                 ItemStack stack = itemEntity.getItem();
-                if (!stack.isEmpty() && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RESISTANT, stack) > 0) {
+                if (!stack.isEmpty() && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RESISTANT.get(), stack) > 0) {
                     iterator.remove();
                 }
             }
@@ -88,7 +88,7 @@ public class Resistant extends Enchantment {
         Player player = event.getPlayer();
         ItemStack heldItem = player.getMainHandItem();
 
-        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RESISTANT, heldItem) > 0) {
+        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RESISTANT.get(), heldItem) > 0) {
             event.setExpToDrop(0);
         }
     }

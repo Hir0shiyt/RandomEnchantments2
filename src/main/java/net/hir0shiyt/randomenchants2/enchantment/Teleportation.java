@@ -14,7 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -79,7 +79,7 @@ public class Teleportation extends Enchantment {
         Player player = (Player) shooter;
         ItemStack heldItem = player.getMainHandItem();
 
-        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.TELEPORTATION, heldItem) > 0) {
+        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.TELEPORTATION.get(), heldItem) > 0) {
 
             BlockPos pos = ((BlockHitResult) e.getRayTraceResult()).getBlockPos();
         if (arrow.level.getBlockState(pos.above()).getMaterial() == Material.LAVA) return;
@@ -91,14 +91,14 @@ public class Teleportation extends Enchantment {
 
 }
     @SubscribeEvent
-    public static void looseArrow(EntityJoinWorldEvent e) {
+    public static void looseArrow(EntityJoinLevelEvent e) {
         if (e.getEntity() instanceof AbstractArrow) {
             AbstractArrow arrow = (AbstractArrow) e.getEntity();
             Entity owner = arrow.getOwner();
             if (owner instanceof Player) {
                 Player player = (Player) owner;
                 ItemStack heldItem = player.getMainHandItem();
-                if (owner instanceof LivingEntity && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.TELEPORTATION, heldItem) > 0) {
+                if (owner instanceof LivingEntity && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.TELEPORTATION.get(), heldItem) > 0) {
                     arrow.getPersistentData().putBoolean(ModEnchantments.TELEPORTATION.toString(), true);
                 }
             }

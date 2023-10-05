@@ -65,7 +65,7 @@ public class Harvest extends Enchantment {
         Entity shooter = arrow.getOwner();
         if (!(shooter instanceof Player)) return;
         Player player = (Player) shooter;
-        if (!EnchantUtils.hasEnch(player, ModEnchantments.HARVEST)) return;
+        if (!EnchantUtils.hasEnch(player, ModEnchantments.HARVEST.get())) return;
         Block plant = projectile.level.getBlockState(pos).getBlock();
         if (!(isPlant(plant))) return;
 

@@ -4,7 +4,6 @@ import net.hir0shiyt.randomenchants2.RandomEnchants2;
 import net.hir0shiyt.randomenchants2.config.ModConfig;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.CrossbowItem;
@@ -16,8 +15,6 @@ import net.minecraft.world.level.Explosion;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-
-import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
 public class Exploding extends Enchantment {
@@ -67,9 +64,9 @@ public class Exploding extends Enchantment {
         if (event.getSource().getEntity() instanceof Player) {
             Player player = (Player) event.getSource().getEntity();
             ItemStack heldItem = player.getMainHandItem();
-            if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.EXPLODING, heldItem) > 0) {
-                float explosionSize = 1.0f + (float) EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.EXPLODING, heldItem);
-                Entity damagedEntity = event.getEntityLiving();
+            if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.EXPLODING.get(), heldItem) > 0) {
+                float explosionSize = 1.0f + (float) EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.EXPLODING.get(), heldItem);
+                Entity damagedEntity = event.getEntity();
                 damagedEntity.level.explode(null, damagedEntity.getX(), damagedEntity.getY(), damagedEntity.getZ(), explosionSize, Explosion.BlockInteraction.NONE);
             }
         }

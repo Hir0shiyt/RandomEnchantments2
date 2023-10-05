@@ -1,6 +1,5 @@
 package net.hir0shiyt.randomenchants2.enchantment;
 
-import net.hir0shiyt.randomenchants2.util.EnchantUtils;
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
 import net.hir0shiyt.randomenchants2.config.ModConfig;
 import net.minecraft.core.Direction;
@@ -84,7 +83,7 @@ public class Ricochet extends Enchantment {
         if (!(shooter instanceof Player)) return;
         Player player = (Player) shooter;
         ItemStack heldItem = player.getMainHandItem();
-        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RICOCHET, heldItem) > 0) {
+        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RICOCHET.get(), heldItem) > 0) {
             Direction facing = ((BlockHitResult) event.getRayTraceResult()).getDirection();
             if (!lastCollitionTime.containsKey(arrow)) {
                 lastCollitionTime.put(arrow, System.currentTimeMillis());

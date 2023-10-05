@@ -11,10 +11,9 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
 public class StoneLover extends Enchantment {
@@ -68,14 +67,14 @@ public class StoneLover extends Enchantment {
         Player player = event.getPlayer();
         if (player != null) {
             ItemStack mainHandStack = player.getMainHandItem();
-            int mainHandLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.STONE_LOVER, mainHandStack);
+            int mainHandLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.STONE_LOVER.get(), mainHandStack);
 
             if (mainHandLevel > 0) {
                 Block block = event.getState().getBlock();
                 if (block == Blocks.STONE && player.getRandom().nextFloat() < 0.8f) {
                     int repairAmount = 2;
                     mainHandStack.setDamageValue(Math.max(0, mainHandStack.getDamageValue() - repairAmount));
-                    mainHandStack.setPopTime(5); // Show the "pop" animation for a brief time
+                    mainHandStack.setPopTime(5); // Not useful at all lol
                 }
             }
         }

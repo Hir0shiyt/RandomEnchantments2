@@ -74,10 +74,10 @@ public class Snatching extends Enchantment {
 
     @SubscribeEvent
     public static void onPlayerRightClick(PlayerInteractEvent.RightClickItem event) {
-        Player player = event.getPlayer();
+        Player player = event.getEntity();
         ItemStack heldItem = player.getMainHandItem();
 
-        if (heldItem.getItem() instanceof FishingRodItem && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SNATCHING, heldItem) > 0) {
+        if (heldItem.getItem() instanceof FishingRodItem && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SNATCHING.get(), heldItem) > 0) {
             if (player.fishing == null || player.level.isClientSide) return;
 
             Entity hookedEntity = player.fishing.getHookedIn();
@@ -89,7 +89,7 @@ public class Snatching extends Enchantment {
             if (!armorPieces.isEmpty()) {
                 Level world = player.level;
                 BlockPos dropPos = victim.blockPosition();
-                Random random = world.random;
+                Random random = (Random) world.random;
 
                 for (ItemStack armorPiece : armorPieces) {
                     ItemEntity entityItem = new ItemEntity(world, dropPos.getX(), dropPos.getY(), dropPos.getZ(), armorPiece);

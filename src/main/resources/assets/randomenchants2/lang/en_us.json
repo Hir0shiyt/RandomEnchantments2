@@ -81,14 +81,14 @@
   "enchantment.randomenchants2.dimensional_shuffle.desc" : "Get out of a very risky situation",
 
 
-  "enchantment.randomenchants2.breaking" : "Breaking Curse",
-  "enchantment.randomenchants2.breaking.desc" : "Items Break way faster",
-  "enchantment.randomenchants2.butter_fingers" : "Butter Fingers",
-  "enchantment.randomenchants2.butter_fingers.desc" : "Items slip from your hand",
-  "enchantment.randomenchants2.fumbling" : "Fumbling",
-  "enchantment.randomenchants2.fumbling.desc" : "Tools don't mine as quickly as they should",
-  "enchantment.randomenchants2.shadows" : "Shadows",
-  "enchantment.randomenchants2.shadows.desc" : "Equipment weakens in the light",
-  "enchantment.randomenchants2.lingering_shadows" : "Lingering Shadows",
-  "enchantment.randomenchants2.lingering_shadows.desc" : "Careful, don't attack any mobs"
+  "curse.randomenchants2.breaking" : "Breaking Curse",
+  "curse.randomenchants2.breaking.desc" : "Items Break way faster",
+  "curse.randomenchants2.butter_fingers" : "Butter Fingers",
+  "curse.randomenchants2.butter_fingers.desc" : "Items slip from your hand",
+  "curse.randomenchants2.fumbling" : "Fumbling",
+  "curse.randomenchants2.fumbling.desc" : "Tools don't mine as quickly as they should",
+  "curse.randomenchants2.shadows" : "Shadows",
+  "curse.randomenchants2.shadows.desc" : "Equipment weakens in the light",
+  "curse.randomenchants2.lingering_shadows" : "Lingering Shadows",
+  "curse.randomenchants2.lingering_shadows.desc" : "Careful, don't attack any mobs"
 }

@@ -58,7 +58,7 @@ public class Eternal extends Enchantment {
 
     @SubscribeEvent
     public static void onItemDespawn(ItemExpireEvent event) {
-        ItemEntity entityItem = event.getEntityItem();
+        ItemEntity entityItem = event.getEntity();
         ItemStack stack = entityItem.getItem();
 
         if (hasEternal(stack)) {
@@ -68,6 +68,6 @@ public class Eternal extends Enchantment {
     }
 
     private static boolean hasEternal(ItemStack stack) {
-        return EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.ETERNAL, stack) > 0;
+        return EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.ETERNAL.get(), stack) > 0;
     }
 }

@@ -54,13 +54,13 @@ public class EqualMine extends Enchantment {
 
     @SubscribeEvent
     public static void onBreakSpeed(PlayerEvent.BreakSpeed event) {
-        Player player = event.getPlayer();
+        Player player = event.getEntity();
         ItemStack heldItem = player.getMainHandItem();
         BlockState state = event.getState();
         Level world = player.getLevel();
         BlockPos pos = event.getPos();
         float hardness = state.getBlock().defaultDestroyTime();
-        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.EQUAL_MINE, heldItem) > 0) {
+        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.EQUAL_MINE.get(), heldItem) > 0) {
             float oldSpeed = event.getOriginalSpeed();
             if (hardness<1) hardness =1;
             float newSpeed= hardness * oldSpeed;

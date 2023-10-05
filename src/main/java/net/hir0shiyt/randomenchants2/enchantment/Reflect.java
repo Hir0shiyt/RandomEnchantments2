@@ -63,7 +63,7 @@ public class Reflect extends Enchantment {
             if (projectile instanceof AbstractArrow && targetEntity instanceof Player) {
                 Player player = (Player) targetEntity;
                 ItemStack shield = player.getItemInHand(InteractionHand.OFF_HAND);
-                if (EnchantUtils.hasEnch(shield, ModEnchantments.REFLECT)) {
+                if (EnchantUtils.hasEnch(shield, ModEnchantments.REFLECT.get())) {
                     Vec3 originalDirection = projectile.getDeltaMovement().normalize();
                     Vec3 reflectedDirection = originalDirection.scale(-1);
                     if (player.isUsingItem() && player.getUseItem() == shield) {

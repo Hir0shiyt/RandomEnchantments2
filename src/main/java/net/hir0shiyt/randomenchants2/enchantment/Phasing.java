@@ -71,7 +71,7 @@ public class Phasing extends Enchantment {
         Entity shooter = ((AbstractArrow) entity).getOwner();
         if (!(shooter instanceof Player)) return;
         Player player = (Player) shooter;
-        if (!EnchantUtils.hasEnch(player, ModEnchantments.PHASING)) return;
+        if (!EnchantUtils.hasEnch(player, ModEnchantments.PHASING.get())) return;
         if (entity.tickCount > 1200) entity.remove(Entity.RemovalReason.DISCARDED);
         if (event.getRayTraceResult() instanceof BlockHitResult) event.setCanceled(true);
     }

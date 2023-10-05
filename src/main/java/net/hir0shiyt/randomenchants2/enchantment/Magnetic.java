@@ -8,8 +8,10 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.enchantment.*;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.MultiShotEnchantment;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -72,7 +74,7 @@ public class Magnetic extends Enchantment {
 
         if (attacker instanceof Player) {
             Player player = (Player) attacker;
-            if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.MAGNETIC, player.getMainHandItem()) > 0) {
+            if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.MAGNETIC.get(), player.getMainHandItem()) > 0) {
                 List<ItemStack> stacks = getStacksFromEntityItems(e.getDrops());
 
                 for (ItemEntity itemEntity : e.getDrops()) {
@@ -91,7 +93,7 @@ public class Magnetic extends Enchantment {
                 Player player = (Player) shooter;
                 ItemStack heldItem = player.getMainHandItem();
 
-                if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.MAGNETIC, heldItem) > 0) {
+                if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.MAGNETIC.get(), heldItem) > 0) {
                     List<ItemStack> stacks = getStacksFromEntityItems(e.getDrops());
 
                     for (ItemEntity itemEntity : e.getDrops()) {
