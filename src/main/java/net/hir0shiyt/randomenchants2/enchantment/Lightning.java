@@ -58,7 +58,7 @@ public class Lightning extends Enchantment {
             Player playerAttacker = (Player) attacker;
             ItemStack heldItem = playerAttacker.getMainHandItem();
             if (EnchantUtils.hasEnch(heldItem, ModEnchantments.LIGHTNING.get())) {
-                Level level = playerAttacker.level;
+                Level level = playerAttacker.level();
                 if (!(target instanceof Creeper) || !((Creeper) target).isPowered()) {
                     double targetX = target.getX();
                     double targetY = target.getY();

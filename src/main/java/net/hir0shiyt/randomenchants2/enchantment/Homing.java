@@ -80,7 +80,7 @@ public class Homing extends Enchantment {
 
                 double arrowVelocity = arrow.getDeltaMovement().length();
 
-                Level level = arrow.level;
+                Level level = arrow.level();
                 Vec3 shooterPos = new Vec3(player.getX(), player.getY() + player.getEyeHeight(player.getPose()), player.getZ());
                 List<LivingEntity> livingEntities = getLivingEntitiesInWorld(level, arrow.getOwner());
                 LivingEntity nearestEntity = null;

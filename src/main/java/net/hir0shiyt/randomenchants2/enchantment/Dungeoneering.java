@@ -14,7 +14,7 @@ import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
@@ -64,19 +64,18 @@ public class Dungeoneering extends Enchantment {
             Player player = (Player) attacker;
             ItemStack heldItem = player.getMainHandItem();
             LivingEntity victim = event.getEntity();
-            ServerLevel serverWorld = (ServerLevel) player.level;
+            ServerLevel serverWorld = (ServerLevel) player.level();
 
-            if (heldItem.getItem() instanceof SwordItem && !player.level.isClientSide()) {
+            if (heldItem.getItem() instanceof SwordItem && !player.getCommandSenderWorld().isClientSide()) {
                 int enchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DUNGEONEERING.get(), heldItem);
 
                 if (enchantmentLevel > 0) {
-                    LootContext.Builder lootBuilder = new LootContext.Builder(serverWorld)
-                            .withRandom(serverWorld.random)
+                    LootParams.Builder lootBuilder = new LootParams.Builder(serverWorld)
                             .withParameter(LootContextParams.THIS_ENTITY, player)
                             .withParameter(LootContextParams.ORIGIN, victim.position())
                             .withParameter(LootContextParams.DAMAGE_SOURCE, event.getSource());
 
-                    LootTable lootTable = serverWorld.getServer().getLootTables().get(new ResourceLocation("minecraft", "chests/simple_dungeon"));
+                    LootTable lootTable = serverWorld.getServer().getLootData().getLootTable(new ResourceLocation("minecraft", "chests/simple_dungeon"));
                     List<ItemStack> generatedLoot = lootTable.getRandomItems(lootBuilder.create(LootContextParamSets.ENTITY));
 
                     int numberOfDrops = enchantmentLevel;

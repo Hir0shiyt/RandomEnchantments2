@@ -61,7 +61,7 @@ public class Grappling extends Enchantment {
         if (heldItem.getItem() instanceof FishingRodItem && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.GRAPPLING.get(), heldItem) > 0) {
             FishingHook hookEntity = player.fishing;
 
-            if (hookEntity != null && hookEntity.isOnGround()) {
+            if (hookEntity != null && hookEntity.onGround()) {
                 Vec3i hookPos = hookEntity.getOnPos();
                 Vec3i playerPos = player.getOnPos();
 
@@ -73,7 +73,7 @@ public class Grappling extends Enchantment {
                     player.hurtMarked = true;
 
                 BlockPos blockPos = new BlockPos(hookPos);
-                BlockState blockState = player.level.getBlockState(blockPos);
+                BlockState blockState = player.level().getBlockState(blockPos);
 
                 if(!blockState.isAir()) {
                     player.setDeltaMovement(dx, dy, dz);

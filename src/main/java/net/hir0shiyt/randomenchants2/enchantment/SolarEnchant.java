@@ -65,10 +65,10 @@ public class SolarEnchant extends Enchantment {
 
     @SubscribeEvent
     public static void applySolarEnchant(TickEvent.PlayerTickEvent event) {
-        if (event.phase != TickEvent.Phase.START || event.player.level.isClientSide())
+        if (event.phase != TickEvent.Phase.START || event.player.getCommandSenderWorld().isClientSide())
             return;
 
-        Level world = event.player.level;
+        Level world = event.player.getCommandSenderWorld();
         long time = world.getDayTime();
         boolean isDaytime = time >= 0 && time < 12000;
 

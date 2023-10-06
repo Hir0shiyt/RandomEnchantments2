@@ -61,7 +61,7 @@ public class Exploding extends Enchantment {
             if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.EXPLODING.get(), heldItem) > 0) {
                 float explosionSize = 1.0f + (float) EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.EXPLODING.get(), heldItem);
                 Entity damagedEntity = event.getEntity();
-                damagedEntity.getLevel().explode(null, damagedEntity.getX(), damagedEntity.getY(), damagedEntity.getZ(), explosionSize, Level.ExplosionInteraction.NONE);
+                damagedEntity.getCommandSenderWorld().explode(null, damagedEntity.getX(), damagedEntity.getY(), damagedEntity.getZ(), explosionSize, Level.ExplosionInteraction.NONE);
             }
         }
     }

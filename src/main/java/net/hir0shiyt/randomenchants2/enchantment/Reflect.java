@@ -70,13 +70,13 @@ public class Reflect extends Enchantment {
                         float originalDamage = (float) ((AbstractArrow) projectile).getBaseDamage();
                         float reflectedDamage = originalDamage * 2;
 
-                        AbstractArrow reflectedArrow = new Arrow(player.level, player);
+                        AbstractArrow reflectedArrow = new Arrow(player.getCommandSenderWorld(), player);
                         reflectedArrow.setPos(player.getX(), player.getY() + 1.0, player.getZ());
                         reflectedArrow.shoot(reflectedDirection.x, reflectedDirection.y, reflectedDirection.z, 1.5F, 0);
                         reflectedArrow.setBaseDamage(reflectedDamage);
 
                         shield.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(EquipmentSlot.OFFHAND));
-                        player.level.addFreshEntity(reflectedArrow);
+                        player.level().addFreshEntity(reflectedArrow);
                         event.setCanceled(true);
                     }
                 }

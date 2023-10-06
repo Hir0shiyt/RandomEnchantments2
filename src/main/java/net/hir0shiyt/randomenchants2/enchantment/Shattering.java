@@ -79,9 +79,9 @@ public class Shattering extends Enchantment {
         if (player == null) return;
         if (!EnchantUtils.hasEnch(player.getMainHandItem(), ModEnchantments.SHATTERING.get())) return;
         BlockPos pos = ((BlockHitResult) result).getBlockPos();
-        Block glass = arrow.level.getBlockState(pos).getBlock();
+        Block glass = arrow.getCommandSenderWorld().getBlockState(pos).getBlock();
         if (!(glass instanceof GlassBlock || glass instanceof StainedGlassBlock || glass instanceof StainedGlassPaneBlock)) return;
-        arrow.getLevel().destroyBlock(pos, true);
+        arrow.getCommandSenderWorld().destroyBlock(pos, true);
         event.setCanceled(true);
     }
 }

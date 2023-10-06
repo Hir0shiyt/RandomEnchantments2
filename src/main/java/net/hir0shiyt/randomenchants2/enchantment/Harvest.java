@@ -66,11 +66,11 @@ public class Harvest extends Enchantment {
         if (!(shooter instanceof Player)) return;
         Player player = (Player) shooter;
         if (!EnchantUtils.hasEnch(player, ModEnchantments.HARVEST.get())) return;
-        Block plant = projectile.level.getBlockState(pos).getBlock();
+        Block plant = projectile.level().getBlockState(pos).getBlock();
         if (!(isPlant(plant))) return;
 
         if (player.mayUseItemAt(pos, null, ItemStack.EMPTY))
-            projectile.level.destroyBlock(pos, true);
+            projectile.level().destroyBlock(pos, true);
         event.setCanceled(true);
     }
 

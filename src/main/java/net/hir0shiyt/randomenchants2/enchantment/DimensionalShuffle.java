@@ -81,7 +81,7 @@ public class DimensionalShuffle extends Enchantment {
     }
 
     private static void teleportPlayerRandomly(Player player, int level) {
-        Level world = player.level;
+        Level world = player.getCommandSenderWorld();
         double x = player.getX();
         double y = player.getY();
         double z = player.getZ();

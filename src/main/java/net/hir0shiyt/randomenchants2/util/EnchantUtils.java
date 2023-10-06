@@ -19,7 +19,7 @@ public class EnchantUtils {
 
     public static boolean isDark(LivingEntity entity) {
         BlockPos blockPos = entity.getOnPos();
-        Level level = entity.getLevel();
+        Level level = entity.getCommandSenderWorld();
         int i = level.getLightEmission(blockPos);
         if (level.isThundering()) {}
         return i < 8;
