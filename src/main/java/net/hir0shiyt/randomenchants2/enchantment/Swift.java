@@ -40,11 +40,7 @@ public class Swift extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        if (stack.getItem() instanceof SwordItem || stack.getItem() instanceof AxeItem) {
             return ModConfig.ServerConfig.swiftConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
-        } else {
-            return false;
-        }
     }
 
     @Override

@@ -9,8 +9,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.item.BowItem;
-import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
@@ -21,7 +19,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -49,11 +46,7 @@ public class Homing extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        if (stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem) {
             return ModConfig.ServerConfig.homingConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
-        } else {
-            return false;
-        }
     }
 
     @Override
@@ -67,7 +60,7 @@ public class Homing extends Enchantment {
     }
 
     @Override
-    protected boolean checkCompatibility(@NotNull Enchantment enchantment) {
+    protected boolean checkCompatibility(Enchantment enchantment) {
         return !(enchantment instanceof MultiShotEnchantment) &&
                 !(enchantment instanceof Torches) &&
                 !(enchantment instanceof Transposition) &&

@@ -35,11 +35,7 @@ public class EqualMine extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        if (stack.getItem() instanceof DiggerItem) {
             return ModConfig.ServerConfig.equalMineConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
-        } else {
-            return false;
-        }
     }
 
     @Override
@@ -57,7 +53,7 @@ public class EqualMine extends Enchantment {
         Player player = event.getPlayer();
         ItemStack heldItem = player.getMainHandItem();
         BlockState state = event.getState();
-        Level world = player.getLevel();
+        Level world = player.getCommandSenderWorld();
         BlockPos pos = event.getPos();
         float hardness = state.getBlock().defaultDestroyTime();
         if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.EQUAL_MINE, heldItem) > 0) {

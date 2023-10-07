@@ -35,11 +35,8 @@ public class Discord extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        if (stack.getItem() instanceof SwordItem || stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem) {
             return ModConfig.ServerConfig.discordConfig.get() != ModConfig.Restriction.DISABLED && super.canApplyAtEnchantingTable(stack);
-        } else {
-            return false;
-        }
+
     }
 
     @Override

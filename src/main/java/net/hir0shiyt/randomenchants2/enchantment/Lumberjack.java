@@ -68,12 +68,12 @@ public class Lumberjack extends Enchantment {
         int maxLogsDetected = 64; // Maximum logs to detect (including diagonals)
         if (isLog(block)) {
             List<BlockPos> logsToBreak = new ArrayList<>();
-            int logsFound = findConnectedLogs(logsToBreak, e.getPlayer().getLevel(), pos, maxLogsToBreak);
+            int logsFound = findConnectedLogs(logsToBreak, e.getPlayer().getCommandSenderWorld(), pos, maxLogsToBreak);
             int logsToBreakCount = Math.min(logsFound, maxLogsDetected);
             int damageAmount = logsToBreakCount / 2;
             stack.hurtAndBreak(damageAmount, p, player -> {});
             for (BlockPos logPos : logsToBreak) {
-                e.getPlayer().getLevel().destroyBlock(logPos, true);
+                e.getPlayer().getCommandSenderWorld().destroyBlock(logPos, true);
             }
         }
     }
