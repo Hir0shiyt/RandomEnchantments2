@@ -6,6 +6,8 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.boss.enderdragon.EndCrystal;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.BowItem;
@@ -69,6 +71,7 @@ public class Disarm extends Enchantment {
     public static void onPlayerAttackEntity(AttackEntityEvent event) {
         if (event.getTarget() instanceof LivingEntity) {
             LivingEntity target = (LivingEntity) event.getTarget();
+            if (target instanceof EnderDragon) { return; }
             LivingEntity attacker = ((LivingEntity) event.getTarget()).getLastHurtByMob();
             ItemStack targetItem = target.getMainHandItem();
             if (attacker instanceof Player) {
@@ -92,15 +95,18 @@ public class Disarm extends Enchantment {
         if (arrow instanceof AbstractArrow) {
             Entity shooter = ((AbstractArrow) arrow).getOwner();
             if (hitResult instanceof EntityHitResult) {
-                LivingEntity target = (LivingEntity) ((EntityHitResult) hitResult).getEntity();
-                if (shooter instanceof Player) {
-                    Player player = (Player) shooter;
-                    if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DISARM.get(), player.getMainHandItem()) > 0) {
-                        ItemStack bowStack = player.getItemInHand(InteractionHand.MAIN_HAND);
+                Entity targetEntity = ((EntityHitResult) hitResult).getEntity();
+                if (targetEntity instanceof LivingEntity && !(targetEntity instanceof EndCrystal || targetEntity instanceof EnderDragon)) {
+                    LivingEntity target = (LivingEntity) targetEntity;
+                    if (shooter instanceof Player) {
+                        Player player = (Player) shooter;
+                        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DISARM.get(), player.getMainHandItem()) > 0) {
+                            ItemStack bowStack = player.getItemInHand(InteractionHand.MAIN_HAND);
 
-                        if (bowStack.getItem() instanceof BowItem || bowStack.getItem() instanceof CrossbowItem) {
-                            player.addItem(target.getMainHandItem().copy());
-                            target.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
+                            if (bowStack.getItem() instanceof BowItem || bowStack.getItem() instanceof CrossbowItem) {
+                                player.addItem(target.getMainHandItem().copy());
+                                target.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
+                            }
                         }
                     }
                 }
