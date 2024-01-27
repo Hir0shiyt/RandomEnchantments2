@@ -50,12 +50,12 @@ public class Shattering extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.shatteringConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.shatteringConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.ricochetConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.ricochetConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override
@@ -63,7 +63,6 @@ public class Shattering extends Enchantment {
         return !(enchantment instanceof MultiShotEnchantment) &&
                 !(enchantment instanceof Teleportation) &&
                 !(enchantment instanceof Ricochet) &&
-                !(enchantment instanceof Phasing) &&
                 super.checkCompatibility(enchantment);
     }
 
@@ -79,9 +78,9 @@ public class Shattering extends Enchantment {
         if (player == null) return;
         if (!EnchantUtils.hasEnch(player.getMainHandItem(), ModEnchantments.SHATTERING.get())) return;
         BlockPos pos = ((BlockHitResult) result).getBlockPos();
-        Block glass = arrow.level.getBlockState(pos).getBlock();
+        Block glass = arrow.getCommandSenderWorld().getBlockState(pos).getBlock();
         if (!(glass instanceof GlassBlock || glass instanceof StainedGlassBlock || glass instanceof StainedGlassPaneBlock)) return;
-        arrow.getLevel().destroyBlock(pos, true);
+        arrow.getCommandSenderWorld().destroyBlock(pos, true);
         event.setCanceled(true);
     }
 }
