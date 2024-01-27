@@ -43,12 +43,12 @@ public class ChaosStrike extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.chaosStrikeConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.chaosStrikeConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.chaosStrikeConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.chaosStrikeConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override

@@ -51,12 +51,12 @@ public class Torches extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.torchesConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.torchesConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.teleportationConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.teleportationConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override

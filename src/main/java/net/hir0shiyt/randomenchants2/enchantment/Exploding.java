@@ -42,7 +42,7 @@ public class Exploding extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.explodingConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.explodingConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override
