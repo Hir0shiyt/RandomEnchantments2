@@ -46,12 +46,12 @@ public class Reflect extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.reflectConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.reflectConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.reflectConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.reflectConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @SubscribeEvent
@@ -77,7 +77,7 @@ public class Reflect extends Enchantment {
 
                         shield.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(EquipmentSlot.OFFHAND));
                         player.level().addFreshEntity(reflectedArrow);
-                        event.setCanceled(true);
+                        event.setImpactResult(ProjectileImpactEvent.ImpactResult.DEFAULT);
                     }
                 }
             }

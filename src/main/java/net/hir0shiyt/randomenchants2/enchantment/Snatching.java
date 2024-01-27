@@ -51,12 +51,12 @@ public class Snatching extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.snatchingConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.snatchingConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.snatchingConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.snatchingConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     private static final List<EquipmentSlot> ARMOR_SLOTS = new ArrayList<>();

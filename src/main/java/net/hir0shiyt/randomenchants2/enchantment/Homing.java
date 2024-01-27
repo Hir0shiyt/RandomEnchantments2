@@ -52,12 +52,12 @@ public class Homing extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.homingConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.homingConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.homingConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.homingConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override

@@ -34,7 +34,7 @@ public class ButterFingersCurse extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.butterFingersConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.butterFingersConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class ButterFingersCurse extends Enchantment {
         if (Math.random()>.50) return;
         player.drop(player.getItemBySlot(EquipmentSlot.MAINHAND), true);
         player.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
-        ItemEntity itemStack = new ItemEntity(player.getLevel(), player.getX(), player.getY(), player.getZ(), player.getMainHandItem());
-        player.getLevel().addFreshEntity(itemStack);
+        ItemEntity itemStack = new ItemEntity(player.getCommandSenderWorld(), player.getX(), player.getY(), player.getZ(), player.getMainHandItem());
+        player.getCommandSenderWorld().addFreshEntity(itemStack);
     }
 }

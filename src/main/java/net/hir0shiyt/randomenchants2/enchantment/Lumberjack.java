@@ -48,12 +48,12 @@ public class Lumberjack extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.lumberjackConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.lumberjackConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.lumberjackConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.lumberjackConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @SubscribeEvent
@@ -80,11 +80,8 @@ public class Lumberjack extends Enchantment {
 
     private static boolean isLog(Block block) {
         ResourceLocation registryName = block.getLootTable();
-        if (registryName != null) {
-            String namespace = registryName.getNamespace();
-            return namespace.equals("minecraft") && registryName.getPath().contains("log");
-        }
-        return false;
+        String namespace = registryName.getNamespace();
+        return namespace.equals("minecraft") && registryName.getPath().contains("log");
     }
 
     private static int findConnectedLogs(List<BlockPos> logsToBreak, Level world, BlockPos start, int maxLogsDetected) {

@@ -37,7 +37,7 @@ public class ShadowsCurse extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.shadowsConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.shadowsConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override
@@ -53,7 +53,7 @@ public class ShadowsCurse extends Enchantment {
     public static void applyShadows(TickEvent.PlayerTickEvent event) {
         if (Math.random() > .05) return;
         Player player = event.player;
-        if (player.getLevel().isClientSide) return;
+        if (player.getCommandSenderWorld().isClientSide) return;
         for (EquipmentSlot slot : list) {
             ItemStack stack = player.getItemBySlot(slot);
             if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SHADOWS_CURSE.get(), stack) == 0) continue;
