@@ -85,8 +85,8 @@ public class ModEnchantments {
     public static final RegistryObject<Enchantment> QUICK_DRAW = ENCHANTMENTS.register("quick_draw",
             () -> new QuickDraw(Enchantment.Rarity.RARE, ModEnchantments.SHOOTABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
 
-    public static final RegistryObject<Enchantment> PHASING = ENCHANTMENTS.register("phasing",
-            () -> new Phasing(Enchantment.Rarity.RARE, ModEnchantments.SHOOTABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+    public static final RegistryObject<Enchantment> ZEN_SANCTUARY = ENCHANTMENTS.register("zen_sanctuary",
+            () -> new ZenSanctuary(Enchantment.Rarity.VERY_RARE, EnchantmentCategory.ARMOR_CHEST, new EquipmentSlot[]{EquipmentSlot.CHEST}));
 
     public static final RegistryObject<Enchantment> DISCORD = ENCHANTMENTS.register("discord",
             () -> new Discord(Enchantment.Rarity.RARE, ModEnchantments.SWORDS_BOWS, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
