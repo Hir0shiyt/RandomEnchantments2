@@ -45,7 +45,7 @@ public class LingeringShadowsCurse extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.lingeringShadowsConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.lingeringShadowsConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override

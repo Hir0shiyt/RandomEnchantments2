@@ -54,7 +54,7 @@ public class Dungeoneering extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.dungeoneeringConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.dungeoneeringConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @SubscribeEvent(priority = EventPriority.NORMAL)

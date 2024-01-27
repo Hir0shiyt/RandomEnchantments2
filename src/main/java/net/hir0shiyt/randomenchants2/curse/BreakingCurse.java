@@ -36,7 +36,7 @@ public class BreakingCurse extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.breakingConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.breakingConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override

@@ -43,12 +43,12 @@ public class StoneLover extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.stoneLoverConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.stoneLoverConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.stoneLoverConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.stoneLoverConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override

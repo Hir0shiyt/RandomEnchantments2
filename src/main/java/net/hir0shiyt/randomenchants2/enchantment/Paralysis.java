@@ -49,12 +49,12 @@ public class Paralysis extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.paralysisConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.paralysisConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.paralysisConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.paralysisConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @SubscribeEvent

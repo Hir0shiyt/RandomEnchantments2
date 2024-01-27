@@ -36,7 +36,7 @@ public class FumblingCurse extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.fumblingConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.fumblingConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override

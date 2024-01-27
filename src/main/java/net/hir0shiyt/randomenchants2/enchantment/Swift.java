@@ -43,12 +43,12 @@ public class Swift extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.swiftConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.swiftConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.swiftConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.swiftConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @SubscribeEvent

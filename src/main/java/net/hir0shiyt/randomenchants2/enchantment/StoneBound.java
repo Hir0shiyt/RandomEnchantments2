@@ -43,12 +43,12 @@ public class StoneBound extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.stoneBoundConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.stoneBoundConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.stoneBoundConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.stoneBoundConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @SubscribeEvent

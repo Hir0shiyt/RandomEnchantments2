@@ -45,12 +45,12 @@ public class Grappling extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.grapplingConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.grapplingConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.grapplingConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.grapplingConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @SubscribeEvent

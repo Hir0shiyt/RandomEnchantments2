@@ -51,12 +51,12 @@ public class Ricochet extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.ricochetConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.ricochetConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.ricochetConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.ricochetConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override

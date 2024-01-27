@@ -46,12 +46,12 @@ public class InstantDeath extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.instantDeathConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.instantDeathConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.instantDeathConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.instantDeathConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @SubscribeEvent

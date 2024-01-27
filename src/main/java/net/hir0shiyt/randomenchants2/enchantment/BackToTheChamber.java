@@ -44,12 +44,12 @@ public class BackToTheChamber extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.backToTheChamberConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.backToTheChamberConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.backToTheChamberConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.backToTheChamberConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override

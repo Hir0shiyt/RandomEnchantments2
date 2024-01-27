@@ -50,12 +50,12 @@ public class Shattering extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.shatteringConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.shatteringConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.ricochetConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.ricochetConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override
@@ -63,7 +63,6 @@ public class Shattering extends Enchantment {
         return !(enchantment instanceof MultiShotEnchantment) &&
                 !(enchantment instanceof Teleportation) &&
                 !(enchantment instanceof Ricochet) &&
-                !(enchantment instanceof Phasing) &&
                 super.checkCompatibility(enchantment);
     }
 

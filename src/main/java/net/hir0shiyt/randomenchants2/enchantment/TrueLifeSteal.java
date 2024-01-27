@@ -48,12 +48,12 @@ public class TrueLifeSteal extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.trueLifeStealConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.trueLifeStealConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.trueLifeStealConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.trueLifeStealConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @SubscribeEvent
