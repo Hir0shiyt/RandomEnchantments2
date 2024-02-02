@@ -42,12 +42,12 @@ public class Assimilation extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.assimilationConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.assimilationConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.assimilationConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.assimilationConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     public static void repair(Player player, List<ItemStack> drops) {

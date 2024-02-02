@@ -22,10 +22,11 @@ public class ModEnchantments {
     public static final EnchantmentCategory SHIELDS = EnchantmentCategory.create("shields", ShieldItem.class::isInstance);
     public static final EnchantmentCategory AXES = EnchantmentCategory.create("axes", AxeItem.class::isInstance);
     public static final EnchantmentCategory TOOLSANDWEAPONS = EnchantmentCategory.create("tools&weapons", item -> item instanceof SwordItem || item instanceof AxeItem || item instanceof ShovelItem || item instanceof HoeItem || item instanceof BowItem || item instanceof CrossbowItem);
+    public static final EnchantmentCategory ALL_ITEMS = EnchantmentCategory.create("all_items", Item.class::isInstance);
 
     //REGISTER ENCHANTMENTS
     public static final RegistryObject<Enchantment> SOLAR_ENCHANT = ENCHANTMENTS.register("solar_enchant",
-            () -> new SolarEnchant(Enchantment.Rarity.VERY_RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND}));
+            () -> new SolarEnchant(Enchantment.Rarity.VERY_RARE, ModEnchantments.ALL_ITEMS, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND}));
 
     public static final RegistryObject<Enchantment> OBSIDIAN_BUSTER = ENCHANTMENTS.register("obsidian_buster",
             () -> new ObsidianBuster(Enchantment.Rarity.VERY_RARE, ModEnchantments.PICKAXE, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
@@ -40,10 +41,10 @@ public class ModEnchantments {
             () -> new StoneLover(Enchantment.Rarity.RARE, ModEnchantments.PICKAXE, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
 
     public static final RegistryObject<Enchantment> RESISTANT = ENCHANTMENTS.register("resistant",
-            () -> new Resistant(Enchantment.Rarity.VERY_RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+            () -> new Resistant(Enchantment.Rarity.VERY_RARE, ModEnchantments.ALL_ITEMS, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
 
     public static final RegistryObject<Enchantment> ETERNAL = ENCHANTMENTS.register("eternal",
-            () -> new Eternal(Enchantment.Rarity.VERY_RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+            () -> new Eternal(Enchantment.Rarity.VERY_RARE, ModEnchantments.ALL_ITEMS, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
 
     public static final RegistryObject<Enchantment> DUNGEONEERING = ENCHANTMENTS.register("dungeoneering",
             () -> new Dungeoneering(Enchantment.Rarity.VERY_RARE, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
@@ -83,9 +84,6 @@ public class ModEnchantments {
 
     public static final RegistryObject<Enchantment> QUICK_DRAW = ENCHANTMENTS.register("quick_draw",
             () -> new QuickDraw(Enchantment.Rarity.RARE, ModEnchantments.SHOOTABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
-
-    public static final RegistryObject<Enchantment> PHASING = ENCHANTMENTS.register("phasing",
-            () -> new Phasing(Enchantment.Rarity.RARE, ModEnchantments.SHOOTABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
 
     public static final RegistryObject<Enchantment> DISCORD = ENCHANTMENTS.register("discord",
             () -> new Discord(Enchantment.Rarity.RARE, ModEnchantments.SWORDS_BOWS, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
@@ -144,22 +142,25 @@ public class ModEnchantments {
     public static final RegistryObject<Enchantment> DIMENSIONAL_SHUFFLE = ENCHANTMENTS.register("dimensional_shuffle",
             () -> new DimensionalShuffle(Enchantment.Rarity.VERY_RARE, EnchantmentCategory.ARMOR_CHEST, new EquipmentSlot[]{EquipmentSlot.CHEST}));
 
+    public static final RegistryObject<Enchantment> ZEN_SANCTUARY = ENCHANTMENTS.register("zen_sanctuary",
+            () -> new ZenSanctuary(Enchantment.Rarity.VERY_RARE, EnchantmentCategory.ARMOR_CHEST, new EquipmentSlot[]{EquipmentSlot.CHEST}));
+
+
     // CURSES REGISTRIES
     public static final RegistryObject<Enchantment> BREAKING_CURSE = ENCHANTMENTS.register("breaking_curse",
-            () -> new BreakingCurse(Enchantment.Rarity.RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+            () -> new BreakingCurse(Enchantment.Rarity.RARE, ModEnchantments.ALL_ITEMS, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
 
     public static final RegistryObject<Enchantment> BUTTER_FINGERS_CURSE = ENCHANTMENTS.register("butter_fingers_curse",
-            () -> new ButterFingersCurse(Enchantment.Rarity.RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+            () -> new ButterFingersCurse(Enchantment.Rarity.RARE, ModEnchantments.ALL_ITEMS, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
 
     public static final RegistryObject<Enchantment> FUMBLING_CURSE = ENCHANTMENTS.register("fumbling_curse",
             () -> new FumblingCurse(Enchantment.Rarity.RARE, EnchantmentCategory.DIGGER, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
 
     public static final RegistryObject<Enchantment> SHADOWS_CURSE = ENCHANTMENTS.register("shadows_curse",
-            () -> new ShadowsCurse(Enchantment.Rarity.RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET, EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND}));
+            () -> new ShadowsCurse(Enchantment.Rarity.RARE, ModEnchantments.ALL_ITEMS, new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET, EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND}));
 
     public static final RegistryObject<Enchantment> LINGERING_SHADOWS_CURSE = ENCHANTMENTS.register("lingering_shadows_curse",
             () -> new LingeringShadowsCurse(Enchantment.Rarity.VERY_RARE, ModEnchantments.TOOLSANDWEAPONS, new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET, EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND}));
-    //REGISTER CURSES
 
     public static void register(IEventBus eventBus) {
         ENCHANTMENTS.register(eventBus);

@@ -48,12 +48,12 @@ public class QuickDraw extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.quickDrawConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.quickDrawConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.quickDrawConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.quickDrawConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @SubscribeEvent

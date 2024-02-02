@@ -45,12 +45,12 @@ public class Transposition extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.transpositionConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.transpositionConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.transpositionConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.transpositionConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override

@@ -46,12 +46,12 @@ public class SolarEnchant extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.solarEnchantConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.solarEnchantConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.solarEnchantConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.solarEnchantConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override

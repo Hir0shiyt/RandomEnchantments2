@@ -50,12 +50,12 @@ public class Floating extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.floatingConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.floatingConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.floatingConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.floatingConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @SubscribeEvent

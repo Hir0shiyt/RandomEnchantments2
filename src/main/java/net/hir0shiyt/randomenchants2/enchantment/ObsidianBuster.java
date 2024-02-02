@@ -41,12 +41,12 @@ public class ObsidianBuster extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.obsidianBusterConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.obsidianBusterConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.obsidianBusterConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.obsidianBusterConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override

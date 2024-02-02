@@ -50,12 +50,12 @@ public class CursedJumping extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.cursedJumpingConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.cursedJumpingConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.cursedJumpingConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.cursedJumpingConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override
