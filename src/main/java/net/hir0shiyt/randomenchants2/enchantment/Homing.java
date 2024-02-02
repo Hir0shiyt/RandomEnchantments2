@@ -51,12 +51,12 @@ public class Homing extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.homingConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.homingConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.homingConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.homingConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class Homing extends Enchantment {
         Entity entity = event.getEntity();
         if (entity instanceof AbstractArrow && ((AbstractArrow) entity).getOwner() instanceof Player player) {
             ItemStack heldItem = player.getMainHandItem();
-            if (EnchantUtils.hasEnch(heldItem, ModEnchantments.HOMING)) {
+            if (EnchantUtils.hasEnch(heldItem, ModEnchantments.HOMING.get())) {
                 AbstractArrow arrow = (AbstractArrow) entity;
 
                 double arrowVelocity = arrow.getDeltaMovement().length();

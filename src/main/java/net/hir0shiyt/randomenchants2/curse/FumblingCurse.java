@@ -36,7 +36,7 @@ public class FumblingCurse extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.fumblingConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.fumblingConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class FumblingCurse extends Enchantment {
     @SubscribeEvent
     public static void onBreakSpeed(PlayerEvent.BreakSpeed event) {
         Player player = event.getPlayer();
-        if (EnchantUtils.hasEnch(player, ModEnchantments.FUMBLING_CURSE)) {
+        if (EnchantUtils.hasEnch(player, ModEnchantments.FUMBLING_CURSE.get())) {
             float oldSpeed = event.getOriginalSpeed();
             event.setNewSpeed((float) Math.sqrt(oldSpeed));
         }

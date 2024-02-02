@@ -40,12 +40,12 @@ public class EqualMine extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.equalMineConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.equalMineConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.equalMineConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.equalMineConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @SubscribeEvent
@@ -56,7 +56,7 @@ public class EqualMine extends Enchantment {
         Level world = player.getCommandSenderWorld();
         BlockPos pos = event.getPos();
         float hardness = state.getBlock().defaultDestroyTime();
-        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.EQUAL_MINE, heldItem) > 0) {
+        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.EQUAL_MINE.get(), heldItem) > 0) {
             float oldSpeed = event.getOriginalSpeed();
             if (hardness<1) hardness =1;
             float newSpeed= hardness * oldSpeed;

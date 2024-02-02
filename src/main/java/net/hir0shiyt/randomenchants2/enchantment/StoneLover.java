@@ -43,12 +43,12 @@ public class StoneLover extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.stoneLoverConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.stoneLoverConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.stoneLoverConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.stoneLoverConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override
@@ -62,7 +62,7 @@ public class StoneLover extends Enchantment {
         Player player = event.getPlayer();
         if (player != null) {
             ItemStack mainHandStack = player.getMainHandItem();
-            int mainHandLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.STONE_LOVER, mainHandStack);
+            int mainHandLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.STONE_LOVER.get(), mainHandStack);
 
             if (mainHandLevel > 0) {
                 Block block = event.getState().getBlock();

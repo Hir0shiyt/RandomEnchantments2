@@ -29,12 +29,12 @@ public class EnchantmentConfigs extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return config == ModConfig.Restriction.NORMAL;
+        return config == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return isCurse() || config == ModConfig.Restriction.ANVIL;
+        return isCurse() || config == ModConfig.Restriction.TREASURE;
     }
 
     public boolean isCurse() {

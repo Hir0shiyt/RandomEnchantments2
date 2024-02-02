@@ -45,12 +45,12 @@ public class Teleportation extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.teleportationConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.teleportationConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.teleportationConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.teleportationConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override
@@ -73,7 +73,7 @@ public class Teleportation extends Enchantment {
         Player player = (Player) shooter;
         ItemStack heldItem = player.getMainHandItem();
 
-        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.TELEPORTATION, heldItem) > 0) {
+        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.TELEPORTATION.get(), heldItem) > 0) {
 
             BlockPos pos = ((BlockHitResult) e.getRayTraceResult()).getBlockPos();
         if (arrow.level.getBlockState(pos.above()).getMaterial() == Material.LAVA) return;
@@ -92,7 +92,7 @@ public class Teleportation extends Enchantment {
             if (owner instanceof Player) {
                 Player player = (Player) owner;
                 ItemStack heldItem = player.getMainHandItem();
-                if (owner instanceof LivingEntity && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.TELEPORTATION, heldItem) > 0) {
+                if (owner instanceof LivingEntity && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.TELEPORTATION.get(), heldItem) > 0) {
                     arrow.getPersistentData().putBoolean(ModEnchantments.TELEPORTATION.toString(), true);
                 }
             }

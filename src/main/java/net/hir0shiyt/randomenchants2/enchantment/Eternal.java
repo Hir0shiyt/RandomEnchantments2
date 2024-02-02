@@ -41,12 +41,12 @@ public class Eternal extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.eternalConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.eternalConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.eternalConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.eternalConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override
@@ -68,6 +68,6 @@ public class Eternal extends Enchantment {
     }
 
     private static boolean hasEternal(ItemStack stack) {
-        return EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.ETERNAL, stack) > 0;
+        return EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.ETERNAL.get(), stack) > 0;
     }
 }

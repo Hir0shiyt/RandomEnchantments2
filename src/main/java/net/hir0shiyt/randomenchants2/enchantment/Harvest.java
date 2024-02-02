@@ -46,12 +46,12 @@ public class Harvest extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.harvestConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.harvestConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.harvestConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.harvestConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @SubscribeEvent
@@ -65,7 +65,7 @@ public class Harvest extends Enchantment {
         Entity shooter = arrow.getOwner();
         if (!(shooter instanceof Player)) return;
         Player player = (Player) shooter;
-        if (!EnchantUtils.hasEnch(player, ModEnchantments.HARVEST)) return;
+        if (!EnchantUtils.hasEnch(player, ModEnchantments.HARVEST.get())) return;
         Block plant = projectile.level.getBlockState(pos).getBlock();
         if (!(isPlant(plant))) return;
 

@@ -43,18 +43,18 @@ public class StoneBound extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.stoneBoundConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.stoneBoundConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.stoneBoundConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.stoneBoundConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @SubscribeEvent
     public static void onAttack(LivingHurtEvent event) {
         if (event.getSource().getDirectEntity() instanceof Player player) {
-            if (EnchantUtils.hasEnch(player, ModEnchantments.STONE_BOUND)) {
+            if (EnchantUtils.hasEnch(player, ModEnchantments.STONE_BOUND.get())) {
                 LivingEntity entity = event.getEntityLiving();
                 ItemStack stack = player.getMainHandItem();
                 float reduction = .02f * stack.getDamageValue();
@@ -66,7 +66,7 @@ public class StoneBound extends Enchantment {
     @SubscribeEvent
     public void onBreakBlock(PlayerEvent.BreakSpeed event) {
         Player player = event.getPlayer();
-        if ((EnchantmentHelper.getEnchantmentLevel(ModEnchantments.STONE_BOUND, player) > 0)) {
+        if ((EnchantmentHelper.getEnchantmentLevel(ModEnchantments.STONE_BOUND.get(), player) > 0)) {
             float oldSpeed = event.getOriginalSpeed();
             ItemStack stack = player.getMainHandItem();
             float increase = .02f * stack.getDamageValue();

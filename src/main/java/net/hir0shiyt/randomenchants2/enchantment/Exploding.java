@@ -42,7 +42,7 @@ public class Exploding extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.explodingConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.explodingConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override
@@ -58,8 +58,8 @@ public class Exploding extends Enchantment {
         if (event.getSource().getEntity() instanceof Player) {
             Player player = (Player) event.getSource().getEntity();
             ItemStack heldItem = player.getMainHandItem();
-            if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.EXPLODING, heldItem) > 0) {
-                float explosionSize = 1.0f + (float) EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.EXPLODING, heldItem);
+            if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.EXPLODING.get(), heldItem) > 0) {
+                float explosionSize = 1.0f + (float) EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.EXPLODING.get(), heldItem);
                 Entity damagedEntity = event.getEntityLiving();
                 damagedEntity.level.explode(null, damagedEntity.getX(), damagedEntity.getY(), damagedEntity.getZ(), explosionSize, Explosion.BlockInteraction.NONE);
             }

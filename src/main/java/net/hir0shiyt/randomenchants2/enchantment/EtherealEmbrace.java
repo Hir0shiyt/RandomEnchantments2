@@ -44,20 +44,20 @@ public class EtherealEmbrace extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.etherealEmbraceConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.etherealEmbraceConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.etherealEmbraceConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.etherealEmbraceConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @SubscribeEvent
     public static void onLivingAttack(LivingAttackEvent event) {
         if (event.getEntityLiving() == null) { return; }
         ItemStack armorStack = event.getEntityLiving().getItemBySlot(EquipmentSlot.CHEST);
-        if (EnchantUtils.hasEnch(armorStack, ModEnchantments.ETHEREAL_EMBRACE)) {
-            int enchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.ETHEREAL_EMBRACE, armorStack);
+        if (EnchantUtils.hasEnch(armorStack, ModEnchantments.ETHEREAL_EMBRACE.get())) {
+            int enchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.ETHEREAL_EMBRACE.get(), armorStack);
             double phasingChance = enchantmentLevel * 0.05;
             if (RANDOM.get().nextDouble() <= phasingChance) {
                 event.setCanceled(true);

@@ -48,12 +48,12 @@ public class QuickDraw extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.quickDrawConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.quickDrawConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.quickDrawConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.quickDrawConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @SubscribeEvent
@@ -66,12 +66,12 @@ public class QuickDraw extends Enchantment {
                 heldItem = player.getItemInHand(InteractionHand.OFF_HAND);
             }
 
-            if (!(heldItem.getItem() instanceof BowItem || heldItem.getItem() instanceof CrossbowItem) || !EnchantUtils.hasEnch(player, ModEnchantments.QUICK_DRAW)) {
+            if (!(heldItem.getItem() instanceof BowItem || heldItem.getItem() instanceof CrossbowItem) || !EnchantUtils.hasEnch(player, ModEnchantments.QUICK_DRAW.get())) {
                 return;
             }
 
             if (player.isUsingItem()) {
-                for (int i = 0; i < EnchantmentHelper.getEnchantmentLevel(ModEnchantments.QUICK_DRAW, player); i++) {
+                for (int i = 0; i < EnchantmentHelper.getEnchantmentLevel(ModEnchantments.QUICK_DRAW.get(), player); i++) {
                     updateActiveHand(player);
                 }
             }

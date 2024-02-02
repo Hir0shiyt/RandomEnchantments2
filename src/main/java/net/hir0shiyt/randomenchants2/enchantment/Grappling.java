@@ -45,12 +45,12 @@ public class Grappling extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.grapplingConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.grapplingConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.grapplingConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.grapplingConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @SubscribeEvent
@@ -58,7 +58,7 @@ public class Grappling extends Enchantment {
         Player player = event.getPlayer();
         ItemStack heldItem = player.getMainHandItem();
 
-        if (heldItem.getItem() instanceof FishingRodItem && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.GRAPPLING, heldItem) > 0) {
+        if (heldItem.getItem() instanceof FishingRodItem && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.GRAPPLING.get(), heldItem) > 0) {
             FishingHook hookEntity = player.fishing;
 
             if (hookEntity != null && hookEntity.isOnGround()) {

@@ -51,12 +51,12 @@ public class Snatching extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.snatchingConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.snatchingConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.snatchingConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.snatchingConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     private static final List<EquipmentSlot> ARMOR_SLOTS = new ArrayList<>();
@@ -73,7 +73,7 @@ public class Snatching extends Enchantment {
         Player player = event.getPlayer();
         ItemStack heldItem = player.getMainHandItem();
 
-        if (heldItem.getItem() instanceof FishingRodItem && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SNATCHING, heldItem) > 0) {
+        if (heldItem.getItem() instanceof FishingRodItem && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SNATCHING.get(), heldItem) > 0) {
             if (player.fishing == null || player.level.isClientSide) return;
 
             Entity hookedEntity = player.fishing.getHookedIn();

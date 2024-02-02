@@ -46,19 +46,19 @@ public class Resistant extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.resistantConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.resistantConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.resistantConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.resistantConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @SubscribeEvent
     public static void itemSpawn(ItemTossEvent event) {
         ItemEntity entityItem = event.getEntityItem();
         ItemStack stack = entityItem.getItem();
-        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RESISTANT, stack) > 0) {
+        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RESISTANT.get(), stack) > 0) {
             entityItem.setInvulnerable(true);
         }
     }
@@ -71,7 +71,7 @@ public class Resistant extends Enchantment {
             if (entity instanceof ItemEntity) {
                 ItemEntity itemEntity = (ItemEntity) entity;
                 ItemStack stack = itemEntity.getItem();
-                if (!stack.isEmpty() && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RESISTANT, stack) > 0) {
+                if (!stack.isEmpty() && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RESISTANT.get(), stack) > 0) {
                     iterator.remove();
                 }
             }
@@ -83,7 +83,7 @@ public class Resistant extends Enchantment {
         Player player = event.getPlayer();
         ItemStack heldItem = player.getMainHandItem();
 
-        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RESISTANT, heldItem) > 0) {
+        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RESISTANT.get(), heldItem) > 0) {
             event.setExpToDrop(0);
         }
     }

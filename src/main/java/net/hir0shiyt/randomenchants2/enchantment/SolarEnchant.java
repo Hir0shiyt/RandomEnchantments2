@@ -46,12 +46,12 @@ public class SolarEnchant extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.solarEnchantConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.solarEnchantConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.solarEnchantConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.solarEnchantConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override
@@ -73,7 +73,7 @@ public class SolarEnchant extends Enchantment {
         boolean isDaytime = time >= 0 && time < 12000;
 
         ItemStack mainHandStack = event.player.getMainHandItem();
-        int mainHandLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SOLAR_ENCHANT, mainHandStack);
+        int mainHandLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SOLAR_ENCHANT.get(), mainHandStack);
 
         if (mainHandStack.isDamaged() && mainHandLevel > 0) {
             BlockPos playerPos = event.player.blockPosition();
