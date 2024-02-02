@@ -40,8 +40,8 @@ public class ClientEventHandler {
         }
     }
 
-        @SubscribeEvent(priority = EventPriority.HIGHEST)
-        public static void playerTooltip(ItemTooltipEvent event) {
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void playerTooltip(ItemTooltipEvent event) {
         Player player = event.getEntity();
         if (player == null) return;
         List<Component> tooltip = event.getToolTip();
