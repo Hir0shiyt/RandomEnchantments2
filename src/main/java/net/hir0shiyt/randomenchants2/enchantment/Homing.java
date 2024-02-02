@@ -19,9 +19,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
@@ -41,7 +39,7 @@ public class Homing extends Enchantment {
     }
 
     @Override
-    public boolean canEnchant(@Nonnull ItemStack stack) {
+    public boolean canEnchant(ItemStack stack) {
         return ModConfig.ServerConfig.homingConfig.get() != ModConfig.Restriction.DISABLED && super.canEnchant(stack);
     }
 
@@ -61,7 +59,7 @@ public class Homing extends Enchantment {
     }
 
     @Override
-    protected boolean checkCompatibility(@NotNull Enchantment enchantment) {
+    protected boolean checkCompatibility(Enchantment enchantment) {
         return !(enchantment instanceof MultiShotEnchantment) &&
                 !(enchantment instanceof Torches) &&
                 !(enchantment instanceof Transposition) &&
