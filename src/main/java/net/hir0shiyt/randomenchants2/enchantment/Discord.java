@@ -40,12 +40,12 @@ public class Discord extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.discordConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.discordConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.discordConfig.get() != ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.discordConfig.get() != ModConfig.Restriction.TREASURE;
     }
 
     @Override

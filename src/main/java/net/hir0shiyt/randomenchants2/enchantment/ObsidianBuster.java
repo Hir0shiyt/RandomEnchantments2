@@ -41,12 +41,12 @@ public class ObsidianBuster extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.obsidianBusterConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.obsidianBusterConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.obsidianBusterConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.obsidianBusterConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class ObsidianBuster extends Enchantment {
         ItemStack heldItem = player.getItemInHand(player.getUsedItemHand());
 
         // Check if the enchantment is enabled
-        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.OBSIDIAN_BUSTER, heldItem) <= 0) {
+        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.OBSIDIAN_BUSTER.get(), heldItem) <= 0) {
             return;
         }
 

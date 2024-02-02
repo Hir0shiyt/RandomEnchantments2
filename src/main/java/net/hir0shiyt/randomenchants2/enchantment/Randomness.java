@@ -50,12 +50,12 @@ public class Randomness extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.randomnessConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.randomnessConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.randomnessConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.randomnessConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override
@@ -66,7 +66,7 @@ public class Randomness extends Enchantment {
     }
 
     public static Enchantment getRandomnessEnchant() {
-        return ModEnchantments.RANDOMNESS;
+        return ModEnchantments.RANDOMNESS.get();
     }
 
     public static List<ItemStack> getRandomItems(Random random, int level) {

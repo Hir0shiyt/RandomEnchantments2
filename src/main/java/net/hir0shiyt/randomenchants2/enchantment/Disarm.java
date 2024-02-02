@@ -52,12 +52,12 @@ public class Disarm extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.disarmConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.disarmConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.disarmConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.disarmConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override
@@ -77,7 +77,7 @@ public class Disarm extends Enchantment {
             if (attacker instanceof Player) {
                 Player player = (Player) attacker;
                 ItemStack heldItem = player.getMainHandItem();
-                if (!targetItem.isEmpty() && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DISARM, heldItem) > 0) {
+                if (!targetItem.isEmpty() && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DISARM.get(), heldItem) > 0) {
                     event.getPlayer().addItem(targetItem.copy());
                     target.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
                 }
@@ -100,7 +100,7 @@ public class Disarm extends Enchantment {
                     LivingEntity target = (LivingEntity) targetEntity;
                     if (shooter instanceof Player) {
                         Player player = (Player) shooter;
-                        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DISARM, player.getMainHandItem()) > 0) {
+                        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DISARM.get(), player.getMainHandItem()) > 0) {
                             ItemStack bowStack = player.getItemInHand(InteractionHand.MAIN_HAND);
 
                             if (bowStack.getItem() instanceof BowItem || bowStack.getItem() instanceof CrossbowItem) {

@@ -50,12 +50,12 @@ public class Torches extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.torchesConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.torchesConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.teleportationConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.teleportationConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override
@@ -85,7 +85,7 @@ public class Torches extends Enchantment {
             Player player = (Player) shooter;
             ItemStack heldItem = player.getMainHandItem();
 
-            if (!heldItem.isEmpty() && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.TORCHES, heldItem) > 0) {
+            if (!heldItem.isEmpty() && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.TORCHES.get(), heldItem) > 0) {
                 HitResult result = e.getRayTraceResult();
 
                 if (result instanceof BlockHitResult) {

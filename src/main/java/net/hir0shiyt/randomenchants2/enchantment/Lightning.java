@@ -42,12 +42,12 @@ public class Lightning extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.lightningConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.lightningConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.lightningConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.lightningConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @SubscribeEvent
@@ -57,7 +57,7 @@ public class Lightning extends Enchantment {
         if (attacker instanceof Player) {
             Player playerAttacker = (Player) attacker;
             ItemStack heldItem = playerAttacker.getMainHandItem();
-            if (EnchantUtils.hasEnch(heldItem, ModEnchantments.LIGHTNING)) {
+            if (EnchantUtils.hasEnch(heldItem, ModEnchantments.LIGHTNING.get())) {
                 Level level = playerAttacker.level;
                 if (!(target instanceof Creeper) || !((Creeper) target).isPowered()) {
                     double targetX = target.getX();

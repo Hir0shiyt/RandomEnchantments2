@@ -4,7 +4,6 @@ import net.hir0shiyt.randomenchants2.RandomEnchants2;
 import net.hir0shiyt.randomenchants2.config.ModConfig;
 import net.hir0shiyt.randomenchants2.util.EnchantUtils;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
@@ -13,10 +12,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.AirBlock;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -55,12 +51,12 @@ public class DimensionalShuffle extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.dimensionalShuffleConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.dimensionalShuffleConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.dimensionalShuffleConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.dimensionalShuffleConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @SubscribeEvent
@@ -68,8 +64,8 @@ public class DimensionalShuffle extends Enchantment {
         Entity entity = event.getEntity();
         if (entity instanceof Player player) {
             ItemStack armor = player.getItemBySlot(EquipmentSlot.CHEST);
-            if (EnchantUtils.hasEnch(armor, ModEnchantments.DIMENSIONAL_SHUFFLE)) {
-                int level = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DIMENSIONAL_SHUFFLE, armor);
+            if (EnchantUtils.hasEnch(armor, ModEnchantments.DIMENSIONAL_SHUFFLE.get())) {
+                int level = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DIMENSIONAL_SHUFFLE.get(), armor);
                 if (!itemCooldown.containsKey(armor) || itemCooldown.get(armor) <= 0) {
                     if (level > 0 && player.getHealth() - event.getAmount() <= 0) {
                         event.setCanceled(true);

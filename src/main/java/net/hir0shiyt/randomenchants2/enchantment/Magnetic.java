@@ -56,12 +56,12 @@ public class Magnetic extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.magneticConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.magneticConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.magneticConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.magneticConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @SubscribeEvent
@@ -70,7 +70,7 @@ public class Magnetic extends Enchantment {
 
         if (attacker instanceof Player) {
             Player player = (Player) attacker;
-            if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.MAGNETIC, player.getMainHandItem()) > 0) {
+            if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.MAGNETIC.get(), player.getMainHandItem()) > 0) {
                 List<ItemStack> stacks = getStacksFromEntityItems(e.getDrops());
 
                 for (ItemEntity itemEntity : e.getDrops()) {
@@ -89,7 +89,7 @@ public class Magnetic extends Enchantment {
                 Player player = (Player) shooter;
                 ItemStack heldItem = player.getMainHandItem();
 
-                if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.MAGNETIC, heldItem) > 0) {
+                if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.MAGNETIC.get(), heldItem) > 0) {
                     List<ItemStack> stacks = getStacksFromEntityItems(e.getDrops());
 
                     for (ItemEntity itemEntity : e.getDrops()) {

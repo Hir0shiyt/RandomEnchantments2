@@ -44,12 +44,12 @@ public class Deflect extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.deflectConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.deflectConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.deflectConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.deflectConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @SubscribeEvent
@@ -59,7 +59,7 @@ public class Deflect extends Enchantment {
         Entity target = ((EntityHitResult) e.getRayTraceResult()).getEntity();
         if (!(target instanceof Player)) return;
         Player player = (Player) target;
-        if (EnchantUtils.hasEnch(player, ModEnchantments.DEFLECT)) {
+        if (EnchantUtils.hasEnch(player, ModEnchantments.DEFLECT.get())) {
             Vec3 projectileMotion = projectile.getDeltaMovement();
             projectile.setDeltaMovement(projectileMotion.scale(-1.0));
             if (projectile instanceof AbstractHurtingProjectile) {

@@ -39,8 +39,8 @@
   "enchantment.randomenchants2.back_to_the_chamber.desc" : "Chance of getting arrows back when a mob is stroke by an arrow",
   "enchantment.randomenchants2.quick_draw" : "Quick Draw",
   "enchantment.randomenchants2.quick_draw.desc" : "Draw arrows faster depending on the level",
-  "enchantment.randomenchants2.phasing" : "Phasing",
-  "enchantment.randomenchants2.phasing.desc" : "Arrows go through 1 block only",
+  "enchantment.randomenchants2.zen_sanctuary" : "Zen Sanctuary",
+  "enchantment.randomenchants2.zen_sanctuary.desc" : "Peacefulness all around you",
   "enchantment.randomenchants2.discord" : "Discord",
   "enchantment.randomenchants2.discord.desc" : "allows the player's attacks to provoke nearby hostile mobs to target the hit entity",
   "enchantment.randomenchants2.swift" : "Swift",
@@ -81,14 +81,14 @@
   "enchantment.randomenchants2.dimensional_shuffle.desc" : "Get out of a very risky situation",
 
 
-  "enchantment.randomenchants2.breaking" : "Breaking Curse",
-  "enchantment.randomenchants2.breaking.desc" : "Items Break way faster",
-  "enchantment.randomenchants2.butter_fingers" : "Butter Fingers",
-  "enchantment.randomenchants2.butter_fingers.desc" : "Items slip from your hand",
-  "enchantment.randomenchants2.fumbling" : "Fumbling",
-  "enchantment.randomenchants2.fumbling.desc" : "Tools don't mine as quickly as they should",
-  "enchantment.randomenchants2.shadows" : "Shadows",
-  "enchantment.randomenchants2.shadows.desc" : "Equipment weakens in the light",
-  "enchantment.randomenchants2.lingering_shadows" : "Lingering Shadows",
-  "enchantment.randomenchants2.lingering_shadows.desc" : "Careful, don't attack any mobs"
+  "enchantment.randomenchants2.breaking_curse" : "Breaking Curse",
+  "enchantment.randomenchants2.breaking_curse.desc" : "Items Break way faster",
+  "enchantment.randomenchants2.butter_fingers_curse" : "Butter Fingers",
+  "enchantment.randomenchants2.butter_fingers_curse.desc" : "Items slip from your hand",
+  "enchantment.randomenchants2.fumbling_curse" : "Fumbling",
+  "enchantment.randomenchants2.fumbling_curse.desc" : "Tools don't mine as quickly as they should",
+  "enchantment.randomenchants2.shadows_curse" : "Shadows",
+  "enchantment.randomenchants2.shadows_curse.desc" : "Equipment weakens in the light",
+  "enchantment.randomenchants2.lingering_shadows_curse" : "Lingering Shadows",
+  "enchantment.randomenchants2.lingering_shadows_curse.desc" : "Careful, don't attack any mobs"
 }

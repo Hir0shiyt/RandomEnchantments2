@@ -3,7 +3,6 @@ package net.hir0shiyt.randomenchants2.curse;
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
 import net.hir0shiyt.randomenchants2.config.ModConfig;
 import net.hir0shiyt.randomenchants2.enchantment.ModEnchantments;
-import net.hir0shiyt.randomenchants2.util.EnchantUtils;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -37,7 +36,7 @@ public class BreakingCurse extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.breakingConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.breakingConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override
@@ -49,7 +48,7 @@ public class BreakingCurse extends Enchantment {
     public static void amplifyDamage(BlockEvent.BreakEvent e) {
         Player p = e.getPlayer();
         ItemStack heldItem = p.getMainHandItem();
-        int level = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.BREAKING_CURSE, heldItem);
+        int level = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.BREAKING_CURSE.get(), heldItem);
         heldItem.hurtAndBreak(level, p, player -> player.broadcastBreakEvent(p.getUsedItemHand()));
     }
 }

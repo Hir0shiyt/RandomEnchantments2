@@ -2,10 +2,6 @@ package net.hir0shiyt.randomenchants2.enchantment;
 
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
 import net.hir0shiyt.randomenchants2.config.ModConfig;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -50,12 +46,12 @@ public class InstantDeath extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.instantDeathConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.instantDeathConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.instantDeathConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.instantDeathConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @SubscribeEvent
@@ -66,7 +62,7 @@ public class InstantDeath extends Enchantment {
             LivingEntity shooter = (LivingEntity) ((AbstractArrow) arrow).getOwner();
             if (shooter instanceof Player) {
                 Player player = (Player) shooter;
-                if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.INSTANT_DEATH, player.getMainHandItem()) > 0) {
+                if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.INSTANT_DEATH.get(), player.getMainHandItem()) > 0) {
                     if (event.getRayTraceResult().getType() == HitResult.Type.ENTITY) {
                         Entity target = ((EntityHitResult) event.getRayTraceResult()).getEntity();
                         if (target instanceof LivingEntity) {
@@ -89,7 +85,7 @@ public class InstantDeath extends Enchantment {
             if (attacker instanceof Player) {
                 Player player = (Player) attacker;
                 ItemStack heldItem = player.getMainHandItem();
-                if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.INSTANT_DEATH, heldItem) > 0) {
+                if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.INSTANT_DEATH.get(), heldItem) > 0) {
                     livingTarget.setHealth(0);
                 }
             }

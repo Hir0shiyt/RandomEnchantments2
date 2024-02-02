@@ -51,12 +51,12 @@ public class Ricochet extends Enchantment {
 
     @Override
     public boolean isAllowedOnBooks() {
-        return ModConfig.ServerConfig.ricochetConfig.get() == ModConfig.Restriction.NORMAL;
+        return ModConfig.ServerConfig.ricochetConfig.get() == ModConfig.Restriction.ENABLED;
     }
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.ricochetConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.ricochetConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override
@@ -77,7 +77,7 @@ public class Ricochet extends Enchantment {
         if (!(shooter instanceof Player)) return;
         Player player = (Player) shooter;
         ItemStack heldItem = player.getMainHandItem();
-        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RICOCHET, heldItem) > 0) {
+        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RICOCHET.get(), heldItem) > 0) {
             Direction facing = ((BlockHitResult) event.getRayTraceResult()).getDirection();
             if (!lastCollitionTime.containsKey(arrow)) {
                 lastCollitionTime.put(arrow, System.currentTimeMillis());
