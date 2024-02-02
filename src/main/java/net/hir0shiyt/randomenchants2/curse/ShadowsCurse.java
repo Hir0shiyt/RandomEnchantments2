@@ -37,7 +37,7 @@ public class ShadowsCurse extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.shadowsConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.shadowsConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override

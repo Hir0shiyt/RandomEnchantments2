@@ -34,7 +34,7 @@ public class ButterFingersCurse extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return ModConfig.ServerConfig.butterFingersConfig.get() == ModConfig.Restriction.ANVIL;
+        return ModConfig.ServerConfig.butterFingersConfig.get() == ModConfig.Restriction.TREASURE;
     }
 
     @Override
