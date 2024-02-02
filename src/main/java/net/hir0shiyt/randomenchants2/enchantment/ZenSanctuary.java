@@ -4,29 +4,23 @@ import net.hir0shiyt.randomenchants2.RandomEnchants2;
 import net.hir0shiyt.randomenchants2.config.ModConfig;
 import net.hir0shiyt.randomenchants2.util.EnchantUtils;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.List;
-
-@Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
+@Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ZenSanctuary extends Enchantment {
     public ZenSanctuary(Rarity rarity, EnchantmentCategory category, EquipmentSlot[] slots) {
         super(rarity, category, slots);
     }
 
     @Override
-    public int getMinCost(int level){
-        return  30;
+    public int getMinCost(int level) {
+        return 30;
     }
 
     @Override
@@ -52,23 +46,11 @@ public class ZenSanctuary extends Enchantment {
     }
 
     @SubscribeEvent
-    public static void onEntityTick(LivingEvent.LivingTickEvent event){
-        LivingEntity entity = event.getEntity();
-        if (entity instanceof Player player) {
-            ItemStack stack = player.getItemBySlot(EquipmentSlot.CHEST);
-            if (EnchantUtils.hasEnch(stack, ModEnchantments.ZEN_SANCTUARY.get())) {
-                double radius = 64.0;
-                Vec3 playerPos = player.position();
-                AABB boundingBox = new AABB(playerPos.x - radius, playerPos.y - radius, playerPos.z - radius,
-                        playerPos.x + radius, playerPos.y + radius, playerPos.z + radius);
-                List<Mob> mobs = player.getCommandSenderWorld().getEntitiesOfClass(Mob.class, boundingBox);
-                for (Mob mob : mobs) {
-                    if (mob.getTarget() != null && mob.getTarget() instanceof Player) {
-                        mob.setLastHurtByMob(null);
-                        mob.setTarget(null);
-                        mob.getNavigation().stop();
-                    }
-                }
+    public static void targetEvent(LivingChangeTargetEvent event) {
+        if (event.getNewTarget() instanceof Player player) {
+            if (EnchantUtils.hasEnch(player.getItemBySlot(EquipmentSlot.CHEST), ModEnchantments.ZEN_SANCTUARY.get())) {
+                event.setNewTarget(null);
+                event.setCanceled(true);
             }
         }
     }
