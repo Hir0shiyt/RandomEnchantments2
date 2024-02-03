@@ -26,7 +26,7 @@ public class SolarEnchant extends Enchantment {
 
     @Override
     public int getMinCost(int level) {
-        return 5 + (level - 1) * 10;
+        return 5 + (level - 1) * 8;
     }
 
     @Override
@@ -73,9 +73,17 @@ public class SolarEnchant extends Enchantment {
         boolean isDaytime = time >= 0 && time < 12000;
 
         ItemStack mainHandStack = event.player.getMainHandItem();
+        ItemStack head = event.player.getItemBySlot(EquipmentSlot.HEAD);
+        ItemStack chest = event.player.getItemBySlot(EquipmentSlot.CHEST);
+        ItemStack legs = event.player.getItemBySlot(EquipmentSlot.LEGS);
+        ItemStack feet = event.player.getItemBySlot(EquipmentSlot.FEET);
         int mainHandLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SOLAR_ENCHANT.get(), mainHandStack);
+        int headLvl = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SOLAR_ENCHANT.get(), head);
+        int chestLvl = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SOLAR_ENCHANT.get(), chest);
+        int legsLvl = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SOLAR_ENCHANT.get(), legs);
+        int feetLvl = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SOLAR_ENCHANT.get(), feet);
 
-        if (mainHandStack.isDamaged() && mainHandLevel > 0) {
+        if (mainHandStack.isDamaged() || head.isDamaged() || chest.isDamaged() || legs.isDamaged() || feet.isDamaged() && mainHandLevel > 0) {
             BlockPos playerPos = event.player.blockPosition();
             int skyLight = world.getBrightness(LightLayer.SKY, playerPos);
             int blockLight = world.getBrightness(LightLayer.BLOCK, playerPos);
@@ -83,7 +91,15 @@ public class SolarEnchant extends Enchantment {
             if (isDaytime || (skyLight >= 8 && blockLight >= 8)) {
                 if (event.player.tickCount % REPAIR_COOLDOWN == 0) {
                     int repairAmount = mainHandLevel * 2;
+                    int amount2 = headLvl * 2;
+                    int amount3 = chestLvl * 2;
+                    int amount4 = legsLvl * 2;
+                    int amount5 = feetLvl * 2;
                     mainHandStack.setDamageValue(Math.max(0, mainHandStack.getDamageValue() - repairAmount));
+                    head.setDamageValue(Math.max(0, head.getDamageValue() - amount2));
+                    chest.setDamageValue(Math.max(0, chest.getDamageValue() - amount3));
+                    legs.setDamageValue(Math.max(0, legs.getDamageValue() - amount4));
+                    feet.setDamageValue(Math.max(0, feet.getDamageValue() - amount5));
                 }
             }
         }
