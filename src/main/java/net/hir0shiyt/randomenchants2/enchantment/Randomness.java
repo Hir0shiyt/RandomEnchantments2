@@ -4,12 +4,12 @@ import net.hir0shiyt.randomenchants2.RandomEnchants2;
 import net.hir0shiyt.randomenchants2.config.ModConfig;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -85,7 +85,7 @@ public class Randomness extends Enchantment {
         for (int i = 0; i < level; i++) {
             Item randomItem = getRandomItem(random);
             if (randomItem != null) {
-                int randomCount = 1 + random.nextInt(level); // Random drop count based on enchantment level
+                int randomCount = 1 + random.nextInt(level);
                 ItemStack drop = new ItemStack(randomItem, randomCount);
                 drops.add(drop);
             }
@@ -106,17 +106,18 @@ public class Randomness extends Enchantment {
         Player player = event.getPlayer();
         ItemStack stack = player.getMainHandItem();
 
-        if (EnchantmentHelper.getItemEnchantmentLevel(Randomness.getRandomnessEnchant(), stack) <= 0 || event.getLevel().isClientSide()) {
+        int level = EnchantmentHelper.getItemEnchantmentLevel(Randomness.getRandomnessEnchant(), stack);
+        if (level <= 0 || event.getLevel().isClientSide()) {
             return;
         }
 
+        System.out.println("Randomness Enchantment Level: " + level);
+
         Level world = (Level) event.getLevel();
-        int level = EnchantmentHelper.getItemEnchantmentLevel(Randomness.getRandomnessEnchant(), stack);
-        BlockState blockState = world.getBlockState(event.getPos());
         event.setCanceled(true);
         world.destroyBlock(event.getPos(), false);
         event.setExpToDrop(0);
-        List<ItemStack> drops = Randomness.getRandomItems((Random) world.random, level);
+        List<ItemStack> drops = Randomness.getRandomItems(new Random(), level);
 
         for (ItemStack drop : drops) {
             if (!drop.isEmpty()) {
@@ -124,4 +125,5 @@ public class Randomness extends Enchantment {
             }
         }
     }
+
 }
