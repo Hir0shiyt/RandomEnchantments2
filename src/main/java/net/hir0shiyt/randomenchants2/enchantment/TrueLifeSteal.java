@@ -60,7 +60,7 @@ public class TrueLifeSteal extends Enchantment {
     public static void onAttack(LivingHurtEvent event) {
         if (event.getSource().getDirectEntity() instanceof Player) {
             Player player = (Player) event.getSource().getDirectEntity();
-            if (EnchantUtils.hasEnch(player, ModEnchantments.TRUE_LIFE_STEAL.get())) {
+            if (EnchantUtils.hasEnch(player, ModEnchantments.TRUE_LIFE_STEAL)) {
                 LivingEntity entity = event.getEntityLiving();
                 float damage = event.getAmount();
                 entity.hurt(DamageSource.GENERIC, damage*1.5f);
@@ -75,7 +75,7 @@ public class TrueLifeSteal extends Enchantment {
         if (arrowEntity instanceof AbstractArrow) {
             AbstractArrow arrow = (AbstractArrow) arrowEntity;
             Entity shooter = arrow.getOwner();
-            if (shooter instanceof Player && EnchantUtils.hasEnch((Player) shooter, ModEnchantments.TRUE_LIFE_STEAL.get())) {
+            if (shooter instanceof Player && EnchantUtils.hasEnch((Player) shooter, ModEnchantments.TRUE_LIFE_STEAL)) {
                 HitResult hitEntity = event.getRayTraceResult();
                 if (hitEntity != null) {
                     float damage = (float) arrow.getDeltaMovement().length(); // You can adjust this calculation based on your needs

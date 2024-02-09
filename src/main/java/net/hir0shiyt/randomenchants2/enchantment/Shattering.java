@@ -76,7 +76,7 @@ public class Shattering extends Enchantment {
         if (!(shooter instanceof Player)) return;
         Player player = (Player) ((AbstractArrow) arrow).getOwner();
         if (player == null) return;
-        if (!EnchantUtils.hasEnch(player.getMainHandItem(), ModEnchantments.SHATTERING.get())) return;
+        if (!EnchantUtils.hasEnch(player.getMainHandItem(), ModEnchantments.SHATTERING)) return;
         BlockPos pos = ((BlockHitResult) result).getBlockPos();
         Block glass = arrow.level.getBlockState(pos).getBlock();
         if (!(glass instanceof GlassBlock || glass instanceof StainedGlassBlock || glass instanceof StainedGlassPaneBlock)) return;

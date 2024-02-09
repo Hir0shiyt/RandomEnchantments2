@@ -70,7 +70,7 @@ public class Magnetic extends Enchantment {
 
         if (attacker instanceof Player) {
             Player player = (Player) attacker;
-            if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.MAGNETIC.get(), player.getMainHandItem()) > 0) {
+            if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.MAGNETIC, player.getMainHandItem()) > 0) {
                 List<ItemStack> stacks = getStacksFromEntityItems(e.getDrops());
 
                 for (ItemEntity itemEntity : e.getDrops()) {
@@ -89,7 +89,7 @@ public class Magnetic extends Enchantment {
                 Player player = (Player) shooter;
                 ItemStack heldItem = player.getMainHandItem();
 
-                if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.MAGNETIC.get(), heldItem) > 0) {
+                if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.MAGNETIC, heldItem) > 0) {
                     List<ItemStack> stacks = getStacksFromEntityItems(e.getDrops());
 
                     for (ItemEntity itemEntity : e.getDrops()) {

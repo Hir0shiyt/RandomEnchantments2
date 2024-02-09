@@ -62,7 +62,7 @@ public class StoneLover extends Enchantment {
         Player player = event.getPlayer();
         if (player != null) {
             ItemStack mainHandStack = player.getMainHandItem();
-            int mainHandLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.STONE_LOVER.get(), mainHandStack);
+            int mainHandLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.STONE_LOVER, mainHandStack);
 
             if (mainHandLevel > 0) {
                 Block block = event.getState().getBlock();

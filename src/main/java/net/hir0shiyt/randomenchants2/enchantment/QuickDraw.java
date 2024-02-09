@@ -66,12 +66,12 @@ public class QuickDraw extends Enchantment {
                 heldItem = player.getItemInHand(InteractionHand.OFF_HAND);
             }
 
-            if (!(heldItem.getItem() instanceof BowItem || heldItem.getItem() instanceof CrossbowItem) || !EnchantUtils.hasEnch(player, ModEnchantments.QUICK_DRAW.get())) {
+            if (!(heldItem.getItem() instanceof BowItem || heldItem.getItem() instanceof CrossbowItem) || !EnchantUtils.hasEnch(player, ModEnchantments.QUICK_DRAW)) {
                 return;
             }
 
             if (player.isUsingItem()) {
-                for (int i = 0; i < EnchantmentHelper.getEnchantmentLevel(ModEnchantments.QUICK_DRAW.get(), player); i++) {
+                for (int i = 0; i < EnchantmentHelper.getEnchantmentLevel(ModEnchantments.QUICK_DRAW, player); i++) {
                     updateActiveHand(player);
                 }
             }

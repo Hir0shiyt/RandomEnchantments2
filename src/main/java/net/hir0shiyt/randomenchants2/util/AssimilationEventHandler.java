@@ -19,7 +19,7 @@ public class AssimilationEventHandler {
         if (entity instanceof Player) {
             Player player = (Player) entity;
 
-            if (EnchantUtils.hasEnch(tool, ModEnchantments.ASSIMILATION.get())) {
+            if (EnchantUtils.hasEnch(tool, ModEnchantments.ASSIMILATION)) {
                 Assimilation.repair(player, contents);
             }
         }

@@ -77,7 +77,7 @@ public class Ricochet extends Enchantment {
         if (!(shooter instanceof Player)) return;
         Player player = (Player) shooter;
         ItemStack heldItem = player.getMainHandItem();
-        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RICOCHET.get(), heldItem) > 0) {
+        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RICOCHET, heldItem) > 0) {
             Direction facing = ((BlockHitResult) event.getRayTraceResult()).getDirection();
             if (!lastCollitionTime.containsKey(arrow)) {
                 lastCollitionTime.put(arrow, System.currentTimeMillis());

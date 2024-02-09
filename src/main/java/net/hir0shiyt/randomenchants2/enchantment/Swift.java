@@ -54,9 +54,9 @@ public class Swift extends Enchantment {
     @SubscribeEvent
     public static void onPlayerUpdate(TickEvent.PlayerTickEvent event) {
         Player player = event.player;
-        if (!EnchantUtils.hasEnch(player, ModEnchantments.SWIFT.get())) return;
+        if (!EnchantUtils.hasEnch(player, ModEnchantments.SWIFT)) return;
         int swing = ObfuscationReflectionHelper.getPrivateValue(LivingEntity.class, player, "f_20922_");
-        swing += EnchantmentHelper.getEnchantmentLevel(ModEnchantments.SWIFT.get(), player);
+        swing += EnchantmentHelper.getEnchantmentLevel(ModEnchantments.SWIFT, player);
         ObfuscationReflectionHelper.setPrivateValue(LivingEntity.class, player, swing, "f_20922_");
     }
 }

@@ -60,7 +60,7 @@ public class ObsidianBuster extends Enchantment {
         Player player = event.getPlayer();
         ItemStack heldItem = player.getMainHandItem();
 
-        if (EnchantUtils.hasEnch(heldItem, ModEnchantments.OBSIDIAN_BUSTER.get())) {
+        if (EnchantUtils.hasEnch(heldItem, ModEnchantments.OBSIDIAN_BUSTER)) {
 
             if (event.getState().getBlock() == Blocks.OBSIDIAN) {
                 float newSpeed = event.getNewSpeed() + 100F;

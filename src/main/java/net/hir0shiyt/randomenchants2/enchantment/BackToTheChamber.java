@@ -72,9 +72,9 @@ public class BackToTheChamber extends Enchantment {
                 if (shooter instanceof Player) {
                     Player playerShooter = (Player) shooter;
                     ItemStack heldItem = playerShooter.getMainHandItem();
-                    if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.BACK_TO_THE_CHAMBER.get(), heldItem) > 0) {
+                    if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.BACK_TO_THE_CHAMBER, heldItem) > 0) {
                         ItemStack arrowStack = new ItemStack(Items.ARROW, 1); //Can replace with custom item
-                        int level = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.BACK_TO_THE_CHAMBER.get(), heldItem);
+                        int level = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.BACK_TO_THE_CHAMBER, heldItem);
                         if (!arrowStack.isEmpty() && arrowStack.getItem() instanceof ArrowItem) {
                             double chance = 0.2 * level;
                             if (arrow.level instanceof ServerLevel serverLevel && serverLevel.getRandom().nextDouble() < chance) {
