@@ -56,7 +56,7 @@ public class ShadowsCurse extends Enchantment {
         if (player.getLevel().isClientSide) return;
         for (EquipmentSlot slot : list) {
             ItemStack stack = player.getItemBySlot(slot);
-            if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SHADOWS_CURSE.get(), stack) == 0) continue;
+            if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SHADOWS_CURSE, stack) == 0) continue;
             if (EnchantUtils.isDark(player)) {
                     stack.hurtAndBreak(1, player, player1 -> player1.broadcastBreakEvent(player1.getUsedItemHand()));
             }

@@ -73,7 +73,7 @@ public class Homing extends Enchantment {
         Entity entity = event.getEntity();
         if (entity instanceof AbstractArrow && ((AbstractArrow) entity).getOwner() instanceof Player player) {
             ItemStack heldItem = player.getMainHandItem();
-            if (EnchantUtils.hasEnch(heldItem, ModEnchantments.HOMING.get())) {
+            if (EnchantUtils.hasEnch(heldItem, ModEnchantments.HOMING)) {
                 AbstractArrow arrow = (AbstractArrow) entity;
 
                 double arrowVelocity = arrow.getDeltaMovement().length();

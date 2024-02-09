@@ -85,7 +85,7 @@ public class Torches extends Enchantment {
             Player player = (Player) shooter;
             ItemStack heldItem = player.getMainHandItem();
 
-            if (!heldItem.isEmpty() && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.TORCHES.get(), heldItem) > 0) {
+            if (!heldItem.isEmpty() && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.TORCHES, heldItem) > 0) {
                 HitResult result = e.getRayTraceResult();
 
                 if (result instanceof BlockHitResult) {

@@ -27,7 +27,7 @@ public class ClientEventHandler {
         Player player = event.getPlayer();
         if (player == null) return;
         List<Component> tooltip = event.getToolTip();
-        if ((EnchantUtils.hasEnch(event.getItemStack(), ModEnchantments.STONE_BOUND.get()))) {
+        if ((EnchantUtils.hasEnch(event.getItemStack(), ModEnchantments.STONE_BOUND))) {
             ItemStack stack = player.getMainHandItem();
             if (event.getItemStack() != stack) return;
             tooltip.add(new TextComponent("Mining Bonus: " + ChatFormatting.GREEN + "+" + stack.getDamageValue() * .02));
@@ -46,11 +46,11 @@ public class ClientEventHandler {
         Player player = event.getPlayer();
         if (player == null) return;
         List<Component> tooltip = event.getToolTip();
-        if (EnchantUtils.hasEnch(player, ModEnchantments.DIMENSIONAL_SHUFFLE.get())) {
+        if (EnchantUtils.hasEnch(player, ModEnchantments.DIMENSIONAL_SHUFFLE)) {
             ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
             if (event.getItemStack() != chest) return;
-            tooltip.add(new TextComponent("Teleportation Range: " + ChatFormatting.AQUA + EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DIMENSIONAL_SHUFFLE.get(), chest) * 10 + " blocks"));
-            tooltip.add(new TextComponent("Shuffle Cooldown: " + ChatFormatting.GOLD + (16 - EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DIMENSIONAL_SHUFFLE.get(), chest) * EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DIMENSIONAL_SHUFFLE.get(), chest)) + " seconds"));
+            tooltip.add(new TextComponent("Teleportation Range: " + ChatFormatting.AQUA + EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DIMENSIONAL_SHUFFLE, chest) * 10 + " blocks"));
+            tooltip.add(new TextComponent("Shuffle Cooldown: " + ChatFormatting.GOLD + (16 - EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DIMENSIONAL_SHUFFLE, chest) * EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DIMENSIONAL_SHUFFLE, chest)) + " seconds"));
         }
     }
 
@@ -59,9 +59,9 @@ public class ClientEventHandler {
         Player player = event.getPlayer();
         if (player == null) return;
         List<Component> tooltip = event.getToolTip();
-        if (EnchantUtils.hasEnch(player, ModEnchantments.ETHEREAL_EMBRACE.get())) {
+        if (EnchantUtils.hasEnch(player, ModEnchantments.ETHEREAL_EMBRACE)) {
             ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
-            double eLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.ETHEREAL_EMBRACE.get(), chest) * 0.05;
+            double eLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.ETHEREAL_EMBRACE, chest) * 0.05;
             if (event.getItemStack() != chest) return;
             tooltip.add(new TextComponent("Chance of phasing through attacks: " + ChatFormatting.LIGHT_PURPLE + eLevel));
         }
@@ -72,9 +72,9 @@ public class ClientEventHandler {
         Player player = event.getPlayer();
         if (player == null) return;
         List<Component> tooltip = event.getToolTip();
-        if (EnchantUtils.hasEnch(player, ModEnchantments.EXPLODING.get())) {
+        if (EnchantUtils.hasEnch(player, ModEnchantments.EXPLODING)) {
             ItemStack heldItem = player.getMainHandItem();
-            float explosionSize = 1.0f + (float) EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.EXPLODING.get(), heldItem);
+            float explosionSize = 1.0f + (float) EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.EXPLODING, heldItem);
             if (event.getItemStack() != heldItem) return;
             tooltip.add(new TextComponent("Explosion Size: " + ChatFormatting.DARK_RED + explosionSize));
         }

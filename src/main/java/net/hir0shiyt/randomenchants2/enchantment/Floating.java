@@ -66,7 +66,7 @@ public class Floating extends Enchantment {
             LivingEntity shooter = (LivingEntity) ((AbstractArrow) arrow).getOwner();
             if (shooter instanceof Player) {
                 Player player = (Player) shooter;
-                if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.FLOATING.get(), player.getMainHandItem()) > 0) {
+                if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.FLOATING, player.getMainHandItem()) > 0) {
                     if (event.getRayTraceResult().getType() == HitResult.Type.ENTITY) {
                         Entity target = ((EntityHitResult) event.getRayTraceResult()).getEntity();
                         if (target instanceof LivingEntity) {
@@ -90,7 +90,7 @@ public class Floating extends Enchantment {
             if (attacker instanceof Player) {
                 Player player = (Player) attacker;
                 ItemStack heldItem = player.getMainHandItem();
-                if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.FLOATING.get(), heldItem) > 0) {
+                if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.FLOATING, heldItem) > 0) {
                     applyEffects(livingTarget);
                     BlockPos targetPos = target.getOnPos();
                     livingTarget.teleportTo(targetPos.getX(), targetPos.getY() + 256, targetPos.getZ());

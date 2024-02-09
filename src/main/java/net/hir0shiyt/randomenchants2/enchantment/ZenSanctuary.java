@@ -48,7 +48,7 @@ public class ZenSanctuary extends Enchantment {
     @SubscribeEvent
     public static void targetEvent(LivingChangeTargetEvent event) {
         if (event.getNewTarget() instanceof Player player) {
-            if (EnchantUtils.hasEnch(player.getItemBySlot(EquipmentSlot.CHEST), ModEnchantments.ZEN_SANCTUARY.get())) {
+            if (EnchantUtils.hasEnch(player.getItemBySlot(EquipmentSlot.CHEST), ModEnchantments.ZEN_SANCTUARY)) {
                 event.setNewTarget(null);
                 event.setCanceled(true);
             }

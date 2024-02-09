@@ -61,7 +61,7 @@ public class ObsidianBuster extends Enchantment {
         ItemStack heldItem = player.getItemInHand(player.getUsedItemHand());
 
         // Check if the enchantment is enabled
-        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.OBSIDIAN_BUSTER.get(), heldItem) <= 0) {
+        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.OBSIDIAN_BUSTER, heldItem) <= 0) {
             return;
         }
 

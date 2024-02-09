@@ -59,7 +59,7 @@ public class Lumberjack extends Enchantment {
     @SubscribeEvent
     public static void onWoodBreak(BlockEvent.BreakEvent e) {
         Player p = e.getPlayer();
-        if (!EnchantUtils.hasEnch(p, ModEnchantments.LUMBERJACK.get())) return;
+        if (!EnchantUtils.hasEnch(p, ModEnchantments.LUMBERJACK)) return;
         ItemStack stack = p.getMainHandItem();
         BlockState state = e.getState();
         Block block = state.getBlock();

@@ -60,7 +60,7 @@ public class TrueShot extends Enchantment {
         if (shooter instanceof Player) {
             Player player1 = (Player) shooter;
             ItemStack heldItem = player1.getMainHandItem();
-            if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.TRUE_SHOT.get(), heldItem) > 0) {
+            if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.TRUE_SHOT, heldItem) > 0) {
                 entity.setNoGravity(true);
             }
         }

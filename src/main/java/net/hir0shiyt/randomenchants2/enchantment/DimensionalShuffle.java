@@ -64,8 +64,8 @@ public class DimensionalShuffle extends Enchantment {
         Entity entity = event.getEntity();
         if (entity instanceof Player player) {
             ItemStack armor = player.getItemBySlot(EquipmentSlot.CHEST);
-            if (EnchantUtils.hasEnch(armor, ModEnchantments.DIMENSIONAL_SHUFFLE.get())) {
-                int level = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DIMENSIONAL_SHUFFLE.get(), armor);
+            if (EnchantUtils.hasEnch(armor, ModEnchantments.DIMENSIONAL_SHUFFLE)) {
+                int level = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DIMENSIONAL_SHUFFLE, armor);
                 if (!itemCooldown.containsKey(armor) || itemCooldown.get(armor) <= 0) {
                     if (level > 0 && player.getHealth() - event.getAmount() <= 0) {
                         event.setCanceled(true);

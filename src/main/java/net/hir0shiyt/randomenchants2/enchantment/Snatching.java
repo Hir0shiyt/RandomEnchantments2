@@ -73,7 +73,7 @@ public class Snatching extends Enchantment {
         Player player = event.getPlayer();
         ItemStack heldItem = player.getMainHandItem();
 
-        if (heldItem.getItem() instanceof FishingRodItem && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SNATCHING.get(), heldItem) > 0) {
+        if (heldItem.getItem() instanceof FishingRodItem && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SNATCHING, heldItem) > 0) {
             if (player.fishing == null || player.level.isClientSide) return;
 
             Entity hookedEntity = player.fishing.getHookedIn();

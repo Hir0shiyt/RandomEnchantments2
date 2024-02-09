@@ -48,7 +48,7 @@ public class BreakingCurse extends Enchantment {
     public static void amplifyDamage(BlockEvent.BreakEvent e) {
         Player p = e.getPlayer();
         ItemStack heldItem = p.getMainHandItem();
-        int level = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.BREAKING_CURSE.get(), heldItem);
+        int level = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.BREAKING_CURSE, heldItem);
         heldItem.hurtAndBreak(level, p, player -> player.broadcastBreakEvent(p.getUsedItemHand()));
     }
 }
