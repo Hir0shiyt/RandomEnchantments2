@@ -1,6 +1,7 @@
 package net.hir0shiyt.randomenchants2.util;
 
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
+import net.hir0shiyt.randomenchants2.config.ModConfig;
 import net.hir0shiyt.randomenchants2.enchantment.ModEnchantments;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.ListTag;
@@ -57,6 +58,16 @@ public class ClientEventHandler {
             float explosionSize = 1.0f + (float) EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.EXPLODING.get(), heldItem);
             if (event.getItemStack() != heldItem) return;
             tooltip.add(Component.literal("Explosion Size: " + ChatFormatting.DARK_RED + explosionSize));
+        }
+
+        else if (EnchantUtils.hasEnch(player, ModEnchantments.DUNGEONEERING.get())) {
+            ItemStack heldItem = player.getMainHandItem();
+            if (event.getItemStack() != heldItem) return;
+            if (ModConfig.ServerConfig.dungeoneeringLootTableConfig.get() == ModConfig.Restriction2.ENABLED) {
+                tooltip.add(Component.literal(ChatFormatting.DARK_PURPLE + "Getting loot from 4 different dungeons"));
+            } else if (ModConfig.ServerConfig.dungeoneeringLootTableConfig.get() == ModConfig.Restriction2.DISABLED) {
+                tooltip.add(Component.literal(ChatFormatting.DARK_AQUA + "Getting loot from 1 dungeon"));
+            }
         }
     }
 }

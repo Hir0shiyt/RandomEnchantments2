@@ -64,6 +64,9 @@ public class ModConfig {
         public static ForgeConfigSpec.EnumValue<Restriction> shadowsConfig;
         public static ForgeConfigSpec.EnumValue<Restriction> lingeringShadowsConfig;
 
+        //extra
+        public static ForgeConfigSpec.EnumValue<Restriction2> dungeoneeringLootTableConfig;
+
         ServerConfig(ForgeConfigSpec.Builder builder) {
             builder.push("enchantments")
                     .comment("Use TREASURE for the enchantment or curse to only be achieved via treasures")
@@ -98,7 +101,7 @@ public class ModConfig {
                     .defineEnum("trueShotConfig", ModConfig.Restriction.ENABLED);
             equalMineConfig = builder.comment("Restriction for Equal Mine Enchantment")
                     .defineEnum("equalMineConfig", ModConfig.Restriction.ENABLED);
-            assimilationConfig = builder.comment("Restriction for Assimilation Enchantment")
+            assimilationConfig = builder.comment("Restriction for DarkKingdomCurse Enchantment")
                     .defineEnum("assimilationConfig", ModConfig.Restriction.ENABLED);
             transpositionConfig = builder.comment("Restriction for Transposition Enchantment")
                     .defineEnum("transpositionConfig", ModConfig.Restriction.ENABLED);
@@ -143,8 +146,9 @@ public class ModConfig {
             stoneBoundConfig = builder.comment("Restriction for Stone Bound Enchantment")
                     .defineEnum("stoneBoundConfig", Restriction.ENABLED);
 
-//---------------------------------------------------------------------------------------
-            builder.comment("curses");
+
+            builder.pop();
+            builder.push("curses");
 
             breakingConfig = builder.comment("Restriction for Breaking Curse")
                     .defineEnum("breakingConfig", Restriction.ENABLED);
@@ -155,8 +159,10 @@ public class ModConfig {
             shadowsConfig = builder.comment("Restriction for Shadows Curse")
                     .defineEnum("shadowsConfig", Restriction.ENABLED);
 
-//----------------------------------------------------------------------------------------
-            builder.comment("unoriginal enchantments / curses");
+
+
+            builder.pop();
+            builder.push("unoriginal enchantments / curses");
 
             lingeringShadowsConfig = builder.comment("Restriction for Chaotic Shifting Curse")
                     .comment("This Curse is Disabled by Default, use ENABLED if you want to enable it!")
@@ -178,10 +184,20 @@ public class ModConfig {
                     .comment("Extra Enchantments are Disabled by Default, use ENABLED if you want to enable them!")
                     .defineEnum("zenSanctuaryConfig", Restriction.DISABLED);
 
+
+            builder.pop();
+            builder.push("extra configurations");
+
+            dungeoneeringLootTableConfig = builder.comment("Loot table config for dungeoneering Disabled by default")
+                    .defineEnum("dungeoneeringLootTableConfig", Restriction2.DISABLED);
+
             builder.pop();
         }
     }
     public enum Restriction {
         DISABLED, ENABLED, TREASURE
+    }
+    public enum Restriction2 {
+        DISABLED, ENABLED
     }
 }
