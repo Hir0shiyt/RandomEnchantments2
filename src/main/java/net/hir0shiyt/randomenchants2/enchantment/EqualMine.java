@@ -54,7 +54,7 @@ public class EqualMine extends Enchantment {
         float hardness = state.getBlock().defaultDestroyTime();
         if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.EQUAL_MINE.get(), heldItem) > 0) {
             float oldSpeed = event.getOriginalSpeed();
-            if (hardness<1) hardness =1;
+            if (hardness > 1) hardness = 1;
             float newSpeed= hardness * oldSpeed;
             event.setNewSpeed(newSpeed);
         }
