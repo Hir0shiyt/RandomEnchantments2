@@ -14,7 +14,7 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -68,23 +68,20 @@ public class Lumberjack extends Enchantment {
         int maxLogsDetected = 64;
         if (isLog(block)) {
             List<BlockPos> logsToBreak = new ArrayList<>();
-            int logsFound = findConnectedLogs(logsToBreak, e.getPlayer().getLevel(), pos, maxLogsToBreak);
+            int logsFound = findConnectedLogs(logsToBreak, e.getPlayer().getCommandSenderWorld(), pos, maxLogsToBreak);
             int logsToBreakCount = Math.min(logsFound, maxLogsDetected);
             int damageAmount = logsToBreakCount / 2;
             stack.hurtAndBreak(damageAmount, p, player -> {});
             for (BlockPos logPos : logsToBreak) {
-                e.getPlayer().getLevel().destroyBlock(logPos, true);
+                e.getPlayer().getCommandSenderWorld().destroyBlock(logPos, true);
             }
         }
     }
 
     private static boolean isLog(Block block) {
-        ResourceLocation registryName = block.getRegistryName();
-        if (registryName != null) {
-            String namespace = registryName.getNamespace();
-            return namespace.equals("minecraft") && registryName.getPath().contains("log");
-        }
-        return false;
+        ResourceLocation registryName = block.getLootTable();
+        String namespace = registryName.getNamespace();
+        return namespace.equals("minecraft") && registryName.getPath().contains("log");
     }
 
     private static int findConnectedLogs(List<BlockPos> logsToBreak, Level world, BlockPos start, int maxLogsDetected) {
@@ -103,6 +100,7 @@ public class Lumberjack extends Enchantment {
             logsToBreak.add(currentPos);
             logsFound++;
 
+            // Check all neighbors, including diagonals
             for (Direction direction : Direction.values()) {
                 BlockPos neighborPos = currentPos.relative(direction);
                 if (!visited.contains(neighborPos)) {

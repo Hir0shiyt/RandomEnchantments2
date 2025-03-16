@@ -12,15 +12,15 @@ import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
 public class ZenSanctuary extends Enchantment {
     public ZenSanctuary(Rarity rarity, EnchantmentCategory category, EquipmentSlot[] slots) {
         super(rarity, category, slots);
     }
 
     @Override
-    public int getMinCost(int level) {
-        return 30;
+    public int getMinCost(int level){
+        return  30;
     }
 
     @Override

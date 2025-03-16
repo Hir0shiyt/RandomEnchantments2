@@ -67,7 +67,7 @@ public class Discord extends Enchantment {
         double x = target.getX();
         double y = target.getY();
         double z = target.getZ();
-        List<Entity> aggro = target.level.getEntitiesOfClass(Entity.class, new AABB(x- r, y - r, z - r, x + r, y + r, z + r));
+        List<Entity> aggro = target.getCommandSenderWorld().getEntitiesOfClass(Entity.class, new AABB(x- r, y - r, z - r, x + r, y + r, z + r));
         for (Entity triggered : aggro) {
             if (triggered instanceof LivingEntity) {
                 ((LivingEntity) triggered).setLastHurtByMob((LivingEntity) target);

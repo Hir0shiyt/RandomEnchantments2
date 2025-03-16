@@ -2,7 +2,6 @@ package net.hir0shiyt.randomenchants2.enchantment;
 
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
 import net.hir0shiyt.randomenchants2.config.ModConfig;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -76,7 +75,7 @@ public class CursedJumping extends Enchantment {
                 Player player = (Player) attacker;
                 ItemStack heldItem = player.getMainHandItem();
                 if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.CURSED_JUMPING.get(), heldItem) > 0) {
-                    applyEffects(livingTarget);
+                    livingTarget.addEffect(new MobEffectInstance(MobEffects.JUMP, 150, 100, false, false));
                 }
             }
         }
@@ -95,16 +94,11 @@ public class CursedJumping extends Enchantment {
                         Entity target = ((EntityHitResult) event.getRayTraceResult()).getEntity();
                         if (target instanceof LivingEntity) {
                             LivingEntity livingTarget = (LivingEntity) target;
-                            applyEffects(livingTarget);
+                            livingTarget.addEffect(new MobEffectInstance(MobEffects.JUMP, 150, 100, false, false));
                         }
                     }
                 }
             }
         }
-    }
-
-    private static void applyEffects(LivingEntity entity) {
-        MobEffect jump_boost = MobEffects.JUMP;
-        entity.addEffect(new MobEffectInstance(jump_boost, 40, 127));
     }
 }

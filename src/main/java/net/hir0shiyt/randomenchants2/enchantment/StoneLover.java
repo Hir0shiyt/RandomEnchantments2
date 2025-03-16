@@ -10,7 +10,7 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -69,7 +69,7 @@ public class StoneLover extends Enchantment {
                 if (block == Blocks.STONE && player.getRandom().nextFloat() < 0.8f) {
                     int repairAmount = 2;
                     mainHandStack.setDamageValue(Math.max(0, mainHandStack.getDamageValue() - repairAmount));
-                    mainHandStack.setPopTime(5);
+                    mainHandStack.setPopTime(5); // Not useful at all lol
                 }
             }
         }

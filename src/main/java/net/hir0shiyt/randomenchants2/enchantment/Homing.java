@@ -16,10 +16,12 @@ import net.minecraft.world.item.enchantment.MultiShotEnchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
@@ -39,7 +41,7 @@ public class Homing extends Enchantment {
     }
 
     @Override
-    public boolean canEnchant(ItemStack stack) {
+    public boolean canEnchant(@Nonnull ItemStack stack) {
         return ModConfig.ServerConfig.homingConfig.get() != ModConfig.Restriction.DISABLED && super.canEnchant(stack);
     }
 
@@ -59,7 +61,7 @@ public class Homing extends Enchantment {
     }
 
     @Override
-    protected boolean checkCompatibility(Enchantment enchantment) {
+    protected boolean checkCompatibility(@NotNull Enchantment enchantment) {
         return !(enchantment instanceof MultiShotEnchantment) &&
                 !(enchantment instanceof Torches) &&
                 !(enchantment instanceof Transposition) &&
@@ -69,7 +71,7 @@ public class Homing extends Enchantment {
     }
 
     @SubscribeEvent
-    public static void onEntityJoinWorld(EntityJoinWorldEvent event) {
+    public static void onEntityJoinWorld(EntityJoinLevelEvent event) {
         Entity entity = event.getEntity();
         if (entity instanceof AbstractArrow && ((AbstractArrow) entity).getOwner() instanceof Player player) {
             ItemStack heldItem = player.getMainHandItem();
@@ -78,7 +80,7 @@ public class Homing extends Enchantment {
 
                 double arrowVelocity = arrow.getDeltaMovement().length();
 
-                Level level = arrow.level;
+                Level level = arrow.level();
                 Vec3 shooterPos = new Vec3(player.getX(), player.getY() + player.getEyeHeight(player.getPose()), player.getZ());
                 List<LivingEntity> livingEntities = getLivingEntitiesInWorld(level, arrow.getOwner());
                 LivingEntity nearestEntity = null;

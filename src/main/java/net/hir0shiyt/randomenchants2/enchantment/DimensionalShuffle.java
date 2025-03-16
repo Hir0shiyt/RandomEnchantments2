@@ -81,7 +81,7 @@ public class DimensionalShuffle extends Enchantment {
     }
 
     private static void teleportPlayerRandomly(Player player, int level) {
-        Level world = player.level;
+        Level world = player.getCommandSenderWorld();
         double x = player.getX();
         double y = player.getY();
         double z = player.getZ();
@@ -93,7 +93,7 @@ public class DimensionalShuffle extends Enchantment {
             double newY = y + (RANDOM.nextDouble() - 0.5) * radius;
             double newZ = z + (RANDOM.nextDouble() - 0.5) * radius;
 
-            BlockPos candidatePos = new BlockPos(newX, newY, newZ);
+            BlockPos candidatePos = new BlockPos((int) newX, (int) newY, (int) newZ);
 
             if (!world.isLoaded(candidatePos)) {
                 continue;

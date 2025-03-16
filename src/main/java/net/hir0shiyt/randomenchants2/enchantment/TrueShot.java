@@ -10,7 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -51,7 +51,7 @@ public class TrueShot extends Enchantment {
     }
 
     @SubscribeEvent
-    public static void arrowSpawn(EntityJoinWorldEvent event) {
+    public static void arrowSpawn(EntityJoinLevelEvent event) {
         Entity entity = event.getEntity();
         if (!(entity instanceof AbstractArrow)) return;
         Entity shooter = ((AbstractArrow) entity).getOwner();

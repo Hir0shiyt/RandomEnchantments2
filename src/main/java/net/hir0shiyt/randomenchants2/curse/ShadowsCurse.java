@@ -20,6 +20,8 @@ public class ShadowsCurse extends Enchantment {
         super(rarity, category, slots);
     }
 
+    private static final int REPAIR_COOLDOWN = 20;
+
     @Override
     public int getMinCost(int level) {
         return 25;
@@ -53,11 +55,11 @@ public class ShadowsCurse extends Enchantment {
     public static void applyShadows(TickEvent.PlayerTickEvent event) {
         if (Math.random() > .05) return;
         Player player = event.player;
-        if (player.getLevel().isClientSide) return;
+        if (player.getCommandSenderWorld().isClientSide) return;
         for (EquipmentSlot slot : list) {
             ItemStack stack = player.getItemBySlot(slot);
             if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SHADOWS_CURSE.get(), stack) == 0) continue;
-            if (EnchantUtils.isDark(player)) {
+            if (EnchantUtils.isDark(player) && event.player.tickCount % REPAIR_COOLDOWN == 0) {
                     stack.hurtAndBreak(1, player, player1 -> player1.broadcastBreakEvent(player1.getUsedItemHand()));
             }
         }

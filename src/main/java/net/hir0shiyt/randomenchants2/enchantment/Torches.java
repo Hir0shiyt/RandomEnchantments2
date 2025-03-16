@@ -9,7 +9,8 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.*;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -90,7 +91,7 @@ public class Torches extends Enchantment {
 
                 if (result instanceof BlockHitResult) {
                     BlockHitResult blockHitResult = (BlockHitResult) result;
-                    Level level = arrow.level;
+                    Level level = arrow.level();
                     BlockPos pos = blockHitResult.getBlockPos().relative(blockHitResult.getDirection());
                     BlockState blockState;
 
@@ -106,7 +107,7 @@ public class Torches extends Enchantment {
                         ItemStack arrowStack = new ItemStack(Items.ARROW, 1);
                         player.getInventory().removeItem(arrowStack);
 
-                        if (level.getBlockState(pos).getMaterial().isReplaceable()) {
+                        if (level.getBlockState(pos).canBeReplaced()) {
                             level.setBlockAndUpdate(pos, blockState);
                             arrow.remove(Entity.RemovalReason.DISCARDED);
                         }

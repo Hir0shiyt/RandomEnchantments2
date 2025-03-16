@@ -2,8 +2,6 @@ package net.hir0shiyt.randomenchants2.enchantment;
 
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
 import net.hir0shiyt.randomenchants2.config.ModConfig;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -71,9 +69,7 @@ public class Floating extends Enchantment {
                         Entity target = ((EntityHitResult) event.getRayTraceResult()).getEntity();
                         if (target instanceof LivingEntity) {
                             LivingEntity livingTarget = (LivingEntity) target;
-                            applyEffects(livingTarget);
-                            BlockPos targetPos = target.getOnPos();
-                            livingTarget.teleportTo(targetPos.getX(), targetPos.getY() + 256, targetPos.getZ());
+                            livingTarget.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 100, 4, false, false));
                         }
                     }
                 }
@@ -91,16 +87,9 @@ public class Floating extends Enchantment {
                 Player player = (Player) attacker;
                 ItemStack heldItem = player.getMainHandItem();
                 if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.FLOATING.get(), heldItem) > 0) {
-                    applyEffects(livingTarget);
-                    BlockPos targetPos = target.getOnPos();
-                    livingTarget.teleportTo(targetPos.getX(), targetPos.getY() + 256, targetPos.getZ());
+                    livingTarget.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 100, 4, false, false));
                 }
             }
         }
-    }
-
-    private static void applyEffects(LivingEntity entity) {
-        MobEffect levitation = MobEffects.LEVITATION;
-        entity.addEffect(new MobEffectInstance(levitation, 200, 2));
     }
 }

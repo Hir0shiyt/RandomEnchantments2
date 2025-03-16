@@ -54,8 +54,8 @@ public class EtherealEmbrace extends Enchantment {
 
     @SubscribeEvent
     public static void onLivingAttack(LivingAttackEvent event) {
-        if (event.getEntityLiving() == null) { return; }
-        ItemStack armorStack = event.getEntityLiving().getItemBySlot(EquipmentSlot.CHEST);
+        if (event.getEntity() == null) { return; }
+        ItemStack armorStack = event.getEntity().getItemBySlot(EquipmentSlot.CHEST);
         if (EnchantUtils.hasEnch(armorStack, ModEnchantments.ETHEREAL_EMBRACE.get())) {
             int enchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.ETHEREAL_EMBRACE.get(), armorStack);
             double phasingChance = enchantmentLevel * 0.05;

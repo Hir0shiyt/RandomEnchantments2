@@ -11,8 +11,8 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
-import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.event.world.ExplosionEvent;
+import net.minecraftforge.event.level.BlockEvent;
+import net.minecraftforge.event.level.ExplosionEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -56,7 +56,7 @@ public class Resistant extends Enchantment {
 
     @SubscribeEvent
     public static void itemSpawn(ItemTossEvent event) {
-        ItemEntity entityItem = event.getEntityItem();
+        ItemEntity entityItem = event.getEntity();
         ItemStack stack = entityItem.getItem();
         if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RESISTANT.get(), stack) > 0) {
             entityItem.setInvulnerable(true);

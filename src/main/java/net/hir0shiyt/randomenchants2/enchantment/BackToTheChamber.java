@@ -8,9 +8,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.item.ArrowItem;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
@@ -77,9 +75,9 @@ public class BackToTheChamber extends Enchantment {
                         int level = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.BACK_TO_THE_CHAMBER.get(), heldItem);
                         if (!arrowStack.isEmpty() && arrowStack.getItem() instanceof ArrowItem) {
                             double chance = 0.2 * level;
-                            if (arrow.level instanceof ServerLevel serverLevel && serverLevel.getRandom().nextDouble() < chance) {
+                            if (arrow.getCommandSenderWorld() instanceof ServerLevel serverLevel && serverLevel.getRandom().nextDouble() < chance) {
                                 if (playerShooter.getInventory().add(arrowStack)) {
-                                    arrow.level.addFreshEntity(new ItemEntity(arrow.level, arrow.getX(), arrow.getY(), arrow.getZ(), arrowStack));
+                                    arrow.getCommandSenderWorld().addFreshEntity(new ItemEntity(arrow.getCommandSenderWorld(), arrow.getX(), arrow.getY(), arrow.getZ(), arrowStack));
                                 }
                             }
                         }

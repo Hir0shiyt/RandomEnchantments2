@@ -57,7 +57,7 @@ public class QuickDraw extends Enchantment {
     }
 
     @SubscribeEvent
-    public static void onPlayerUpdate(LivingEvent.LivingUpdateEvent event) {
+    public static void onPlayerUpdate(LivingEvent.LivingTickEvent event) {
         if (event.getEntity() instanceof Player) {
             Player player = (Player) event.getEntity();
             ItemStack heldItem = player.getItemInHand(InteractionHand.MAIN_HAND);

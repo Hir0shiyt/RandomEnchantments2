@@ -60,7 +60,7 @@ public class LingeringShadowsCurse extends Enchantment {
         double x = user.getX();
         double y = user.getY();
         double z = user.getZ();
-        List<Monster> aggro = target.level.getEntitiesOfClass(Monster.class, new AABB(x- r, y - r, z - r, x + r, y + r, z + r));
+        List<Monster> aggro = target.getCommandSenderWorld().getEntitiesOfClass(Monster.class, new AABB(x- r, y - r, z - r, x + r, y + r, z + r));
         for (Monster triggered : aggro) {
             triggered.teleportTo(x + 18, y, z + 5);
         }
