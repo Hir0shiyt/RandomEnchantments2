@@ -58,7 +58,7 @@ public class ObsidianBuster extends Enchantment {
     @SubscribeEvent
     public static void onBreakSpeed(PlayerEvent.BreakSpeed event) {
         Player player = event.getPlayer();
-        ItemStack heldItem = player.getItemInHand(player.getUsedItemHand());
+        ItemStack heldItem = player.getMainHandItem();
 
         // Check if the enchantment is enabled
         if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.OBSIDIAN_BUSTER, heldItem) <= 0) {

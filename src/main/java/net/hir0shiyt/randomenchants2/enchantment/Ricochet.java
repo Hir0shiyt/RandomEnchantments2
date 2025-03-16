@@ -23,7 +23,7 @@ import java.util.Map;
 
 @Mod.EventBusSubscriber(modid = RandomEnchants2.MOD_ID)
 public class Ricochet extends Enchantment {
-    private static final Map<AbstractArrow, Long> lastCollitionTime = new HashMap<>();
+    private static final Map<AbstractArrow, Integer> bounceCount = new HashMap<>();
 
     public Ricochet(Rarity rarity, EnchantmentCategory category, EquipmentSlot[] slots) {
         super(rarity, category, slots);
@@ -69,36 +69,34 @@ public class Ricochet extends Enchantment {
     @SubscribeEvent
     public static void arrowHit(ProjectileImpactEvent event) {
         HitResult result = event.getRayTraceResult();
-        if (!(result instanceof BlockHitResult)) return;
+        if (!(result instanceof BlockHitResult)) return; // Ensure it's a block hit
         Entity entity = event.getEntity();
-        if (!(entity instanceof AbstractArrow)) return;
+        if (!(entity instanceof AbstractArrow)) return; // Ensure it's an arrow
         AbstractArrow arrow = (AbstractArrow) entity;
         Entity shooter = arrow.getOwner();
-        if (!(shooter instanceof Player)) return;
+        if (!(shooter instanceof Player)) return; // Ensure shooter is a player
         Player player = (Player) shooter;
         ItemStack heldItem = player.getMainHandItem();
         if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RICOCHET, heldItem) > 0) {
             Direction facing = ((BlockHitResult) event.getRayTraceResult()).getDirection();
-            if (!lastCollitionTime.containsKey(arrow)) {
-                lastCollitionTime.put(arrow, System.currentTimeMillis());
-            }  else {
-                long currentTime = System.currentTimeMillis();
-                long lastCollition = lastCollitionTime.get(arrow);
 
-                if (currentTime - lastCollition >= 10 * 1000) {
-                    arrow.remove(Entity.RemovalReason.DISCARDED);
-                    lastCollitionTime.remove(arrow);
-                    return;
-                }
+            // Initialize or update bounce count for the arrow
+            bounceCount.putIfAbsent(arrow, 0); // Initialize if it hasn't been set
+            int bounces = bounceCount.get(arrow);
+
+            // If the arrow has bounced 10 times, stop bouncing and stick to the wall
+            if (bounces >= 20) {
+                arrow.setDeltaMovement(0, 0, 0); // Stop the arrow's movement
+                return; // Just return and prevent further bouncing
             }
 
+            // Handle the bounce logic
             double x = arrow.getDeltaMovement().x();
             double y = arrow.getDeltaMovement().y();
             double z = arrow.getDeltaMovement().z();
 
-            //A little bit of improvising with Vec3 for calculating correctly & avoiding issues
+            // Update the velocity for bounce based on block face hit
             Vec3 arrowMotion = arrow.getDeltaMovement();
-
             switch (facing) {
                 case UP, DOWN:
                     arrowMotion = new Vec3(arrowMotion.x, -arrowMotion.y, arrowMotion.z);
@@ -110,12 +108,13 @@ public class Ricochet extends Enchantment {
                     arrowMotion = new Vec3(arrowMotion.x, arrowMotion.y, -arrowMotion.z);
                     break;
                 default:
-                    throw new IllegalStateException("INVALID ENUM DETECTED" + facing);
+                    throw new IllegalStateException("INVALID ENUM DETECTED: " + facing);
             }
-            lastCollitionTime.put(arrow, System.currentTimeMillis());
-            arrow.setDeltaMovement(arrowMotion);
-            event.setCanceled(true);
 
+            // Update the arrow's velocity and increment the bounce count
+            arrow.setDeltaMovement(arrowMotion);
+            bounceCount.put(arrow, bounces + 1); // Increment bounce count
+            event.setCanceled(true); // Cancel the event to prevent further impacts
         }
     }
 }
