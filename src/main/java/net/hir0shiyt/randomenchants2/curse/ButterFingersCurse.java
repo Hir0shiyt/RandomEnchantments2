@@ -2,6 +2,8 @@ package net.hir0shiyt.randomenchants2.curse;
 
 import net.hir0shiyt.randomenchants2.RandomEnchants2;
 import net.hir0shiyt.randomenchants2.config.ModConfig;
+import net.hir0shiyt.randomenchants2.enchantment.ModEnchantments;
+import net.hir0shiyt.randomenchants2.util.EnchantUtils;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -59,13 +61,14 @@ public class ButterFingersCurse extends Enchantment {
     @SubscribeEvent
     public static void diggingEvent(BlockEvent.BreakEvent event) {
         Player player = event.getPlayer();
-        if (event.getResult() == Event.Result.DEFAULT) {
-            if (Math.random()>.50) return;
-            player.drop(player.getMainHandItem(), true);
-            player.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
-            ItemEntity itemStack = new ItemEntity(player.getCommandSenderWorld(), player.getX(), player.getY(), player.getZ(), player.getMainHandItem());
-            player.getCommandSenderWorld().addFreshEntity(itemStack);
+        if (EnchantUtils.hasEnch(player.getMainHandItem(), ModEnchantments.BUTTER_FINGERS_CURSE.get())) {
+            if (event.getResult() == Event.Result.DEFAULT) {
+                if (Math.random() > .50) return;
+                player.drop(player.getMainHandItem(), true);
+                player.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+                ItemEntity itemStack = new ItemEntity(player.getCommandSenderWorld(), player.getX(), player.getY(), player.getZ(), player.getMainHandItem());
+                player.getCommandSenderWorld().addFreshEntity(itemStack);
+            }
         }
-
     }
 }
